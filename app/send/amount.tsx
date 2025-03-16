@@ -1,10 +1,12 @@
+import { User } from "lucide-react-native"
 import React, { useState, useEffect } from "react"
-import { View, Text, StyleSheet, Pressable, Image } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter, useLocalSearchParams } from "expo-router"
-import { ArrowLeft, User } from "lucide-react-native"
+import { View, Text, StyleSheet, Pressable, Image } from "react-native"
+
 import { contacts } from "@/mocks/data"
 import { useTransactionStore } from "@/store/transactionStore"
+
 import NumPad from "@/components/NumPad"
 import Colors from "@/constants/colors"
 

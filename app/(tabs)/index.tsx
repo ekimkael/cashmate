@@ -72,7 +72,7 @@ export default function HomeScreen() {
 					</Pressable>
 				</View>
 
-				<View>
+				{/* <View>
 					<Text style={styles.sectionTitle}>Cash Card</Text>
 					<Pressable
 						style={styles.cardContainer}
@@ -89,7 +89,7 @@ export default function HomeScreen() {
 							Use your Cash Card for online and in-store purchases
 						</Text>
 					</Pressable>
-				</View>
+				</View> */}
 			</ScrollView>
 		</SafeAreaView>
 	)
