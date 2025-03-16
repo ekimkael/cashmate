@@ -1,19 +1,19 @@
-import React, { useState } from "react"
 import {
 	View,
 	Text,
 	StyleSheet,
 	TextInput,
 	Pressable,
-	KeyboardAvoidingView,
 	Platform,
 	ScrollView,
+	KeyboardAvoidingView,
 } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
+import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, Eye, EyeOff, Lock, Mail, User } from "lucide-react-native"
-import { useUserStore } from "@/store/userStore"
+
 import Colors from "@/constants/colors"
+import { useUserStore } from "@/store/userStore"
 
 export default function RegisterScreen() {
 	const router = useRouter()
@@ -53,7 +53,7 @@ export default function RegisterScreen() {
 	}
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<Stack.Screen
 				options={{
 					title: "Create Account",
@@ -185,7 +185,7 @@ export default function RegisterScreen() {
 					</View>
 				</ScrollView>
 			</KeyboardAvoidingView>
-		</SafeAreaView>
+		</View>
 	)
 }
 

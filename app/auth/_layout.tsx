@@ -6,16 +6,11 @@ export default function AuthLayout() {
 	return (
 		<Stack
 			screenOptions={{
-				headerStyle: {
-					backgroundColor: Colors.dark.background,
-				},
+				headerShadowVisible: false,
 				headerTintColor: Colors.dark.text,
-				headerTitleStyle: {
-					fontWeight: "600",
-				},
-				contentStyle: {
-					backgroundColor: Colors.dark.background,
-				},
+				headerTitleStyle: { fontWeight: "600" },
+				headerStyle: { backgroundColor: Colors.dark.background },
+				contentStyle: { backgroundColor: Colors.dark.background },
 			}}
 		/>
 	)

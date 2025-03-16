@@ -107,7 +107,7 @@ export default function ProfileScreen() {
 					style={styles.logoutButton}
 					onPress={() => {
 						logout()
-						router.replace("/")
+						router.replace("/auth/login")
 					}}>
 					<LogOut size={20} color={Colors.dark.error} />
 					<Text style={styles.logoutText}>Log Out</Text>

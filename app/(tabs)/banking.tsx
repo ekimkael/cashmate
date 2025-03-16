@@ -51,7 +51,7 @@ export default function BankingScreen() {
 				</View>
 
 				<View style={styles.section}>
-					<Text style={styles.sectionTitle}>Banking Actions</Text>
+					<Text style={styles.sectionTitle}>Actions</Text>
 					<View style={styles.actionsGrid}>
 						<Pressable
 							style={styles.actionItem}

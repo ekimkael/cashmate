@@ -1,19 +1,16 @@
-import React from "react"
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
-import { Stack, useRouter } from "expo-router"
 import {
-	ArrowLeft,
-	Smartphone,
 	Laptop,
-	AlertTriangle,
+	Smartphone,
 	CheckCircle,
+	AlertTriangle,
 } from "lucide-react-native"
+import React from "react"
+import { Stack } from "expo-router"
+import { View, Text, StyleSheet, Pressable, FlatList } from "react-native"
+
 import Colors from "@/constants/colors"
 
 export default function LoginHistoryScreen() {
-	const router = useRouter()
-
 	const loginHistory = [
 		{
 			id: "1",
@@ -74,76 +71,76 @@ export default function LoginHistoryScreen() {
 		<View style={styles.container}>
 			<Stack.Screen options={{ title: "Login History" }} />
 
-			<ScrollView contentContainerStyle={styles.scrollContent}>
-				<Text style={styles.description}>
-					Review recent account access. If you see any suspicious activity,
-					change your password immediately and contact support.
-				</Text>
-
-				<View style={styles.section}>
-					{loginHistory.map((login) => (
-						<View
-							key={login.id}
-							style={[styles.loginItem, login.current && styles.currentDevice]}>
-							<View style={styles.loginHeader}>
-								<View style={styles.deviceInfo}>
-									<View style={styles.deviceIcon}>
-										{getDeviceIcon(login.device)}
-									</View>
-									<View>
-										<Text style={styles.deviceName}>{login.device}</Text>
-										<Text style={styles.loginDate}>{login.date}</Text>
-									</View>
-								</View>
-								<View style={styles.statusContainer}>
-									{login.status === "success" ? (
-										<CheckCircle size={20} color={Colors.dark.primary} />
-									) : (
-										<AlertTriangle size={20} color={Colors.dark.error} />
-									)}
-								</View>
-							</View>
-
-							<View style={styles.loginDetails}>
-								<View style={styles.detailRow}>
-									<Text style={styles.detailLabel}>Location</Text>
-									<Text style={styles.detailValue}>{login.location}</Text>
-								</View>
-								<View style={styles.detailRow}>
-									<Text style={styles.detailLabel}>IP Address</Text>
-									<Text style={styles.detailValue}>{login.ip}</Text>
-								</View>
-								<View style={styles.detailRow}>
-									<Text style={styles.detailLabel}>Status</Text>
-									<Text
-										style={[
-											styles.detailValue,
-											login.status === "success"
-												? styles.successText
-												: styles.blockedText,
-										]}>
-										{login.status === "success" ? "Successful" : "Blocked"}
-									</Text>
-								</View>
-							</View>
-
-							{login.current && (
-								<View style={styles.currentTag}>
-									<Text style={styles.currentTagText}>Current Device</Text>
-								</View>
-							)}
-						</View>
-					))}
-				</View>
-
-				<Pressable
-					style={styles.reportButton}
-					onPress={() => router.push("/report-suspicious")}>
-					<Text style={styles.reportButtonText}>
-						Report Suspicious Activity
+			<FlatList
+				contentContainerStyle={styles.scrollContent}
+				ListHeaderComponent={
+					<Text style={styles.description}>
+						Review recent account access. If you see any suspicious activity,
+						change your password immediately and contact support.
 					</Text>
-				</Pressable>
-			</ScrollView>
+				}
+				data={loginHistory}
+				renderItem={({ item }) => (
+					<View
+						key={item.id}
+						style={[styles.loginItem, item.current && styles.currentDevice]}>
+						<View style={styles.loginHeader}>
+							<View style={styles.deviceInfo}>
+								<View style={styles.deviceIcon}>
+									{getDeviceIcon(item.device)}
+								</View>
+								<View>
+									<Text style={styles.deviceName}>{item.device}</Text>
+									<Text style={styles.loginDate}>{item.date}</Text>
+								</View>
+							</View>
+							<View style={styles.statusContainer}>
+								{item.status === "success" ? (
+									<CheckCircle size={20} color={Colors.dark.primary} />
+								) : (
+									<AlertTriangle size={20} color={Colors.dark.error} />
+								)}
+							</View>
+						</View>
+
+						<View style={styles.loginDetails}>
+							<View style={styles.detailRow}>
+								<Text style={styles.detailLabel}>Location</Text>
+								<Text style={styles.detailValue}>{item.location}</Text>
+							</View>
+							<View style={styles.detailRow}>
+								<Text style={styles.detailLabel}>IP Address</Text>
+								<Text style={styles.detailValue}>{item.ip}</Text>
+							</View>
+							<View style={styles.detailRow}>
+								<Text style={styles.detailLabel}>Status</Text>
+								<Text
+									style={[
+										styles.detailValue,
+										item.status === "success"
+											? styles.successText
+											: styles.blockedText,
+									]}>
+									{item.status === "success" ? "Successful" : "Blocked"}
+								</Text>
+							</View>
+						</View>
+
+						{item.current && (
+							<View style={styles.currentTag}>
+								<Text style={styles.currentTagText}>Current Device</Text>
+							</View>
+						)}
+					</View>
+				)}
+				ListFooterComponent={
+					<Pressable style={styles.reportButton} onPress={() => null}>
+						<Text style={styles.reportButtonText}>
+							Report Suspicious Activity
+						</Text>
+					</Pressable>
+				}
+			/>
 		</View>
 	)
 }

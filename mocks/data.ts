@@ -5,7 +5,7 @@ export const currentUser: User = {
 	name: "John Doe",
 	username: "johndoe",
 	email: "john@example.com",
-	balance: 1250.75,
+	balance: 786.75,
 }
 
 export const contacts: Contact[] = [

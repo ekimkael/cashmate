@@ -1,16 +1,16 @@
-import React, { useState } from "react"
 import {
 	View,
 	Text,
 	StyleSheet,
 	TextInput,
 	Pressable,
-	KeyboardAvoidingView,
 	Platform,
+	KeyboardAvoidingView,
 } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
+import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, Mail, CheckCircle } from "lucide-react-native"
+
 import Colors from "@/constants/colors"
 
 export default function ForgotPasswordScreen() {
@@ -31,7 +31,7 @@ export default function ForgotPasswordScreen() {
 	}
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<Stack.Screen
 				options={{
 					title: "Forgot Password",
@@ -104,7 +104,7 @@ export default function ForgotPasswordScreen() {
 					</View>
 				)}
 			</KeyboardAvoidingView>
-		</SafeAreaView>
+		</View>
 	)
 }
 
