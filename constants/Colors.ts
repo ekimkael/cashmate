@@ -1,19 +1,15 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
-
+// App theme colors
 export default {
-  light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
-};
+	dark: {
+		background: "#121212",
+		card: "#1E1E1E",
+		text: "#FFFFFF",
+		secondaryText: "#AAAAAA",
+		primary: "#00D632", // Cash App green
+		secondary: "#8A8D93",
+		border: "#2A2A2A",
+		success: "#00D632",
+		error: "#FF432A",
+		inputBackground: "#2A2A2A",
+	},
+}

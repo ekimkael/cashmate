@@ -1,59 +1,90 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { useEffect } from "react"
+import { useFonts } from "expo-font"
+import { Stack } from "expo-router"
+import { Platform } from "react-native"
+import { StatusBar } from "expo-status-bar"
+import * as SplashScreen from "expo-splash-screen"
+import FontAwesome from "@expo/vector-icons/FontAwesome"
 
-import { useColorScheme } from '@/components/useColorScheme';
+import Colors from "@/constants/colors"
+import { ErrorBoundary } from "./error-boundary"
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
+export const unstable_settings = { initialRouteName: "(tabs)" }
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
-  });
+	const [loaded, error] = useFonts({
+		...FontAwesome.font,
+	})
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
+	useEffect(() => {
+		if (error) {
+			console.error(error)
+			throw error
+		}
+	}, [error])
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+	useEffect(() => {
+		if (loaded) {
+			SplashScreen.hideAsync()
+		}
+	}, [loaded])
 
-  if (!loaded) {
-    return null;
-  }
+	if (!loaded) {
+		return null
+	}
 
-  return <RootLayoutNav />;
+	return (
+		<ErrorBoundary>
+			<StatusBar style="light" />
+			<RootLayoutNav />
+		</ErrorBoundary>
+	)
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
-  );
+	return (
+		<Stack
+			screenOptions={{
+				headerShadowVisible: false,
+				headerTintColor: Colors.dark.text,
+				headerBackButtonDisplayMode: "minimal",
+				headerTitleStyle: { fontWeight: "600" },
+				headerStyle: { backgroundColor: Colors.dark.background },
+				contentStyle: { backgroundColor: Colors.dark.background },
+			}}>
+			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+			<Stack.Screen name="modal" options={{ presentation: "modal" }} />
+			<Stack.Screen name="send" />
+			<Stack.Screen name="send/amount" options={{ headerShown: false }} />
+			<Stack.Screen name="send/success" options={{ headerShown: false }} />
+			<Stack.Screen name="request" />
+			<Stack.Screen name="request/amount" options={{ headerShown: false }} />
+			<Stack.Screen name="request/success" options={{ headerShown: false }} />
+			<Stack.Screen name="deposit" />
+			<Stack.Screen name="deposit/success" options={{ headerShown: false }} />
+			<Stack.Screen name="card-details" />
+			<Stack.Screen name="card" />
+			<Stack.Screen name="scan" />
+			<Stack.Screen name="qrcode" options={{ presentation: "modal" }} />
+			<Stack.Screen name="notifications" />
+			<Stack.Screen name="privacy" />
+			<Stack.Screen name="help" />
+			<Stack.Screen name="settings" />
+			<Stack.Screen
+				name="transaction/[id]"
+				options={{
+					presentation: Platform.OS === "ios" ? "formSheet" : "modal",
+					sheetAllowedDetents: Platform.OS === "ios" ? [0.64, 1] : undefined,
+				}}
+			/>
+			<Stack.Screen name="auth" options={{ headerShown: false }} />
+			<Stack.Screen name="editprofile" />
+			<Stack.Screen name="change-password" />
+			<Stack.Screen name="terms" />
+			<Stack.Screen name="privacy-policy" />
+		</Stack>
+	)
 }
