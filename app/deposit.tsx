@@ -1,18 +1,20 @@
 import React, { useState } from "react"
-import { View, Text, StyleSheet, Pressable } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter } from "expo-router"
-import { ArrowLeft, CreditCard } from "lucide-react-native"
-import { useTransactionStore } from "@/store/transactionStore"
+import { CreditCard } from "lucide-react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
+import { View, Text, StyleSheet, Pressable } from "react-native"
+
 import NumPad from "@/components/NumPad"
+
 import Colors from "@/constants/colors"
+import { useTransactionStore } from "@/store/transactionStore"
 
 export default function DepositScreen() {
-	const router = useRouter()
 	const { addTransaction } = useTransactionStore()
 	const [amount, setAmount] = useState("0")
+	const router = useRouter()
 
-	const handleNumberPress = (number) => {
+	const handleNumberPress = (number: string) => {
 		if (amount === "0" && number !== ".") {
 			setAmount(number)
 		} else if (number === "." && amount.includes(".")) {
@@ -45,7 +47,7 @@ export default function DepositScreen() {
 			},
 		})
 
-		router.push({
+		router.replace({
 			pathname: "/deposit/success",
 			params: { amount },
 		})

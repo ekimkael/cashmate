@@ -1,6 +1,7 @@
 import React from "react"
 import { Tabs } from "expo-router"
-import { Home, BarChart2, CreditCard, User } from "lucide-react-native"
+import { Home, BarChart2, CreditCard, UserRound } from "lucide-react-native"
+
 import Colors from "@/constants/colors"
 
 export default function TabLayout() {
@@ -14,10 +15,8 @@ export default function TabLayout() {
 					backgroundColor: Colors.dark.background,
 					borderTopColor: Colors.dark.border,
 				},
-				tabBarLabelStyle: { fontSize: 12 },
-				headerStyle: { backgroundColor: Colors.dark.background },
 				headerTintColor: Colors.dark.text,
-				headerTitleStyle: { fontWeight: "600" },
+				headerStyle: { backgroundColor: Colors.dark.background },
 			}}>
 			<Tabs.Screen
 				name="index"
@@ -44,7 +43,7 @@ export default function TabLayout() {
 				name="profile"
 				options={{
 					title: "Profile",
-					tabBarIcon: ({ color }) => <User size={24} color={color} />,
+					tabBarIcon: ({ color }) => <UserRound size={24} color={color} />,
 				}}
 			/>
 		</Tabs>

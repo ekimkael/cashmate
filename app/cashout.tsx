@@ -12,7 +12,7 @@ export default function CashoutScreen() {
 	const { addTransaction } = useTransactionStore()
 	const [amount, setAmount] = useState("0")
 
-	const handleNumberPress = (number) => {
+	const handleNumberPress = (number: string) => {
 		if (amount === "0" && number !== ".") {
 			setAmount(number)
 		} else if (number === "." && amount.includes(".")) {
@@ -45,7 +45,7 @@ export default function CashoutScreen() {
 			},
 		})
 
-		router.push({
+		router.replace({
 			pathname: "/cashout/success",
 			params: { amount },
 		})

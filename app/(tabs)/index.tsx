@@ -1,8 +1,14 @@
+import {
+	Scan,
+	Bell,
+	QrCode,
+	ArrowUpRight,
+	ArrowDownLeft,
+} from "lucide-react-native"
 import React from "react"
 import { useRouter } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native"
-import { ArrowUpRight, ArrowDownLeft, Scan, QrCode } from "lucide-react-native"
 
 import Colors from "@/constants/colors"
 import { useUserStore } from "@/store/userStore"
@@ -24,6 +30,14 @@ export default function HomeScreen() {
 
 	return (
 		<SafeAreaView style={styles.container}>
+			<View style={styles.header}>
+				<Text style={styles.headerTitle}>Dashboard</Text>
+
+				<Pressable style={styles.notifcationButton}>
+					<Bell size={20} color={Colors.dark.text} />
+				</Pressable>
+			</View>
+
 			<ScrollView contentContainerStyle={styles.scrollContent}>
 				<BalanceCard balance={user.balance} />
 
@@ -67,7 +81,7 @@ export default function HomeScreen() {
 						onPress={() => router.push("/deposit")}>
 						<Text style={styles.depositCardTitle}>Add Cash</Text>
 						<Text style={styles.depositCardDescription}>
-							Instantly deposit money to your Cash App
+							Instantly deposit money to your Cash Mate
 						</Text>
 					</Pressable>
 				</View>
@@ -100,87 +114,83 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: Colors.dark.background,
 	},
-	scrollContent: {
+	scrollContent: { padding: 20, paddingTop: 8 },
+	header: {
 		padding: 20,
+		paddingBottom: 0,
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
 	},
-	profileButton: {
+	headerTitle: {
+		fontSize: 24,
+		fontWeight: "700",
+		color: Colors.dark.text,
+	},
+	notifcationButton: {
 		width: 40,
 		height: 40,
 		borderRadius: 20,
-		backgroundColor: Colors.dark.card,
 		alignItems: "center",
 		justifyContent: "center",
-	},
-	searchButton: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
 		backgroundColor: Colors.dark.card,
-		alignItems: "center",
-		justifyContent: "center",
 	},
 	actionsContainer: { marginBottom: 24 },
 	actionsRow: {
+		marginBottom: 16,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		marginBottom: 16,
 	},
 	actionButton: { width: "48%" },
 	sectionTitle: {
-		color: Colors.dark.text,
 		fontSize: 18,
 		fontWeight: "600",
 		marginBottom: 16,
+		color: Colors.dark.text,
 	},
 	depositCard: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 16,
 		padding: 20,
+		borderRadius: 16,
+		backgroundColor: Colors.dark.card,
 	},
 	depositCardTitle: {
-		color: Colors.dark.text,
 		fontSize: 18,
-		fontWeight: "600",
 		marginBottom: 8,
+		fontWeight: "600",
+		color: Colors.dark.text,
 	},
 	depositCardDescription: {
-		color: Colors.dark.secondaryText,
 		fontSize: 14,
+		color: Colors.dark.secondaryText,
 	},
-	cardContainer: {
-		marginBottom: 16,
-	},
+	cardContainer: { marginBottom: 16 },
 	card: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 16,
 		padding: 20,
 		height: 180,
+		borderRadius: 16,
 		marginBottom: 12,
 		justifyContent: "space-between",
+		backgroundColor: Colors.dark.primary,
 	},
-	cardHeader: {
-		alignItems: "flex-start",
-	},
+	cardHeader: { alignItems: "flex-start" },
 	cardName: {
-		color: Colors.dark.background,
 		fontSize: 18,
 		fontWeight: "600",
-	},
-	cardFooter: {
-		alignItems: "flex-end",
-	},
-	cardNumber: {
 		color: Colors.dark.background,
+	},
+	cardFooter: { alignItems: "flex-end" },
+	cardNumber: {
 		fontSize: 16,
 		fontWeight: "500",
+		color: Colors.dark.background,
 	},
 	cardDescription: {
-		color: Colors.dark.secondaryText,
 		fontSize: 14,
+		color: Colors.dark.secondaryText,
 	},
 	errorText: {
-		color: Colors.dark.text,
 		fontSize: 16,
 		textAlign: "center",
+		color: Colors.dark.text,
 	},
 })

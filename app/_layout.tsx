@@ -51,12 +51,10 @@ function RootLayoutNav() {
 				headerShadowVisible: false,
 				headerTintColor: Colors.dark.text,
 				headerBackButtonDisplayMode: "minimal",
-				headerTitleStyle: { fontWeight: "600" },
 				headerStyle: { backgroundColor: Colors.dark.background },
 				contentStyle: { backgroundColor: Colors.dark.background },
 			}}>
 			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-			<Stack.Screen name="modal" options={{ presentation: "modal" }} />
 			<Stack.Screen name="send" />
 			<Stack.Screen name="send/amount" options={{ headerShown: false }} />
 			<Stack.Screen name="send/success" options={{ headerShown: false }} />

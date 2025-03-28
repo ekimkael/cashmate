@@ -1,18 +1,20 @@
-import React, { useState, useMemo } from "react"
 import {
 	View,
 	Text,
-	StyleSheet,
+	FlatList,
 	Pressable,
+	StyleSheet,
 	SectionList,
-	ScrollView,
 } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
 import { useRouter } from "expo-router"
 import { Filter } from "lucide-react-native"
-import { useTransactionStore } from "@/store/transactionStore"
-import TransactionItem from "@/components/TransactionItem"
+import React, { useState, useMemo } from "react"
+import { SafeAreaView } from "react-native-safe-area-context"
+
 import Colors from "@/constants/colors"
+import { useTransactionStore } from "@/store/transactionStore"
+
+import TransactionItem from "@/components/TransactionItem"
 
 export default function ActivityScreen() {
 	const router = useRouter()
@@ -20,7 +22,7 @@ export default function ActivityScreen() {
 	const [filterType, setFilterType] = useState("all")
 	const [showFilter, setShowFilter] = useState(false)
 
-	const handleTransactionPress = (transaction) => {
+	const handleTransactionPress = (transaction: { id: string }) => {
 		router.push({
 			pathname: "/transaction/[id]",
 			params: { id: transaction.id },
@@ -80,26 +82,27 @@ export default function ActivityScreen() {
 
 			{showFilter && (
 				<View style={styles.filterContainer}>
-					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-						{filterOptions.map((option) => (
+					<FlatList
+						horizontal
+						data={filterOptions}
+						renderItem={({ item }) => (
 							<Pressable
-								key={option.value}
+								key={item.value}
+								onPress={() => setFilterType(item.value)}
 								style={[
 									styles.filterOption,
-									filterType === option.value && styles.filterOptionActive,
-								]}
-								onPress={() => setFilterType(option.value)}>
+									filterType === item.value && styles.filterOptionActive,
+								]}>
 								<Text
 									style={[
 										styles.filterOptionText,
-										filterType === option.value &&
-											styles.filterOptionTextActive,
+										filterType === item.value && styles.filterOptionTextActive,
 									]}>
-									{option.label}
+									{item.label}
 								</Text>
 							</Pressable>
-						))}
-					</ScrollView>
+						)}
+					/>
 				</View>
 			)}
 
@@ -128,34 +131,24 @@ export default function ActivityScreen() {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
+	container: { flex: 1, backgroundColor: Colors.dark.background },
 	header: {
-		padding: 20,
+		padding: 16,
 		paddingBottom: 10,
 		flexDirection: "row",
-		justifyContent: "space-between",
 		alignItems: "center",
+		justifyContent: "space-between",
 	},
-	headerTitle: {
-		color: Colors.dark.text,
-		fontSize: 24,
-		fontWeight: "700",
-	},
+	headerTitle: { fontSize: 24, fontWeight: "700", color: Colors.dark.text },
 	filterButton: {
 		width: 40,
 		height: 40,
 		borderRadius: 20,
-		backgroundColor: Colors.dark.card,
 		alignItems: "center",
 		justifyContent: "center",
+		backgroundColor: Colors.dark.card,
 	},
-	filterContainer: {
-		paddingHorizontal: 20,
-		paddingBottom: 10,
-	},
+	filterContainer: { paddingBottom: 10, paddingHorizontal: 16 },
 	filterOption: {
 		paddingHorizontal: 16,
 		paddingVertical: 8,
@@ -163,39 +156,31 @@ const styles = StyleSheet.create({
 		marginRight: 8,
 		backgroundColor: Colors.dark.card,
 	},
-	filterOptionActive: {
-		backgroundColor: Colors.dark.primary,
-	},
-	filterOptionText: {
-		color: Colors.dark.text,
-		fontSize: 14,
-	},
-	filterOptionTextActive: {
-		color: Colors.dark.background,
-		fontWeight: "600",
-	},
+	filterOptionActive: { backgroundColor: Colors.dark.primary },
+	filterOptionText: { color: Colors.dark.text, fontSize: 14 },
+	filterOptionTextActive: { color: Colors.dark.background, fontWeight: "600" },
 	sectionHeader: {
-		backgroundColor: Colors.dark.background,
 		paddingHorizontal: 20,
 		paddingVertical: 8,
 		borderBottomWidth: 1,
 		borderBottomColor: Colors.dark.border,
+		backgroundColor: Colors.dark.background,
 	},
 	sectionHeaderText: {
-		color: Colors.dark.secondaryText,
 		fontSize: 14,
 		fontWeight: "600",
+		color: Colors.dark.secondaryText,
 	},
 	emptyContainer: {
 		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
 		padding: 20,
 		height: 300,
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	emptyText: {
-		color: Colors.dark.secondaryText,
 		fontSize: 16,
 		textAlign: "center",
+		color: Colors.dark.secondaryText,
 	},
 })

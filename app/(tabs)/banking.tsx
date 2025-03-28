@@ -33,7 +33,7 @@ export default function BankingScreen() {
 					<Text style={styles.headerTitle}>Banking</Text>
 				</View>
 
-				<View style={styles.section}>
+				<View style={{ marginBottom: 8 }}>
 					<Pressable style={styles.card} onPress={() => router.push("/card")}>
 						<View style={styles.cardHeader}>
 							<CreditCard size={24} color={Colors.dark.background} />
@@ -91,7 +91,7 @@ export default function BankingScreen() {
 					</View>
 				</View>
 
-				<View style={styles.section}>
+				<View>
 					<Text style={styles.sectionTitle}>Linked Accounts</Text>
 					<Pressable
 						style={styles.linkedAccount}
@@ -121,12 +121,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: Colors.dark.background,
 	},
-	scrollContent: {
-		padding: 20,
-	},
-	header: {
-		marginBottom: 24,
-	},
+	scrollContent: { padding: 20 },
+	header: { marginBottom: 24 },
 	headerTitle: {
 		color: Colors.dark.text,
 		fontSize: 24,
@@ -139,18 +135,16 @@ const styles = StyleSheet.create({
 		marginBottom: 24,
 	},
 	balanceLabel: {
-		color: Colors.dark.secondaryText,
 		fontSize: 14,
 		marginBottom: 8,
+		color: Colors.dark.secondaryText,
 	},
 	balanceAmount: {
 		color: Colors.dark.text,
 		fontSize: 32,
 		fontWeight: "600",
 	},
-	section: {
-		marginBottom: 32,
-	},
+	section: { marginBottom: 32 },
 	sectionTitle: {
 		color: Colors.dark.text,
 		fontSize: 18,

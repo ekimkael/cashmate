@@ -4,8 +4,8 @@ import {
 	CheckCircle,
 	AlertTriangle,
 } from "lucide-react-native"
-import React from "react"
 import { Stack } from "expo-router"
+import React, { Fragment } from "react"
 import { View, Text, StyleSheet, Pressable, FlatList } from "react-native"
 
 import Colors from "@/constants/colors"
@@ -89,14 +89,26 @@ export default function LoginHistoryScreen() {
 								<View style={styles.deviceIcon}>
 									{getDeviceIcon(item.device)}
 								</View>
+
 								<View>
 									<Text style={styles.deviceName}>{item.device}</Text>
 									<Text style={styles.loginDate}>{item.date}</Text>
 								</View>
 							</View>
+
 							<View style={styles.statusContainer}>
 								{item.status === "success" ? (
-									<CheckCircle size={20} color={Colors.dark.primary} />
+									<Fragment>
+										{item.current ? (
+											<View style={styles.currentTag}>
+												<Text style={styles.currentTagText}>
+													Current Device
+												</Text>
+											</View>
+										) : (
+											<CheckCircle size={20} color={Colors.dark.primary} />
+										)}
+									</Fragment>
 								) : (
 									<AlertTriangle size={20} color={Colors.dark.error} />
 								)}
@@ -108,10 +120,12 @@ export default function LoginHistoryScreen() {
 								<Text style={styles.detailLabel}>Location</Text>
 								<Text style={styles.detailValue}>{item.location}</Text>
 							</View>
+
 							<View style={styles.detailRow}>
 								<Text style={styles.detailLabel}>IP Address</Text>
 								<Text style={styles.detailValue}>{item.ip}</Text>
 							</View>
+
 							<View style={styles.detailRow}>
 								<Text style={styles.detailLabel}>Status</Text>
 								<Text
@@ -125,12 +139,6 @@ export default function LoginHistoryScreen() {
 								</Text>
 							</View>
 						</View>
-
-						{item.current && (
-							<View style={styles.currentTag}>
-								<Text style={styles.currentTagText}>Current Device</Text>
-							</View>
-						)}
 					</View>
 				)}
 				ListFooterComponent={
@@ -201,7 +209,7 @@ const styles = StyleSheet.create({
 		marginTop: 4,
 	},
 	statusContainer: {
-		padding: 8,
+		paddingVertical: 8,
 	},
 	loginDetails: {
 		backgroundColor: Colors.dark.inputBackground,
@@ -229,9 +237,6 @@ const styles = StyleSheet.create({
 		color: Colors.dark.error,
 	},
 	currentTag: {
-		position: "absolute",
-		top: 16,
-		right: 16,
 		backgroundColor: Colors.dark.primary,
 		borderRadius: 12,
 		paddingHorizontal: 8,

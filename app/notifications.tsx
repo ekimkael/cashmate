@@ -5,6 +5,7 @@ import {
 	FlatList,
 	Pressable,
 	StyleSheet,
+	ScrollView,
 } from "react-native"
 import React from "react"
 import { Stack, useRouter } from "expo-router"
@@ -70,187 +71,181 @@ export default function NotificationsScreen() {
 		<View style={styles.container}>
 			<Stack.Screen options={{ title: "Notifications" }} />
 
-			<FlatList
-				data={notificationItems}
-				keyExtractor={(item) => item.id}
-				renderItem={({ item }) => (
-					<Pressable
-						style={[styles.notificationItem, !item.read && styles.unreadItem]}>
-						<View style={styles.notificationIcon}>
-							<item.icon size={20} color={Colors.dark.text} />
+			<ScrollView>
+				<View style={styles.settings}>
+					<View style={styles.settingItem}>
+						<View style={styles.settingIcon}>
+							<DollarSign size={20} color={Colors.dark.text} />
 						</View>
-						<View style={styles.notificationContent}>
-							<Text style={styles.notificationTitle}>{item.title}</Text>
-							<Text style={styles.notificationMessage}>{item.message}</Text>
-							<Text style={styles.notificationTime}>{item.time}</Text>
+						<View style={styles.settingContent}>
+							<Text style={styles.settingLabel}>Payments</Text>
+							<Text style={styles.settingDescription}>
+								Receive notifications for payments
+							</Text>
 						</View>
-					</Pressable>
-				)}
-				ListHeaderComponent={
-					<View style={styles.header}>
-						<Text style={styles.headerTitle}>Notification Settings</Text>
-						<View style={styles.settingsContainer}>
-							<View style={styles.settingItem}>
-								<View style={styles.settingIcon}>
-									<DollarSign size={20} color={Colors.dark.text} />
-								</View>
-								<View style={styles.settingContent}>
-									<Text style={styles.settingLabel}>Payments</Text>
-									<Text style={styles.settingDescription}>
-										Receive notifications for payments
-									</Text>
-								</View>
-								<Switch
-									value={notificationSettings.payments}
-									onValueChange={() => toggleSetting("payments")}
-									trackColor={{
-										false: Colors.dark.border,
-										true: Colors.dark.primary,
-									}}
-									thumbColor={Colors.dark.text}
-								/>
-							</View>
-
-							<View style={styles.settingItem}>
-								<View style={styles.settingIcon}>
-									<DollarSign size={20} color={Colors.dark.text} />
-								</View>
-								<View style={styles.settingContent}>
-									<Text style={styles.settingLabel}>Deposits</Text>
-									<Text style={styles.settingDescription}>
-										Receive notifications for deposits
-									</Text>
-								</View>
-								<Switch
-									value={notificationSettings.deposits}
-									onValueChange={() => toggleSetting("deposits")}
-									trackColor={{
-										false: Colors.dark.border,
-										true: Colors.dark.primary,
-									}}
-									thumbColor={Colors.dark.text}
-								/>
-							</View>
-
-							<View style={styles.settingItem}>
-								<View style={styles.settingIcon}>
-									<CreditCard size={20} color={Colors.dark.text} />
-								</View>
-								<View style={styles.settingContent}>
-									<Text style={styles.settingLabel}>Card Activity</Text>
-									<Text style={styles.settingDescription}>
-										Receive notifications for card transactions
-									</Text>
-								</View>
-								<Switch
-									value={notificationSettings.cardActivity}
-									onValueChange={() => toggleSetting("cardActivity")}
-									trackColor={{
-										false: Colors.dark.border,
-										true: Colors.dark.primary,
-									}}
-									thumbColor={Colors.dark.text}
-								/>
-							</View>
-
-							<View style={styles.settingItem}>
-								<View style={styles.settingIcon}>
-									<Bell size={20} color={Colors.dark.text} />
-								</View>
-								<View style={styles.settingContent}>
-									<Text style={styles.settingLabel}>Promotions</Text>
-									<Text style={styles.settingDescription}>
-										Receive promotional notifications
-									</Text>
-								</View>
-								<Switch
-									value={notificationSettings.promotions}
-									onValueChange={() => toggleSetting("promotions")}
-									trackColor={{
-										false: Colors.dark.border,
-										true: Colors.dark.primary,
-									}}
-									thumbColor={Colors.dark.text}
-								/>
-							</View>
-
-							<View style={styles.settingItem}>
-								<View style={styles.settingIcon}>
-									<User size={20} color={Colors.dark.text} />
-								</View>
-								<View style={styles.settingContent}>
-									<Text style={styles.settingLabel}>Friend Activity</Text>
-									<Text style={styles.settingDescription}>
-										Receive notifications about friends
-									</Text>
-								</View>
-								<Switch
-									value={notificationSettings.friendActivity}
-									onValueChange={() => toggleSetting("friendActivity")}
-									trackColor={{
-										false: Colors.dark.border,
-										true: Colors.dark.primary,
-									}}
-									thumbColor={Colors.dark.text}
-								/>
-							</View>
-						</View>
-
-						<Text style={styles.recentTitle}>Recent Notifications</Text>
+						<Switch
+							value={notificationSettings.payments}
+							onValueChange={() => toggleSetting("payments")}
+							trackColor={{
+								false: Colors.dark.border,
+								true: Colors.dark.primary,
+							}}
+							thumbColor={Colors.dark.text}
+						/>
 					</View>
-				}
-				ListEmptyComponent={
-					<View style={styles.emptyContainer}>
-						<Text style={styles.emptyText}>No notifications</Text>
+
+					<View style={styles.settingItem}>
+						<View style={styles.settingIcon}>
+							<DollarSign size={20} color={Colors.dark.text} />
+						</View>
+						<View style={styles.settingContent}>
+							<Text style={styles.settingLabel}>Deposits</Text>
+							<Text style={styles.settingDescription}>
+								Receive notifications for deposits
+							</Text>
+						</View>
+						<Switch
+							value={notificationSettings.deposits}
+							onValueChange={() => toggleSetting("deposits")}
+							trackColor={{
+								false: Colors.dark.border,
+								true: Colors.dark.primary,
+							}}
+							thumbColor={Colors.dark.text}
+						/>
 					</View>
-				}
-			/>
+
+					<View style={styles.settingItem}>
+						<View style={styles.settingIcon}>
+							<CreditCard size={20} color={Colors.dark.text} />
+						</View>
+						<View style={styles.settingContent}>
+							<Text style={styles.settingLabel}>Card Activity</Text>
+							<Text style={styles.settingDescription}>
+								Receive notifications for card transactions
+							</Text>
+						</View>
+						<Switch
+							value={notificationSettings.cardActivity}
+							onValueChange={() => toggleSetting("cardActivity")}
+							trackColor={{
+								false: Colors.dark.border,
+								true: Colors.dark.primary,
+							}}
+							thumbColor={Colors.dark.text}
+						/>
+					</View>
+
+					<View style={styles.settingItem}>
+						<View style={styles.settingIcon}>
+							<Bell size={20} color={Colors.dark.text} />
+						</View>
+						<View style={styles.settingContent}>
+							<Text style={styles.settingLabel}>Promotions</Text>
+							<Text style={styles.settingDescription}>
+								Receive promotional notifications
+							</Text>
+						</View>
+						<Switch
+							value={notificationSettings.promotions}
+							onValueChange={() => toggleSetting("promotions")}
+							trackColor={{
+								false: Colors.dark.border,
+								true: Colors.dark.primary,
+							}}
+							thumbColor={Colors.dark.text}
+						/>
+					</View>
+
+					<View style={styles.settingItem}>
+						<View style={styles.settingIcon}>
+							<User size={20} color={Colors.dark.text} />
+						</View>
+						<View style={styles.settingContent}>
+							<Text style={styles.settingLabel}>Friend Activity</Text>
+							<Text style={styles.settingDescription}>
+								Receive notifications about friends
+							</Text>
+						</View>
+						<Switch
+							value={notificationSettings.friendActivity}
+							onValueChange={() => toggleSetting("friendActivity")}
+							trackColor={{
+								false: Colors.dark.border,
+								true: Colors.dark.primary,
+							}}
+							thumbColor={Colors.dark.text}
+						/>
+					</View>
+				</View>
+
+				<FlatList
+					scrollEnabled={false}
+					data={notificationItems}
+					keyExtractor={(item) => item.id}
+					renderItem={({ item }) => (
+						<Pressable
+							style={[
+								styles.notificationItem,
+								!item.read && styles.unreadItem,
+							]}>
+							<View style={styles.notificationIcon}>
+								<item.icon size={20} color={Colors.dark.text} />
+							</View>
+							<View style={styles.notificationContent}>
+								<Text style={styles.notificationTitle}>{item.title}</Text>
+								<Text style={styles.notificationMessage}>{item.message}</Text>
+								<Text style={styles.notificationTime}>{item.time}</Text>
+							</View>
+						</Pressable>
+					)}
+					ListHeaderComponent={
+						<View style={styles.header}>
+							<Text style={styles.recentTitle}>Recent Notifications</Text>
+						</View>
+					}
+					ListEmptyComponent={
+						<View style={styles.emptyContainer}>
+							<Text style={styles.emptyText}>No notifications</Text>
+						</View>
+					}
+				/>
+			</ScrollView>
 		</View>
 	)
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	header: {
-		padding: 20,
-	},
+	container: { flex: 1, backgroundColor: Colors.dark.background },
+	header: { padding: 16 },
 	headerTitle: {
-		color: Colors.dark.text,
 		fontSize: 18,
 		fontWeight: "600",
 		marginBottom: 16,
+		color: Colors.dark.text,
 	},
-	settingsContainer: {
-		marginBottom: 24,
-	},
+	settings: { padding: 16, gap: 8 },
 	settingItem: {
+		gap: 16,
+		padding: 16,
+		borderRadius: 12,
 		flexDirection: "row",
 		alignItems: "center",
 		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
 	},
 	settingIcon: {
 		width: 40,
 		height: 40,
 		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
 		alignItems: "center",
 		justifyContent: "center",
-		marginRight: 12,
+		backgroundColor: Colors.dark.inputBackground,
 	},
-	settingContent: {
-		flex: 1,
-	},
+	settingContent: { flex: 1, gap: 4 },
 	settingLabel: {
-		color: Colors.dark.text,
 		fontSize: 16,
 		fontWeight: "500",
-		marginBottom: 4,
+		color: Colors.dark.text,
 	},
 	settingDescription: {
 		color: Colors.dark.secondaryText,

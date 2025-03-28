@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
+import { Redirect, Stack } from "expo-router"
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native"
-import { Redirect } from "expo-router"
-import { useUserStore } from "@/store/userStore"
+
 import Colors from "@/constants/colors"
+import { useUserStore } from "@/store/userStore"
 
 export default function IndexScreen() {
 	const { user } = useUserStore()
@@ -19,9 +20,11 @@ export default function IndexScreen() {
 
 	if (isLoading) {
 		return (
-			<View style={styles.loadingContainer}>
+			<View style={styles.container}>
+				<Stack.Screen options={{ title: "", headerShown: false }} />
+
 				<ActivityIndicator size="large" color={Colors.dark.primary} />
-				<Text style={styles.loadingText}>Loading...</Text>
+				<Text style={styles.text}>Loading...</Text>
 			</View>
 		)
 	}
@@ -36,15 +39,15 @@ export default function IndexScreen() {
 }
 
 const styles = StyleSheet.create({
-	loadingContainer: {
+	container: {
 		flex: 1,
-		justifyContent: "center",
 		alignItems: "center",
+		justifyContent: "center",
 		backgroundColor: Colors.dark.background,
 	},
-	loadingText: {
-		color: Colors.dark.text,
+	text: {
 		marginTop: 16,
 		fontSize: 16,
+		color: Colors.dark.text,
 	},
 })

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
-import { View, Text, StyleSheet, Pressable } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
-import { Stack, useRouter, useLocalSearchParams } from "expo-router"
 import { CheckCircle } from "lucide-react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
+import { View, Text, StyleSheet, Pressable } from "react-native"
+import { Stack, useRouter, useLocalSearchParams } from "expo-router"
+
 import Colors from "@/constants/colors"
 
 export default function CashoutSuccessScreen() {
@@ -11,7 +12,7 @@ export default function CashoutSuccessScreen() {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			router.replace("/")
+			router.back()
 		}, 5000)
 
 		return () => clearTimeout(timer)
@@ -43,7 +44,7 @@ export default function CashoutSuccessScreen() {
 				</Text>
 			</View>
 
-			<Pressable style={styles.doneButton} onPress={() => router.replace("/")}>
+			<Pressable style={styles.doneButton} onPress={() => router.back()}>
 				<Text style={styles.doneButtonText}>Done</Text>
 			</Pressable>
 		</SafeAreaView>

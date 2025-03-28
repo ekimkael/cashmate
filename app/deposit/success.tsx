@@ -11,7 +11,7 @@ export default function DepositSuccessScreen() {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			router.replace("/")
+			router.back()
 		}, 5000)
 
 		return () => clearTimeout(timer)
@@ -42,7 +42,7 @@ export default function DepositSuccessScreen() {
 				</Text>
 			</View>
 
-			<Pressable style={styles.doneButton} onPress={() => router.replace("/")}>
+			<Pressable style={styles.doneButton} onPress={() => router.back()}>
 				<Text style={styles.doneButtonText}>Done</Text>
 			</Pressable>
 		</SafeAreaView>

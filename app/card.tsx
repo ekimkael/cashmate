@@ -48,29 +48,16 @@ export default function CardScreen() {
 							<Text style={styles.cardNumber}>•••• 1234</Text>
 						</View>
 					</View>
-				</View>
 
-				<View style={styles.balanceContainer}>
-					<Text style={styles.balanceLabel}>Available Balance</Text>
-					<Text style={styles.balanceAmount}>${user.balance.toFixed(2)}</Text>
-
-					<View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
-						<Pressable
-							style={styles.addCashButton}
-							onPress={() => router.push("/deposit")}>
-							<Text style={styles.addCashText}>Add Cash</Text>
-						</Pressable>
-
-						<Pressable
-							style={styles.cardDetailsButton}
-							onPress={() => router.push("/card-details")}>
-							<Text style={styles.cardDetailsText}>View Card Details</Text>
-						</Pressable>
-					</View>
+					<Pressable
+						style={styles.cardDetailsButton}
+						onPress={() => router.push("/card-details")}>
+						<Text style={styles.cardDetailsText}>View Card Details</Text>
+					</Pressable>
 				</View>
 
 				<View style={styles.section}>
-					<Text style={styles.sectionTitle}>Card Features</Text>
+					<Text style={styles.sectionTitle}>Features</Text>
 
 					<View style={styles.featuresGrid}>
 						<Pressable
@@ -193,7 +180,7 @@ const styles = StyleSheet.create({
 		fontWeight: "500",
 	},
 	cardDetailsButton: {
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
+		backgroundColor: Colors.dark.card,
 		borderRadius: 12,
 		padding: 16,
 		alignItems: "center",
