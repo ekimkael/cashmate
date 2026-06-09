@@ -40,9 +40,17 @@ export default function PrivacySecurityScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ title: "Privacy & Security" }} />
+			<Stack.Screen options={{
+				title: "Privacy & Security",
+				headerLargeTitle: true,
+				headerTransparent: true,
+				headerShadowVisible: false,
+				headerLargeTitleShadowVisible: false,
+				headerLargeStyle: { backgroundColor: "transparent" },
+				headerBlurEffect: "systemChromeMaterial",
+			}} />
 
-			<ScrollView contentContainerStyle={styles.scrollContent}>
+			<ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.scrollContent}>
 				<View style={styles.section}>
 					<Text style={styles.sectionTitle}>Security</Text>
 

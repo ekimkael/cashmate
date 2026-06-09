@@ -69,9 +69,17 @@ export default function NotificationsScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ title: "Notifications" }} />
+			<Stack.Screen options={{
+				title: "Notifications",
+				headerLargeTitle: true,
+				headerTransparent: true,
+				headerShadowVisible: false,
+				headerLargeTitleShadowVisible: false,
+				headerLargeStyle: { backgroundColor: "transparent" },
+				headerBlurEffect: "systemChromeMaterial",
+			}} />
 
-			<ScrollView>
+			<ScrollView contentInsetAdjustmentBehavior="automatic">
 				<View style={styles.settings}>
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>

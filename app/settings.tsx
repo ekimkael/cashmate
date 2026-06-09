@@ -47,9 +47,17 @@ export default function SettingsScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ title: "Settings" }} />
+			<Stack.Screen options={{
+				title: "Settings",
+				headerLargeTitle: true,
+				headerTransparent: true,
+				headerShadowVisible: false,
+				headerLargeTitleShadowVisible: false,
+				headerLargeStyle: { backgroundColor: "transparent" },
+				headerBlurEffect: "systemChromeMaterial",
+			}} />
 
-			<ScrollView contentContainerStyle={styles.scrollContent}>
+			<ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.scrollContent}>
 				<View style={styles.section}>
 					<Text style={styles.sectionTitle}>Account</Text>
 

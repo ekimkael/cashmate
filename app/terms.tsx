@@ -7,9 +7,17 @@ import Colors from "@/constants/colors"
 export default function TermsOfServiceScreen() {
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ title: "Terms of Service" }} />
+			<Stack.Screen options={{
+				title: "Terms of Service",
+				headerLargeTitle: true,
+				headerTransparent: true,
+				headerShadowVisible: false,
+				headerLargeTitleShadowVisible: false,
+				headerLargeStyle: { backgroundColor: "transparent" },
+				headerBlurEffect: "systemChromeMaterial",
+			}} />
 
-			<ScrollView contentContainerStyle={styles.scrollContent}>
+			<ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.scrollContent}>
 				<Text style={styles.lastUpdated}>Last Updated: June 1, 2023</Text>
 
 				<View style={styles.section}>

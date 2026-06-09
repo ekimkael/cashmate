@@ -68,9 +68,17 @@ export default function HelpScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ title: "Help" }} />
+			<Stack.Screen options={{
+				title: "Help",
+				headerLargeTitle: true,
+				headerTransparent: true,
+				headerShadowVisible: false,
+				headerLargeTitleShadowVisible: false,
+				headerLargeStyle: { backgroundColor: "transparent" },
+				headerBlurEffect: "systemChromeMaterial",
+			}} />
 
-			<ScrollView contentContainerStyle={styles.scrollContent}>
+			<ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.scrollContent}>
 				<View style={styles.searchContainer}>
 					<Search
 						size={20}

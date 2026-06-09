@@ -7,9 +7,17 @@ import Colors from "@/constants/colors"
 export default function PrivacyPolicyScreen() {
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ title: "Privacy Policy" }} />
+			<Stack.Screen options={{
+				title: "Privacy Policy",
+				headerLargeTitle: true,
+				headerTransparent: true,
+				headerShadowVisible: false,
+				headerLargeTitleShadowVisible: false,
+				headerLargeStyle: { backgroundColor: "transparent" },
+				headerBlurEffect: "systemChromeMaterial",
+			}} />
 
-			<ScrollView contentContainerStyle={styles.scrollContent}>
+			<ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.scrollContent}>
 				<Text style={styles.lastUpdated}>Last Updated: June 1, 2023</Text>
 
 				<View style={styles.section}>
