@@ -1,7 +1,12 @@
 import { useEffect } from "react"
 import { useFonts } from "expo-font"
 import { Stack } from "expo-router"
+import { Appearance } from "react-native"
 import { StatusBar } from "expo-status-bar"
+
+// Force dark mode so PlatformColor tokens resolve correctly on all system
+// appearance settings. Matches userInterfaceStyle: "dark" in app.json.
+Appearance.setColorScheme("dark")
 import * as SplashScreen from "expo-splash-screen"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
 

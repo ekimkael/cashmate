@@ -2,7 +2,6 @@ import React from "react"
 import { View, Text, Pressable } from "react-native"
 import { Eye, EyeOff } from "lucide-react-native"
 import Colors from "@/constants/colors"
-import { semantic } from "@/constants/colors"
 import { type as t } from "@/constants/typography"
 
 interface BalanceCardProps {
@@ -22,7 +21,7 @@ export default function BalanceCard({ balance }: BalanceCardProps) {
         width: "100%",
       }}
     >
-      <Text style={[t.subhead, { marginBottom: 8 }]}>Your Balance</Text>
+      <Text style={[t.subhead, { marginBottom: 8, color: Colors.dark.secondaryText }]}>Your Balance</Text>
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <Text style={[t.title1, { marginRight: 2 }]} selectable>
@@ -36,9 +35,9 @@ export default function BalanceCard({ balance }: BalanceCardProps) {
         </Text>
         <Pressable onPress={() => setHidden((h) => !h)} style={{ padding: 8 }}>
           {hidden ? (
-            <EyeOff size={20} color={semantic.secondaryLabel as any} />
+            <EyeOff size={20} color={Colors.dark.secondaryText} />
           ) : (
-            <Eye size={20} color={semantic.secondaryLabel as any} />
+            <Eye size={20} color={Colors.dark.secondaryText} />
           )}
         </Pressable>
       </View>
