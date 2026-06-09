@@ -39,15 +39,13 @@ A fully-featured **mobile UI prototype** for a digital wallet and P2P payment ex
 
 ## Screenshots
 
-> Screenshots coming soon — run the app locally to see the full UI.
-
 | Home | Activity | Banking | Profile |
 |------|----------|---------|---------|
-| <!-- screenshot: home tab --> | <!-- screenshot: activity tab --> | <!-- screenshot: banking tab --> | <!-- screenshot: profile tab --> |
+| <img src="assets/screenshots/home.png" width="180"/> | <img src="assets/screenshots/activity.png" width="180"/> | <img src="assets/screenshots/banking.png" width="180"/> | <img src="assets/screenshots/profile.png" width="180"/> |
 
 | Send Flow | Card Management | QR Code |
 |-----------|----------------|---------|
-| <!-- screenshot: send screen --> | <!-- screenshot: card screen --> | <!-- screenshot: qr code screen --> |
+| <img src="assets/screenshots/send.png" width="180"/> | <img src="assets/screenshots/card.png" width="180"/> | <img src="assets/screenshots/qrcode.png" width="180"/> |
 
 ---
 
