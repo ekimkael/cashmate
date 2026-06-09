@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { useFonts } from "expo-font"
 import { Stack } from "expo-router"
-import { Platform } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import * as SplashScreen from "expo-splash-screen"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
 
 import Colors from "@/constants/colors"
+import { Theme } from "@/components/theme"
 import { ErrorBoundary } from "./error-boundary"
 
 export const unstable_settings = { initialRouteName: "(tabs)" }
@@ -38,8 +38,10 @@ export default function RootLayout() {
 
 	return (
 		<ErrorBoundary>
-			<StatusBar style="light" />
-			<RootLayoutNav />
+			<Theme>
+				<StatusBar style="light" />
+				<RootLayoutNav />
+			</Theme>
 		</ErrorBoundary>
 	)
 }
@@ -74,8 +76,8 @@ function RootLayoutNav() {
 			<Stack.Screen
 				name="transaction/[id]"
 				options={{
-					presentation: Platform.OS === "ios" ? "formSheet" : "modal",
-					sheetAllowedDetents: Platform.OS === "ios" ? [0.64, 1] : undefined,
+					presentation: process.env.EXPO_OS === "ios" ? "formSheet" : "modal",
+					sheetAllowedDetents: process.env.EXPO_OS === "ios" ? [0.64, 1] : undefined,
 				}}
 			/>
 			<Stack.Screen name="auth" options={{ headerShown: false }} />
