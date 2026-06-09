@@ -1,51 +1,27 @@
-import React from "react"
-import { Tabs } from "expo-router"
-import { Home, BarChart2, CreditCard, UserRound } from "lucide-react-native"
-
-import Colors from "@/constants/colors"
+import { NativeTabs } from "expo-router/unstable-native-tabs"
 
 export default function TabLayout() {
-	return (
-		<Tabs
-			screenOptions={{
-				headerShown: false,
-				tabBarActiveTintColor: Colors.dark.primary,
-				tabBarInactiveTintColor: Colors.dark.secondaryText,
-				tabBarStyle: {
-					backgroundColor: Colors.dark.background,
-					borderTopColor: Colors.dark.border,
-				},
-				headerTintColor: Colors.dark.text,
-				headerStyle: { backgroundColor: Colors.dark.background },
-			}}>
-			<Tabs.Screen
-				name="index"
-				options={{
-					title: "Home",
-					tabBarIcon: ({ color }) => <Home size={24} color={color} />,
-				}}
-			/>
-			<Tabs.Screen
-				name="activity"
-				options={{
-					title: "Activity",
-					tabBarIcon: ({ color }) => <BarChart2 size={24} color={color} />,
-				}}
-			/>
-			<Tabs.Screen
-				name="banking"
-				options={{
-					title: "Banking",
-					tabBarIcon: ({ color }) => <CreditCard size={24} color={color} />,
-				}}
-			/>
-			<Tabs.Screen
-				name="profile"
-				options={{
-					title: "Profile",
-					tabBarIcon: ({ color }) => <UserRound size={24} color={color} />,
-				}}
-			/>
-		</Tabs>
-	)
+  return (
+    <NativeTabs minimizeBehavior="onScrollDown" tintColor="#00D632">
+      <NativeTabs.Trigger name="(home)">
+        <NativeTabs.Trigger.Icon sf={{ default: "house", selected: "house.fill" }} md="home" />
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="(activity)">
+        <NativeTabs.Trigger.Icon sf={{ default: "chart.bar", selected: "chart.bar.fill" }} md="bar_chart" />
+        <NativeTabs.Trigger.Label>Activity</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="(banking)">
+        <NativeTabs.Trigger.Icon sf={{ default: "creditcard", selected: "creditcard.fill" }} md="credit_card" />
+        <NativeTabs.Trigger.Label>Banking</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="(profile)">
+        <NativeTabs.Trigger.Icon sf={{ default: "person", selected: "person.fill" }} md="person" />
+        <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+    </NativeTabs>
+  )
 }
