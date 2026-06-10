@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter, useLocalSearchParams } from "expo-router"
 import { CheckCircle } from "lucide-react-native"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function SendSuccessScreen() {

@@ -10,7 +10,7 @@ import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { CreditCard, Building, ChevronRight, Lock } from "lucide-react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function LinkAccountScreen() {

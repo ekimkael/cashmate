@@ -2,7 +2,7 @@ import React from "react"
 import { View, Text, StyleSheet, Pressable, Image } from "react-native"
 import { User } from "lucide-react-native"
 import { Contact } from "@/types"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 interface ContactItemProps {
 	contact: Contact

@@ -50,12 +50,14 @@ export const contacts: Contact[] = [
 	},
 ]
 
+const daysAgo = (n: number) => new Date(Date.now() - n * 86_400_000).toISOString()
+
 export const transactions: Transaction[] = [
 	{
 		id: "tx-1",
 		type: "receive",
 		amount: 50.0,
-		date: "2023-06-15T14:30:00Z",
+		date: daysAgo(0),
 		user: {
 			id: "contact-1",
 			name: "Sarah Johnson",
@@ -69,7 +71,7 @@ export const transactions: Transaction[] = [
 		id: "tx-2",
 		type: "send",
 		amount: 25.5,
-		date: "2023-06-14T10:15:00Z",
+		date: daysAgo(1),
 		user: {
 			id: "contact-2",
 			name: "Michael Chen",
@@ -83,7 +85,7 @@ export const transactions: Transaction[] = [
 		id: "tx-3",
 		type: "payment",
 		amount: 120.0,
-		date: "2023-06-12T18:45:00Z",
+		date: daysAgo(3),
 		user: {
 			id: "merchant-1",
 			name: "Grocery Store",
@@ -95,7 +97,7 @@ export const transactions: Transaction[] = [
 		id: "tx-4",
 		type: "deposit",
 		amount: 500.0,
-		date: "2023-06-10T09:30:00Z",
+		date: daysAgo(5),
 		user: {
 			id: "bank-1",
 			name: "Bank Transfer",
@@ -107,7 +109,7 @@ export const transactions: Transaction[] = [
 		id: "tx-5",
 		type: "send",
 		amount: 75.0,
-		date: "2023-06-08T20:15:00Z",
+		date: daysAgo(7),
 		user: {
 			id: "contact-3",
 			name: "Emma Wilson",
@@ -121,7 +123,7 @@ export const transactions: Transaction[] = [
 		id: "tx-6",
 		type: "withdrawal",
 		amount: 200.0,
-		date: "2023-06-05T16:20:00Z",
+		date: daysAgo(10),
 		user: {
 			id: "atm-1",
 			name: "ATM Withdrawal",
@@ -133,7 +135,7 @@ export const transactions: Transaction[] = [
 		id: "tx-7",
 		type: "receive",
 		amount: 35.25,
-		date: "2023-06-03T13:10:00Z",
+		date: daysAgo(12),
 		user: {
 			id: "contact-4",
 			name: "David Kim",
@@ -147,7 +149,7 @@ export const transactions: Transaction[] = [
 		id: "tx-8",
 		type: "payment",
 		amount: 45.99,
-		date: "2023-06-01T11:05:00Z",
+		date: daysAgo(14),
 		user: {
 			id: "merchant-2",
 			name: "Online Store",

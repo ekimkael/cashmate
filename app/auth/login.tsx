@@ -14,7 +14,7 @@ import { Stack, useRouter } from "expo-router"
 import { Eye, EyeOff, Lock, Mail } from "lucide-react-native"
 import { useUserStore } from '@/store/user-store'
 import { currentUser } from "@/mocks/data"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function LoginScreen() {

@@ -9,21 +9,18 @@ interface TransactionState {
 	transactions: Transaction[]
 	isLoading: boolean
 	error: string | null
-	addTransaction: (
-		transaction: Omit<Transaction, "id" | "date" | "status">
-	) => void
-	getTransactions: () => Transaction[]
+	addTransaction: (transaction: Omit<Transaction, "id" | "date" | "status">) => void
 }
 
 export const useTransactionStore = create<TransactionState>()(
 	persist(
 		(set, get) => ({
-			transactions: mockTransactions, // Start with mock data
+			transactions: mockTransactions,
 			isLoading: false,
 			error: null,
 			addTransaction: (transactionData) => {
 				const newTransaction: Transaction = {
-					id: `tx-${Date.now()}`,
+					id: crypto.randomUUID(),
 					date: new Date().toISOString(),
 					status: "completed",
 					...transactionData,
@@ -33,7 +30,6 @@ export const useTransactionStore = create<TransactionState>()(
 					transactions: [newTransaction, ...state.transactions],
 				}))
 
-				// Update user balance
 				if (
 					transactionData.type === "send" ||
 					transactionData.type === "payment" ||
@@ -47,7 +43,6 @@ export const useTransactionStore = create<TransactionState>()(
 					useUserStore.getState().updateBalance(transactionData.amount)
 				}
 			},
-			getTransactions: () => get().transactions,
 		}),
 		{
 			name: "transaction-storage",

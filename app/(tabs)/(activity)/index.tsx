@@ -29,15 +29,18 @@ export default function ActivityScreen() {
   )
 
   const sections = useMemo(() => {
-    const groups: Record<string, typeof transactions> = {}
+    const transactionsByDate: Record<string, typeof transactions> = {}
     filtered.forEach((tx) => {
-      const label = new Date(tx.date).toLocaleDateString("en-US", {
-        year: "numeric", month: "long", day: "numeric",
-      })
-      if (!groups[label]) groups[label] = []
-      groups[label].push(tx)
+      const dateKey = tx.date.slice(0, 10)
+      if (!transactionsByDate[dateKey]) transactionsByDate[dateKey] = []
+      transactionsByDate[dateKey].push(tx)
     })
-    return Object.keys(groups).map((title) => ({ title, data: groups[title] }))
+    return Object.keys(transactionsByDate).map((dateKey) => ({
+      title: new Date(dateKey).toLocaleDateString("en-US", {
+        year: "numeric", month: "long", day: "numeric",
+      }),
+      data: transactionsByDate[dateKey],
+    }))
   }, [filtered])
 
   const handleFilterToggle = () => {

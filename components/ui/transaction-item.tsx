@@ -26,7 +26,8 @@ export default function TransactionItem({ transaction, onPress }: TransactionIte
   const amountColor = isDebit ? colors.error : colors.success
   const prefix = isDebit ? "-" : "+"
 
-  const iconEl = () => {
+  /** Returns the icon corresponding to the transaction type. */
+  const TransactionIcon = () => {
     switch (type) {
       case "send":       return <ArrowUpRight  size={20} color={colors.error} />
       case "receive":    return <ArrowDownLeft size={20} color={colors.success} />
@@ -62,7 +63,7 @@ export default function TransactionItem({ transaction, onPress }: TransactionIte
               alignItems: "center", justifyContent: "center",
             }}
           >
-            {iconEl()}
+            <TransactionIcon />
           </View>
         )}
       </View>

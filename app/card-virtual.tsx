@@ -10,7 +10,7 @@ import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function CardVirtualScreen() {
   const colors = useThemeColors()

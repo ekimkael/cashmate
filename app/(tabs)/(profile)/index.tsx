@@ -1,4 +1,3 @@
-import React from "react"
 import { ScrollView, View, Text, Image, Switch, Pressable, type ViewStyle } from "react-native"
 import { useRouter, Stack } from "expo-router"
 import * as Haptics from "expo-haptics"
@@ -10,6 +9,8 @@ import {
 
 import { useThemeColors } from "@/constants/colors"
 import { useThemeStore } from '@/store/theme-store'
+import { useAppStore } from '@/store/app-store'
+import { useUserStore } from '@/store/user-store'
 import { useRequireUser } from "@/hooks/use-require-user"
 import HStack from "@/components/ui/hstack"
 
@@ -20,16 +21,11 @@ export default function ProfileScreen() {
   const user = useRequireUser()
   const colors = useThemeColors()
   const { isDark, toggle: toggleTheme } = useThemeStore()
+  const { notifications, soundEffects, hapticFeedback, togglePreference } = useAppStore()
 
-  const [settings, setSettings] = React.useState({
-    notifications: true,
-    soundEffects: true,
-    hapticFeedback: true,
-  })
-
-  const toggleSetting = (key: keyof typeof settings) => {
+  const toggleSetting = (key: "notifications" | "soundEffects" | "hapticFeedback") => {
     if (process.env.EXPO_OS === "ios") Haptics.selectionAsync()
-    setSettings((s) => ({ ...s, [key]: !s[key] }))
+    togglePreference(key)
   }
 
   if (!user) {
@@ -148,9 +144,9 @@ export default function ProfileScreen() {
             </View>
 
             {[
-              { icon: Bell, key: "soundEffects" as const, title: "Sound Effects", desc: "Play sounds for actions" },
-              { icon: Smartphone, key: "hapticFeedback" as const, title: "Haptic Feedback", desc: "Enable vibration feedback" },
-            ].map(({ icon: Icon, key, title, desc }) => (
+              { icon: Bell, key: "soundEffects" as const, value: soundEffects, title: "Sound Effects", desc: "Play sounds for actions" },
+              { icon: Smartphone, key: "hapticFeedback" as const, value: hapticFeedback, title: "Haptic Feedback", desc: "Enable vibration feedback" },
+            ].map(({ icon: Icon, key, value, title, desc }) => (
               <View key={key} style={menuItemStyle}>
                 <View style={iconWrapStyle}><Icon size={20} color={colors.text} /></View>
                 <View style={{ flex: 1 }}>
@@ -158,7 +154,7 @@ export default function ProfileScreen() {
                   <Text style={{ fontSize: 14, color: colors.secondaryText }}>{desc}</Text>
                 </View>
                 <Switch
-                  value={settings[key]}
+                  value={value}
                   onValueChange={() => toggleSetting(key)}
                   trackColor={{ false: colors.border, true: colors.primary }}
                   thumbColor={colors.text}

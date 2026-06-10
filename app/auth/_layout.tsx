@@ -1,6 +1,6 @@
 import React from "react"
 import { Stack } from "expo-router"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function AuthLayout() {
   const colors = useThemeColors()

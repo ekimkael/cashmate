@@ -3,7 +3,7 @@ import { Stack, useRouter } from "expo-router"
 import { CreditCard, Building, Trash2, Plus } from "lucide-react-native"
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 const linkedAccounts = [

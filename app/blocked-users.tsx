@@ -10,7 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, User, Search, X } from "lucide-react-native"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function BlockedUsersScreen() {
   const colors = useThemeColors()

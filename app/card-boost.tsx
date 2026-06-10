@@ -10,7 +10,7 @@ import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { Search, Tag, ChevronRight, Check } from "lucide-react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function CardBoostScreen() {
   const colors = useThemeColors()

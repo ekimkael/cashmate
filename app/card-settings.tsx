@@ -17,7 +17,7 @@ import {
 	Smartphone,
 	Settings,
 } from "lucide-react-native"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function CardSettingsScreen() {
   const colors = useThemeColors()

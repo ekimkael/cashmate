@@ -11,7 +11,7 @@ import { Stack, useRouter } from "expo-router"
 import * as ImagePicker from "expo-image-picker"
 import { Camera, User, Mail, AtSign } from "lucide-react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 import { useUserStore } from '@/store/user-store'
 

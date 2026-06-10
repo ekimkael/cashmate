@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { View, Text, StyleSheet, Pressable } from "react-native"
 import { Stack, useRouter, useLocalSearchParams } from "expo-router"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function CashoutSuccessScreen() {

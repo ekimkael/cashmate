@@ -12,7 +12,7 @@ import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, Eye, EyeOff, Lock, Mail, User } from "lucide-react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 import { useUserStore } from '@/store/user-store'
 
@@ -122,7 +122,7 @@ export default function RegisterScreen() {
 		// In a real app, we would send registration data to a backend
 		// For demo purposes, we'll create a new user locally
 		const newUser = {
-			id: `user-${Date.now()}`,
+			id: crypto.randomUUID(),
 			name,
 			username,
 			email,

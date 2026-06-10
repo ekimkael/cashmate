@@ -4,7 +4,7 @@ import { Stack, useRouter } from "expo-router"
 import { View, Text, StyleSheet, FlatList, TextInput } from "react-native"
 
 import { contacts } from "@/mocks/data"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 import ContactItem from "@/components/ui/contact-item"
 

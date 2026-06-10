@@ -3,7 +3,7 @@ import { Stack, useRouter } from "expo-router"
 import { Lock, Unlock, AlertTriangle } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, Alert } from "react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function CardLockScreen() {
   const colors = useThemeColors()

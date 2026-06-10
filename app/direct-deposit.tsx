@@ -3,7 +3,7 @@ import { Stack, useRouter } from "expo-router"
 import { Copy, Info } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function DirectDepositScreen() {

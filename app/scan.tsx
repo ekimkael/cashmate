@@ -3,7 +3,7 @@ import { QrCode, Scan } from "lucide-react-native"
 import React, { useState, useEffect } from "react"
 import { View, Text, StyleSheet, Pressable, Platform } from "react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function ScanScreen() {
   const colors = useThemeColors()

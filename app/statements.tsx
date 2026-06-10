@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native"
 import { Download, Calendar, ChevronDown, ChevronUp } from "lucide-react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function StatementsScreen() {

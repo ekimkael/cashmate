@@ -8,7 +8,7 @@ import { Stack } from "expo-router"
 import React, { Fragment } from "react"
 import { View, Text, StyleSheet, Pressable, FlatList } from "react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function LoginHistoryScreen() {
   const colors = useThemeColors()

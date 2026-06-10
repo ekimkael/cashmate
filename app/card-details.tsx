@@ -18,7 +18,7 @@ import {
 	Settings,
 } from "lucide-react-native"
 import { useUserStore } from '@/store/user-store'
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function CardDetailsScreen() {
   const colors = useThemeColors()

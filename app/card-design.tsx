@@ -17,7 +17,7 @@ import {
 	Upload,
 	Camera,
 } from "lucide-react-native"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function CardDesignScreen() {

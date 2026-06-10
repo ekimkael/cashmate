@@ -17,7 +17,7 @@ interface UserState {
 export const useUserStore = create<UserState>()(
 	persist(
 		(set) => ({
-			user: currentUser, // Start with mock data
+			user: currentUser,
 			isLoading: false,
 			error: null,
 			setUser: (user) => set({ user }),

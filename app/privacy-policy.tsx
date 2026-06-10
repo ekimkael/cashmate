@@ -2,7 +2,7 @@ import React from "react"
 import { Stack } from "expo-router"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function PrivacyPolicyScreen() {
   const colors = useThemeColors()

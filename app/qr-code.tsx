@@ -3,7 +3,7 @@ import { Stack, useRouter } from "expo-router"
 import { Share2, Download } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, Image } from "react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 import { useUserStore } from '@/store/user-store'
 
 export default function QRCodeScreen() {

@@ -4,7 +4,7 @@ import { Lock, Eye, EyeOff } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, Alert } from "react-native"
 
 import NumPad from "@/components/ui/num-pad"
-import Colors, { useThemeColors } from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
 
 export default function CardPinScreen() {
   const colors = useThemeColors()

@@ -1,5 +1,5 @@
 import React from "react"
-import { ScrollView, View, Text } from "react-native"
+import { ScrollView, View, Text, Pressable } from "react-native"
 import { Stack } from "expo-router"
 import { useHapticNavigation } from "@/hooks/use-haptic-navigation"
 
@@ -83,12 +83,11 @@ export default function HomeScreen() {
               boxShadow: "0 2px 12px rgba(0,0,0,0.25)",
             }}
           >
-            <Text
-              style={{ fontSize: 17, fontWeight: "600", color: colors.text, marginBottom: 6 }}
-              onPress={() => navigate("/deposit")}
-            >
-              Add Cash
-            </Text>
+            <Pressable onPress={() => navigate("/deposit")}>
+              <Text style={{ fontSize: 17, fontWeight: "600", color: colors.text, marginBottom: 6 }}>
+                Add Cash
+              </Text>
+            </Pressable>
             <Text style={{ fontSize: 14, color: colors.secondaryText }}>
               Instantly deposit money to your CashMate
             </Text>
