@@ -3,9 +3,146 @@ import { Stack, useRouter } from "expo-router"
 import { Lock, Unlock, AlertTriangle } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, Alert } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardLockScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		padding: 20,
+  	},
+  	statusContainer: {
+  		borderRadius: 16,
+  		padding: 24,
+  		alignItems: "center",
+  		marginBottom: 24,
+  	},
+  	lockedContainer: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  	},
+  	unlockedContainer: {
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  	},
+  	statusIcon: {
+  		width: 64,
+  		height: 64,
+  		borderRadius: 32,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginBottom: 16,
+  	},
+  	lockedIcon: {
+  		backgroundColor: "rgba(255, 67, 42, 0.2)",
+  	},
+  	unlockedIcon: {
+  		backgroundColor: "rgba(0, 214, 50, 0.2)",
+  	},
+  	statusTitle: {
+  		color: C.text,
+  		fontSize: 20,
+  		fontWeight: "600",
+  		marginBottom: 8,
+  	},
+  	statusDescription: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		textAlign: "center",
+  	},
+  	reasonSection: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	reasonOption: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  		borderWidth: 1,
+  		borderColor: "transparent",
+  	},
+  	selectedReason: {
+  		borderColor: C.primary,
+  	},
+  	reasonTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	reasonDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	selectedIndicator: {
+  		position: "absolute",
+  		top: 16,
+  		right: 16,
+  		width: 20,
+  		height: 20,
+  		borderRadius: 10,
+  		backgroundColor: C.primary,
+  	},
+  	warningContainer: {
+  		flexDirection: "row",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 24,
+  	},
+  	warningText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginLeft: 12,
+  		flex: 1,
+  	},
+  	lockButton: {
+  		backgroundColor: C.error,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		marginBottom: 12,
+  	},
+  	lockButtonText: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  	unlockButton: {
+  		backgroundColor: C.success,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		marginBottom: 12,
+  	},
+  	unlockButtonText: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  	reportButton: {
+  		backgroundColor: "transparent",
+  		borderWidth: 1,
+  		borderColor: C.error,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  	},
+  	reportButtonText: {
+  		color: C.error,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  })
 	const router = useRouter()
 	const [isLocked, setIsLocked] = useState(false)
 	const [reason, setReason] = useState("temporary")
@@ -46,9 +183,9 @@ export default function CardLockScreen() {
 							isLocked ? styles.lockedIcon : styles.unlockedIcon,
 						]}>
 						{isLocked ? (
-							<Lock size={32} color={Colors.dark.error} />
+							<Lock size={32} color={C.error} />
 						) : (
-							<Unlock size={32} color={Colors.dark.success} />
+							<Unlock size={32} color={C.success} />
 						)}
 					</View>
 
@@ -113,7 +250,7 @@ export default function CardLockScreen() {
 				)}
 
 				<View style={styles.warningContainer}>
-					<AlertTriangle size={20} color={Colors.dark.secondaryText} />
+					<AlertTriangle size={20} color={C.secondaryText} />
 					<Text style={styles.warningText}>
 						{isLocked
 							? "Unlocking your card will allow transactions to be processed again."
@@ -143,139 +280,3 @@ export default function CardLockScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		padding: 20,
-	},
-	statusContainer: {
-		borderRadius: 16,
-		padding: 24,
-		alignItems: "center",
-		marginBottom: 24,
-	},
-	lockedContainer: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-	},
-	unlockedContainer: {
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-	},
-	statusIcon: {
-		width: 64,
-		height: 64,
-		borderRadius: 32,
-		alignItems: "center",
-		justifyContent: "center",
-		marginBottom: 16,
-	},
-	lockedIcon: {
-		backgroundColor: "rgba(255, 67, 42, 0.2)",
-	},
-	unlockedIcon: {
-		backgroundColor: "rgba(0, 214, 50, 0.2)",
-	},
-	statusTitle: {
-		color: Colors.dark.text,
-		fontSize: 20,
-		fontWeight: "600",
-		marginBottom: 8,
-	},
-	statusDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		textAlign: "center",
-	},
-	reasonSection: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	reasonOption: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-		borderWidth: 1,
-		borderColor: "transparent",
-	},
-	selectedReason: {
-		borderColor: Colors.dark.primary,
-	},
-	reasonTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	reasonDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	selectedIndicator: {
-		position: "absolute",
-		top: 16,
-		right: 16,
-		width: 20,
-		height: 20,
-		borderRadius: 10,
-		backgroundColor: Colors.dark.primary,
-	},
-	warningContainer: {
-		flexDirection: "row",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 24,
-	},
-	warningText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginLeft: 12,
-		flex: 1,
-	},
-	lockButton: {
-		backgroundColor: Colors.dark.error,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		marginBottom: 12,
-	},
-	lockButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	unlockButton: {
-		backgroundColor: Colors.dark.success,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		marginBottom: 12,
-	},
-	unlockButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	reportButton: {
-		backgroundColor: "transparent",
-		borderWidth: 1,
-		borderColor: Colors.dark.error,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-	},
-	reportButtonText: {
-		color: Colors.dark.error,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-})

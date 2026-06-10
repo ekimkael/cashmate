@@ -17,9 +17,100 @@ import {
 	Smartphone,
 	Settings,
 } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardSettingsScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	settingItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	settingIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	settingContent: {
+  		flex: 1,
+  	},
+  	settingLabel: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	settingDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	actionButton: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	actionText: {
+  		color: C.primary,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	managementItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	managementIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	managementContent: {
+  		flex: 1,
+  	},
+  	managementLabel: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	managementDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  })
 	const router = useRouter()
 	const [notificationsEnabled, setNotificationsEnabled] = useState(true)
 	const [autoReloadEnabled, setAutoReloadEnabled] = useState(false)
@@ -35,7 +126,7 @@ export default function CardSettingsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Bell size={20} color={Colors.dark.text} />
+							<Bell size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Transaction Notifications</Text>
@@ -47,10 +138,10 @@ export default function CardSettingsScreen() {
 							value={notificationsEnabled}
 							onValueChange={setNotificationsEnabled}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 				</View>
@@ -60,7 +151,7 @@ export default function CardSettingsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<DollarSign size={20} color={Colors.dark.text} />
+							<DollarSign size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Auto-Reload</Text>
@@ -72,10 +163,10 @@ export default function CardSettingsScreen() {
 							value={autoReloadEnabled}
 							onValueChange={setAutoReloadEnabled}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
@@ -93,7 +184,7 @@ export default function CardSettingsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<CreditCard size={20} color={Colors.dark.text} />
+							<CreditCard size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Round Up Purchases</Text>
@@ -105,10 +196,10 @@ export default function CardSettingsScreen() {
 							value={roundUpEnabled}
 							onValueChange={setRoundUpEnabled}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
@@ -128,7 +219,7 @@ export default function CardSettingsScreen() {
 						style={styles.managementItem}
 						onPress={() => router.push("/card-design")}>
 						<View style={styles.managementIcon}>
-							<Settings size={20} color={Colors.dark.text} />
+							<Settings size={20} color={C.text} />
 						</View>
 						<View style={styles.managementContent}>
 							<Text style={styles.managementLabel}>Customize Card Design</Text>
@@ -138,7 +229,7 @@ export default function CardSettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -147,7 +238,7 @@ export default function CardSettingsScreen() {
 						style={styles.managementItem}
 						onPress={() => router.push("/card-virtual")}>
 						<View style={styles.managementIcon}>
-							<Smartphone size={20} color={Colors.dark.text} />
+							<Smartphone size={20} color={C.text} />
 						</View>
 						<View style={styles.managementContent}>
 							<Text style={styles.managementLabel}>Virtual Card</Text>
@@ -157,7 +248,7 @@ export default function CardSettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -166,7 +257,7 @@ export default function CardSettingsScreen() {
 						style={styles.managementItem}
 						onPress={() => router.push("/card-security")}>
 						<View style={styles.managementIcon}>
-							<CreditCard size={20} color={Colors.dark.text} />
+							<CreditCard size={20} color={C.text} />
 						</View>
 						<View style={styles.managementContent}>
 							<Text style={styles.managementLabel}>Card Security</Text>
@@ -176,7 +267,7 @@ export default function CardSettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -186,93 +277,3 @@ export default function CardSettingsScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	settingItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	settingIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	settingContent: {
-		flex: 1,
-	},
-	settingLabel: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	settingDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	actionButton: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	actionText: {
-		color: Colors.dark.primary,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	managementItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	managementIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	managementContent: {
-		flex: 1,
-	},
-	managementLabel: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	managementDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-})

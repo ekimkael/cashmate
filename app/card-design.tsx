@@ -17,9 +17,166 @@ import {
 	Upload,
 	Camera,
 } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function CardDesignScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	previewSection: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	cardPreview: {
+  		height: 180,
+  		borderRadius: 16,
+  		padding: 20,
+  		justifyContent: "space-between",
+  		overflow: "hidden",
+  	},
+  	gradientCard: {
+  		backgroundColor: "#FF8C00",
+  		// In a real app, you would use a LinearGradient component
+  	},
+  	cardImage: {
+  		...StyleSheet.absoluteFillObject,
+  		borderRadius: 16,
+  		opacity: 0.8,
+  	},
+  	cardHeader: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		zIndex: 1,
+  	},
+  	cardName: {
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginLeft: 12,
+  	},
+  	cardFooter: {
+  		alignItems: "flex-end",
+  		zIndex: 1,
+  	},
+  	cardNumber: {
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	designsSection: {
+  		marginBottom: 24,
+  	},
+  	designOption: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	selectedDesign: {
+  		borderWidth: 1,
+  		borderColor: C.primary,
+  	},
+  	designPreview: {
+  		width: 60,
+  		height: 40,
+  		borderRadius: 8,
+  		overflow: "hidden",
+  		marginRight: 16,
+  	},
+  	designColor: {
+  		width: "100%",
+  		height: "100%",
+  		borderRadius: 8,
+  	},
+  	gradientDesign: {
+  		// In a real app, you would use a LinearGradient component
+  	},
+  	designImage: {
+  		width: "100%",
+  		height: "100%",
+  		borderRadius: 8,
+  	},
+  	designInfo: {
+  		flex: 1,
+  	},
+  	designName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	designDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	checkIcon: {
+  		width: 32,
+  		height: 32,
+  		borderRadius: 16,
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	customSection: {
+  		marginBottom: 24,
+  	},
+  	customDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 16,
+  	},
+  	customButtons: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  	},
+  	customButton: {
+  		flex: 1,
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginHorizontal: 6,
+  	},
+  	customButtonIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginBottom: 8,
+  	},
+  	customButtonText: {
+  		color: C.text,
+  		fontSize: 14,
+  		fontWeight: "500",
+  	},
+  	infoSection: {
+  		flexDirection: "row",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 24,
+  	},
+  	infoText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginLeft: 12,
+  		flex: 1,
+  	},
+  })
 	const router = useRouter()
 	const [selectedDesign, setSelectedDesign] = useState("default")
 
@@ -27,7 +184,7 @@ export default function CardDesignScreen() {
 		{
 			id: "default",
 			name: "Default Green",
-			color: Colors.dark.primary,
+			color: C.primary,
 			image: null,
 		},
 		{
@@ -81,14 +238,14 @@ export default function CardDesignScreen() {
 				<View style={styles.cardHeader}>
 					<CreditCard
 						size={24}
-						color={design.id === "default" ? Colors.dark.background : "#FFFFFF"}
+						color={design.id === "default" ? C.background : "#FFFFFF"}
 					/>
 					<Text
 						style={[
 							styles.cardName,
 							{
 								color:
-									design.id === "default" ? Colors.dark.background : "#FFFFFF",
+									design.id === "default" ? C.background : "#FFFFFF",
 							},
 						]}>
 						John Doe
@@ -100,7 +257,7 @@ export default function CardDesignScreen() {
 							styles.cardNumber,
 							{
 								color:
-									design.id === "default" ? Colors.dark.background : "#FFFFFF",
+									design.id === "default" ? C.background : "#FFFFFF",
 							},
 						]}>
 						•••• 1234
@@ -159,7 +316,7 @@ export default function CardDesignScreen() {
 							</View>
 							{selectedDesign === design.id && (
 								<View style={styles.checkIcon}>
-									<Check size={20} color={Colors.dark.primary} />
+									<Check size={20} color={C.primary} />
 								</View>
 							)}
 						</Pressable>
@@ -175,14 +332,14 @@ export default function CardDesignScreen() {
 					<View style={styles.customButtons}>
 						<Pressable style={styles.customButton} onPress={handleUploadImage}>
 							<View style={styles.customButtonIcon}>
-								<Upload size={24} color={Colors.dark.text} />
+								<Upload size={24} color={C.text} />
 							</View>
 							<Text style={styles.customButtonText}>Upload Image</Text>
 						</Pressable>
 
 						<Pressable style={styles.customButton} onPress={handleTakePhoto}>
 							<View style={styles.customButtonIcon}>
-								<Camera size={24} color={Colors.dark.text} />
+								<Camera size={24} color={C.text} />
 							</View>
 							<Text style={styles.customButtonText}>Take Photo</Text>
 						</Pressable>
@@ -190,185 +347,16 @@ export default function CardDesignScreen() {
 				</View>
 
 				<View style={styles.infoSection}>
-					<Palette size={20} color={Colors.dark.secondaryText} />
+					<Palette size={20} color={C.secondaryText} />
 					<Text style={styles.infoText}>
 						Your physical card will be updated with the new design. It may take
 						7-10 business days to receive your new card.
 					</Text>
 				</View>
 
-				<Pressable style={styles.saveButton} onPress={handleSaveDesign}>
-					<Text style={styles.saveButtonText}>Save Design</Text>
-				</Pressable>
+				<Button label="Save Design" onPress={handleSaveDesign} style={{ marginBottom: 20 }} />
 			</ScrollView>
 		</View>
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	previewSection: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	cardPreview: {
-		height: 180,
-		borderRadius: 16,
-		padding: 20,
-		justifyContent: "space-between",
-		overflow: "hidden",
-	},
-	gradientCard: {
-		backgroundColor: "#FF8C00",
-		// In a real app, you would use a LinearGradient component
-	},
-	cardImage: {
-		...StyleSheet.absoluteFillObject,
-		borderRadius: 16,
-		opacity: 0.8,
-	},
-	cardHeader: {
-		flexDirection: "row",
-		alignItems: "center",
-		zIndex: 1,
-	},
-	cardName: {
-		fontSize: 18,
-		fontWeight: "600",
-		marginLeft: 12,
-	},
-	cardFooter: {
-		alignItems: "flex-end",
-		zIndex: 1,
-	},
-	cardNumber: {
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	designsSection: {
-		marginBottom: 24,
-	},
-	designOption: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	selectedDesign: {
-		borderWidth: 1,
-		borderColor: Colors.dark.primary,
-	},
-	designPreview: {
-		width: 60,
-		height: 40,
-		borderRadius: 8,
-		overflow: "hidden",
-		marginRight: 16,
-	},
-	designColor: {
-		width: "100%",
-		height: "100%",
-		borderRadius: 8,
-	},
-	gradientDesign: {
-		// In a real app, you would use a LinearGradient component
-	},
-	designImage: {
-		width: "100%",
-		height: "100%",
-		borderRadius: 8,
-	},
-	designInfo: {
-		flex: 1,
-	},
-	designName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	designDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	checkIcon: {
-		width: 32,
-		height: 32,
-		borderRadius: 16,
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	customSection: {
-		marginBottom: 24,
-	},
-	customDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 16,
-	},
-	customButtons: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-	},
-	customButton: {
-		flex: 1,
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginHorizontal: 6,
-	},
-	customButtonIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginBottom: 8,
-	},
-	customButtonText: {
-		color: Colors.dark.text,
-		fontSize: 14,
-		fontWeight: "500",
-	},
-	infoSection: {
-		flexDirection: "row",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 24,
-	},
-	infoText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginLeft: 12,
-		flex: 1,
-	},
-	saveButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		marginBottom: 20,
-	},
-	saveButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-})

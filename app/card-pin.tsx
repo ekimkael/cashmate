@@ -3,10 +3,82 @@ import { Stack, useRouter } from "expo-router"
 import { Lock, Eye, EyeOff } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, Alert } from "react-native"
 
-import NumPad from "@/components/NumPad"
-import Colors from "@/constants/colors"
+import NumPad from "@/components/ui/num-pad"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardPinScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		paddingHorizontal: 20,
+  	},
+  	lockIconContainer: {
+  		width: 64,
+  		height: 64,
+  		borderRadius: 32,
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginBottom: 24,
+  	},
+  	title: {
+  		color: C.text,
+  		fontSize: 24,
+  		fontWeight: "600",
+  		marginBottom: 12,
+  		textAlign: "center",
+  	},
+  	description: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginBottom: 32,
+  		textAlign: "center",
+  	},
+  	pinDotsContainer: {
+  		flexDirection: "row",
+  		justifyContent: "center",
+  		marginBottom: 24,
+  	},
+  	pinDot: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		borderWidth: 1,
+  		borderColor: C.border,
+  		marginHorizontal: 8,
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	pinDotFilled: {
+  		backgroundColor: C.card,
+  		borderColor: C.primary,
+  	},
+  	pinDotText: {
+  		color: C.text,
+  		fontSize: 20,
+  		fontWeight: "600",
+  	},
+  	showPinButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		padding: 8,
+  	},
+  	showPinText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginLeft: 8,
+  	},
+  	numPad: {
+  		marginBottom: 20,
+  	},
+  })
 	const router = useRouter()
 	const [currentPin, setCurrentPin] = useState("")
 	const [newPin, setNewPin] = useState("")
@@ -103,7 +175,7 @@ export default function CardPinScreen() {
 
 			<View style={styles.content}>
 				<View style={styles.lockIconContainer}>
-					<Lock size={32} color={Colors.dark.primary} />
+					<Lock size={32} color={C.primary} />
 				</View>
 
 				<Text style={styles.title}>
@@ -130,9 +202,9 @@ export default function CardPinScreen() {
 					style={styles.showPinButton}
 					onPress={() => setShowPin(!showPin)}>
 					{showPin ? (
-						<EyeOff size={20} color={Colors.dark.secondaryText} />
+						<EyeOff size={20} color={C.secondaryText} />
 					) : (
-						<Eye size={20} color={Colors.dark.secondaryText} />
+						<Eye size={20} color={C.secondaryText} />
 					)}
 					<Text style={styles.showPinText}>
 						{showPin ? "Hide PIN" : "Show PIN"}
@@ -149,74 +221,3 @@ export default function CardPinScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		paddingHorizontal: 20,
-	},
-	lockIconContainer: {
-		width: 64,
-		height: 64,
-		borderRadius: 32,
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-		alignItems: "center",
-		justifyContent: "center",
-		marginBottom: 24,
-	},
-	title: {
-		color: Colors.dark.text,
-		fontSize: 24,
-		fontWeight: "600",
-		marginBottom: 12,
-		textAlign: "center",
-	},
-	description: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginBottom: 32,
-		textAlign: "center",
-	},
-	pinDotsContainer: {
-		flexDirection: "row",
-		justifyContent: "center",
-		marginBottom: 24,
-	},
-	pinDot: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		borderWidth: 1,
-		borderColor: Colors.dark.border,
-		marginHorizontal: 8,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	pinDotFilled: {
-		backgroundColor: Colors.dark.card,
-		borderColor: Colors.dark.primary,
-	},
-	pinDotText: {
-		color: Colors.dark.text,
-		fontSize: 20,
-		fontWeight: "600",
-	},
-	showPinButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		padding: 8,
-	},
-	showPinText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginLeft: 8,
-	},
-	numPad: {
-		marginBottom: 20,
-	},
-})

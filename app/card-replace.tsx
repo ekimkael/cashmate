@@ -16,9 +16,159 @@ import {
 	Home,
 	Truck,
 } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardReplaceScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	alertContainer: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		borderRadius: 16,
+  		padding: 20,
+  		alignItems: "center",
+  		marginBottom: 24,
+  	},
+  	alertTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginTop: 12,
+  		marginBottom: 8,
+  	},
+  	alertDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	reasonOption: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  		borderWidth: 1,
+  		borderColor: "transparent",
+  	},
+  	selectedReason: {
+  		borderColor: C.primary,
+  	},
+  	reasonIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	reasonContent: {
+  		flex: 1,
+  	},
+  	reasonTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	reasonDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	selectedIndicator: {
+  		width: 20,
+  		height: 20,
+  		borderRadius: 10,
+  		backgroundColor: C.primary,
+  	},
+  	addressOption: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  		borderWidth: 1,
+  		borderColor: "transparent",
+  	},
+  	selectedAddress: {
+  		borderColor: C.primary,
+  	},
+  	addressIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	addressContent: {
+  		flex: 1,
+  	},
+  	addressTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	addressDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	infoSection: {
+  		flexDirection: "row",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 24,
+  	},
+  	infoText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginLeft: 12,
+  		flex: 1,
+  	},
+  	requestButton: {
+  		backgroundColor: C.primary,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		marginBottom: 12,
+  	},
+  	requestButtonText: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  	cancelButton: {
+  		backgroundColor: "transparent",
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  	},
+  	cancelButtonText: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  })
 	const router = useRouter()
 	const [reason, setReason] = useState("lost")
 	const [address, setAddress] = useState("current")
@@ -38,7 +188,7 @@ export default function CardReplaceScreen() {
 
 			<ScrollView contentContainerStyle={styles.scrollContent}>
 				<View style={styles.alertContainer}>
-					<AlertTriangle size={24} color={Colors.dark.error} />
+					<AlertTriangle size={24} color={C.error} />
 					<Text style={styles.alertTitle}>Report Lost or Stolen Card</Text>
 					<Text style={styles.alertDescription}>
 						Your card will be immediately locked and a replacement will be sent
@@ -56,7 +206,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setReason("lost")}>
 						<View style={styles.reasonIcon}>
-							<MapPin size={20} color={Colors.dark.text} />
+							<MapPin size={20} color={C.text} />
 						</View>
 						<View style={styles.reasonContent}>
 							<Text style={styles.reasonTitle}>Lost Card</Text>
@@ -72,7 +222,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setReason("stolen")}>
 						<View style={styles.reasonIcon}>
-							<AlertTriangle size={20} color={Colors.dark.text} />
+							<AlertTriangle size={20} color={C.text} />
 						</View>
 						<View style={styles.reasonContent}>
 							<Text style={styles.reasonTitle}>Stolen Card</Text>
@@ -88,7 +238,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setReason("damaged")}>
 						<View style={styles.reasonIcon}>
-							<CreditCard size={20} color={Colors.dark.text} />
+							<CreditCard size={20} color={C.text} />
 						</View>
 						<View style={styles.reasonContent}>
 							<Text style={styles.reasonTitle}>Damaged Card</Text>
@@ -112,7 +262,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setAddress("current")}>
 						<View style={styles.addressIcon}>
-							<Home size={20} color={Colors.dark.text} />
+							<Home size={20} color={C.text} />
 						</View>
 						<View style={styles.addressContent}>
 							<Text style={styles.addressTitle}>Current Address</Text>
@@ -130,7 +280,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setAddress("new")}>
 						<View style={styles.addressIcon}>
-							<MapPin size={20} color={Colors.dark.text} />
+							<MapPin size={20} color={C.text} />
 						</View>
 						<View style={styles.addressContent}>
 							<Text style={styles.addressTitle}>New Address</Text>
@@ -143,7 +293,7 @@ export default function CardReplaceScreen() {
 				</View>
 
 				<View style={styles.infoSection}>
-					<Truck size={20} color={Colors.dark.secondaryText} />
+					<Truck size={20} color={C.secondaryText} />
 					<Text style={styles.infoText}>
 						Your replacement card should arrive within 7-10 business days. You
 						can use your virtual card for online purchases in the meantime.
@@ -164,152 +314,3 @@ export default function CardReplaceScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	alertContainer: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		borderRadius: 16,
-		padding: 20,
-		alignItems: "center",
-		marginBottom: 24,
-	},
-	alertTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginTop: 12,
-		marginBottom: 8,
-	},
-	alertDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	reasonOption: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-		borderWidth: 1,
-		borderColor: "transparent",
-	},
-	selectedReason: {
-		borderColor: Colors.dark.primary,
-	},
-	reasonIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	reasonContent: {
-		flex: 1,
-	},
-	reasonTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	reasonDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	selectedIndicator: {
-		width: 20,
-		height: 20,
-		borderRadius: 10,
-		backgroundColor: Colors.dark.primary,
-	},
-	addressOption: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-		borderWidth: 1,
-		borderColor: "transparent",
-	},
-	selectedAddress: {
-		borderColor: Colors.dark.primary,
-	},
-	addressIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	addressContent: {
-		flex: 1,
-	},
-	addressTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	addressDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	infoSection: {
-		flexDirection: "row",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 24,
-	},
-	infoText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginLeft: 12,
-		flex: 1,
-	},
-	requestButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		marginBottom: 12,
-	},
-	requestButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	cancelButton: {
-		backgroundColor: "transparent",
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-	},
-	cancelButtonText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-})

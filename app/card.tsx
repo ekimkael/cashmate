@@ -12,10 +12,155 @@ import {
 } from "lucide-react-native"
 import { useUserStore } from "@/store/userStore"
 import { useTransactionStore } from "@/store/transactionStore"
-import TransactionItem from "@/components/TransactionItem"
-import Colors from "@/constants/colors"
+import TransactionItem from "@/components/ui/transaction-item"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	cardContainer: {
+  		marginBottom: 16,
+  	},
+  	card: {
+  		backgroundColor: C.primary,
+  		borderRadius: 16,
+  		padding: 20,
+  		height: 180,
+  		justifyContent: "space-between",
+  		marginBottom: 16,
+  	},
+  	cardHeader: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  	},
+  	cardName: {
+  		color: C.background,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginLeft: 12,
+  	},
+  	cardFooter: {
+  		alignItems: "flex-end",
+  	},
+  	cardNumber: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	cardDetailsButton: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		flex: 1,
+  	},
+  	cardDetailsText: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	balanceContainer: {
+  		backgroundColor: C.card,
+  		borderRadius: 16,
+  		padding: 20,
+  		marginBottom: 24,
+  		alignItems: "center",
+  	},
+  	balanceLabel: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 8,
+  	},
+  	balanceAmount: {
+  		color: C.text,
+  		fontSize: 32,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	addCashButton: {
+  		backgroundColor: C.primary,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	addCashText: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionHeader: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		alignItems: "center",
+  		marginBottom: 16,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	viewAllText: {
+  		color: C.primary,
+  		fontSize: 14,
+  		fontWeight: "500",
+  	},
+  	featuresGrid: {
+  		flexDirection: "row",
+  		flexWrap: "wrap",
+  		justifyContent: "space-between",
+  	},
+  	featureItem: {
+  		width: "48%",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 16,
+  	},
+  	featureIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginBottom: 12,
+  	},
+  	featureTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "600",
+  		marginBottom: 4,
+  	},
+  	featureDescription: {
+  		color: C.secondaryText,
+  		fontSize: 12,
+  	},
+  	emptyTransactions: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 20,
+  		alignItems: "center",
+  	},
+  	emptyText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	errorText: {
+  		color: C.text,
+  		fontSize: 16,
+  		textAlign: "center",
+  	},
+  })
 	const router = useRouter()
 	const { user } = useUserStore()
 	const { transactions } = useTransactionStore()
@@ -41,7 +186,7 @@ export default function CardScreen() {
 				<View style={styles.cardContainer}>
 					<View style={styles.card}>
 						<View style={styles.cardHeader}>
-							<CreditCard size={24} color={Colors.dark.background} />
+							<CreditCard size={24} color={C.background} />
 							<Text style={styles.cardName}>{user.name}</Text>
 						</View>
 						<View style={styles.cardFooter}>
@@ -64,7 +209,7 @@ export default function CardScreen() {
 							style={styles.featureItem}
 							onPress={() => router.push("/card-boost")}>
 							<View style={styles.featureIcon}>
-								<DollarSign size={24} color={Colors.dark.primary} />
+								<DollarSign size={24} color={C.primary} />
 							</View>
 							<Text style={styles.featureTitle}>Boosts</Text>
 							<Text style={styles.featureDescription}>
@@ -76,7 +221,7 @@ export default function CardScreen() {
 							style={styles.featureItem}
 							onPress={() => router.push("/card-settings")}>
 							<View style={styles.featureIcon}>
-								<Settings size={24} color={Colors.dark.primary} />
+								<Settings size={24} color={C.primary} />
 							</View>
 							<Text style={styles.featureTitle}>Card Settings</Text>
 							<Text style={styles.featureDescription}>
@@ -88,7 +233,7 @@ export default function CardScreen() {
 							style={styles.featureItem}
 							onPress={() => router.push("/card-security")}>
 							<View style={styles.featureIcon}>
-								<Shield size={24} color={Colors.dark.primary} />
+								<Shield size={24} color={C.primary} />
 							</View>
 							<Text style={styles.featureTitle}>Security</Text>
 							<Text style={styles.featureDescription}>
@@ -100,7 +245,7 @@ export default function CardScreen() {
 							style={styles.featureItem}
 							onPress={() => router.push("/card-virtual")}>
 							<View style={styles.featureIcon}>
-								<Smartphone size={24} color={Colors.dark.primary} />
+								<Smartphone size={24} color={C.primary} />
 							</View>
 							<Text style={styles.featureTitle}>Virtual Card</Text>
 							<Text style={styles.featureDescription}>
@@ -142,147 +287,3 @@ export default function CardScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	cardContainer: {
-		marginBottom: 16,
-	},
-	card: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 16,
-		padding: 20,
-		height: 180,
-		justifyContent: "space-between",
-		marginBottom: 16,
-	},
-	cardHeader: {
-		flexDirection: "row",
-		alignItems: "center",
-	},
-	cardName: {
-		color: Colors.dark.background,
-		fontSize: 18,
-		fontWeight: "600",
-		marginLeft: 12,
-	},
-	cardFooter: {
-		alignItems: "flex-end",
-	},
-	cardNumber: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	cardDetailsButton: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		flex: 1,
-	},
-	cardDetailsText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	balanceContainer: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 16,
-		padding: 20,
-		marginBottom: 24,
-		alignItems: "center",
-	},
-	balanceLabel: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 8,
-	},
-	balanceAmount: {
-		color: Colors.dark.text,
-		fontSize: 32,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	addCashButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-	},
-	addCashText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionHeader: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		marginBottom: 16,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	viewAllText: {
-		color: Colors.dark.primary,
-		fontSize: 14,
-		fontWeight: "500",
-	},
-	featuresGrid: {
-		flexDirection: "row",
-		flexWrap: "wrap",
-		justifyContent: "space-between",
-	},
-	featureItem: {
-		width: "48%",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 16,
-	},
-	featureIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-		alignItems: "center",
-		justifyContent: "center",
-		marginBottom: 12,
-	},
-	featureTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "600",
-		marginBottom: 4,
-	},
-	featureDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 12,
-	},
-	emptyTransactions: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 20,
-		alignItems: "center",
-	},
-	emptyText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	errorText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		textAlign: "center",
-	},
-})

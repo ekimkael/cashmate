@@ -10,9 +10,202 @@ import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardVirtualScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	infoCard: {
+  		backgroundColor: C.card,
+  		borderRadius: 16,
+  		padding: 20,
+  		marginBottom: 24,
+  	},
+  	infoTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 8,
+  	},
+  	infoText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		lineHeight: 20,
+  	},
+  	virtualCardContainer: {
+  		marginBottom: 24,
+  	},
+  	virtualCard: {
+  		backgroundColor: C.primary,
+  		borderRadius: 16,
+  		padding: 20,
+  		marginBottom: 16,
+  	},
+  	virtualCardHeader: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		marginBottom: 24,
+  	},
+  	virtualCardName: {
+  		color: C.background,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginLeft: 12,
+  	},
+  	virtualCardDetails: {
+  		alignItems: "flex-start",
+  	},
+  	virtualCardNumber: {
+  		color: C.background,
+  		fontSize: 18,
+  		fontWeight: "500",
+  		marginBottom: 16,
+  		letterSpacing: 2,
+  	},
+  	virtualCardExpiryContainer: {
+  		marginBottom: 8,
+  	},
+  	virtualCardExpiryLabel: {
+  		color: "rgba(255, 255, 255, 0.7)",
+  		fontSize: 12,
+  		marginBottom: 4,
+  	},
+  	virtualCardExpiry: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	virtualCardCvvContainer: {
+  		marginBottom: 8,
+  	},
+  	virtualCardCvvLabel: {
+  		color: "rgba(255, 255, 255, 0.7)",
+  		fontSize: 12,
+  		marginBottom: 4,
+  	},
+  	virtualCardCvv: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	showDetailsButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	showDetailsText: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginLeft: 8,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	cardInfoItem: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	cardInfoHeader: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		alignItems: "center",
+  		marginBottom: 8,
+  	},
+  	cardInfoLabel: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	cardInfoValue: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	copyButton: {
+  		padding: 4,
+  	},
+  	actionButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	actionIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	lockButton: {
+  		backgroundColor: "rgba(255, 67, 42, 0.05)",
+  	},
+  	lockIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	actionText: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	securityNote: {
+  		flexDirection: "row",
+  		alignItems: "flex-start",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 24,
+  	},
+  	securityText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginLeft: 12,
+  		flex: 1,
+  	},
+  	copiedToast: {
+  		position: "absolute",
+  		bottom: 20,
+  		left: 20,
+  		right: 20,
+  		backgroundColor: C.success,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  	},
+  	copiedToastText: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  })
 	const router = useRouter()
 	const [showCardDetails, setShowCardDetails] = useState(false)
 	const [copied, setCopied] = useState(false)
@@ -51,7 +244,7 @@ export default function CardVirtualScreen() {
 				<View style={styles.virtualCardContainer}>
 					<View style={styles.virtualCard}>
 						<View style={styles.virtualCardHeader}>
-							<CreditCard size={24} color={Colors.dark.background} />
+							<CreditCard size={24} color={C.background} />
 							<Text style={styles.virtualCardName}>{virtualCard.name}</Text>
 						</View>
 						<View style={styles.virtualCardDetails}>
@@ -77,9 +270,9 @@ export default function CardVirtualScreen() {
 						style={styles.showDetailsButton}
 						onPress={() => setShowCardDetails(!showCardDetails)}>
 						{showCardDetails ? (
-							<EyeOff size={20} color={Colors.dark.text} />
+							<EyeOff size={20} color={C.text} />
 						) : (
-							<Eye size={20} color={Colors.dark.text} />
+							<Eye size={20} color={C.text} />
 						)}
 						<Text style={styles.showDetailsText}>
 							{showCardDetails ? "Hide Card Details" : "Show Card Details"}
@@ -96,7 +289,7 @@ export default function CardVirtualScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(virtualCard.number)}>
-								<Copy size={18} color={Colors.dark.primary} />
+								<Copy size={18} color={C.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.cardInfoValue}>
@@ -110,7 +303,7 @@ export default function CardVirtualScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(virtualCard.expiry)}>
-								<Copy size={18} color={Colors.dark.primary} />
+								<Copy size={18} color={C.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.cardInfoValue}>
@@ -124,7 +317,7 @@ export default function CardVirtualScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(virtualCard.cvv)}>
-								<Copy size={18} color={Colors.dark.primary} />
+								<Copy size={18} color={C.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.cardInfoValue}>
@@ -143,7 +336,7 @@ export default function CardVirtualScreen() {
 
 					<Pressable style={styles.actionButton} onPress={handleRegenerateCard}>
 						<View style={styles.actionIcon}>
-							<RefreshCw size={20} color={Colors.dark.text} />
+							<RefreshCw size={20} color={C.text} />
 						</View>
 						<Text style={styles.actionText}>Regenerate Card</Text>
 					</Pressable>
@@ -152,14 +345,14 @@ export default function CardVirtualScreen() {
 						style={[styles.actionButton, styles.lockButton]}
 						onPress={() => router.push("/card-security")}>
 						<View style={styles.lockIcon}>
-							<Lock size={20} color={Colors.dark.text} />
+							<Lock size={20} color={C.text} />
 						</View>
 						<Text style={styles.actionText}>Lock Virtual Card</Text>
 					</Pressable>
 				</View>
 
 				<View style={styles.securityNote}>
-					<Lock size={16} color={Colors.dark.secondaryText} />
+					<Lock size={16} color={C.secondaryText} />
 					<Text style={styles.securityText}>
 						Your virtual card details are encrypted and secure. We use
 						bank-level security to protect your data.
@@ -176,195 +369,3 @@ export default function CardVirtualScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	infoCard: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 16,
-		padding: 20,
-		marginBottom: 24,
-	},
-	infoTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 8,
-	},
-	infoText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		lineHeight: 20,
-	},
-	virtualCardContainer: {
-		marginBottom: 24,
-	},
-	virtualCard: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 16,
-		padding: 20,
-		marginBottom: 16,
-	},
-	virtualCardHeader: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 24,
-	},
-	virtualCardName: {
-		color: Colors.dark.background,
-		fontSize: 18,
-		fontWeight: "600",
-		marginLeft: 12,
-	},
-	virtualCardDetails: {
-		alignItems: "flex-start",
-	},
-	virtualCardNumber: {
-		color: Colors.dark.background,
-		fontSize: 18,
-		fontWeight: "500",
-		marginBottom: 16,
-		letterSpacing: 2,
-	},
-	virtualCardExpiryContainer: {
-		marginBottom: 8,
-	},
-	virtualCardExpiryLabel: {
-		color: "rgba(255, 255, 255, 0.7)",
-		fontSize: 12,
-		marginBottom: 4,
-	},
-	virtualCardExpiry: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	virtualCardCvvContainer: {
-		marginBottom: 8,
-	},
-	virtualCardCvvLabel: {
-		color: "rgba(255, 255, 255, 0.7)",
-		fontSize: 12,
-		marginBottom: 4,
-	},
-	virtualCardCvv: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	showDetailsButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-	},
-	showDetailsText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginLeft: 8,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	cardInfoItem: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	cardInfoHeader: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		marginBottom: 8,
-	},
-	cardInfoLabel: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	cardInfoValue: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	copyButton: {
-		padding: 4,
-	},
-	actionButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	actionIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	lockButton: {
-		backgroundColor: "rgba(255, 67, 42, 0.05)",
-	},
-	lockIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	actionText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	securityNote: {
-		flexDirection: "row",
-		alignItems: "flex-start",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 24,
-	},
-	securityText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginLeft: 12,
-		flex: 1,
-	},
-	copiedToast: {
-		position: "absolute",
-		bottom: 20,
-		left: 20,
-		right: 20,
-		backgroundColor: Colors.dark.success,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-	},
-	copiedToastText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-})

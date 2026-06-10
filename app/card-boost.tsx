@@ -10,9 +10,166 @@ import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { Search, Tag, ChevronRight, Check } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardBoostScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	searchContainer: {
+  		padding: 16,
+  		borderBottomWidth: 1,
+  		borderBottomColor: C.border,
+  	},
+  	searchBar: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		padding: 12,
+  	},
+  	searchPlaceholder: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginLeft: 8,
+  	},
+  	tabContainer: {
+  		flexDirection: "row",
+  		borderBottomWidth: 1,
+  		borderBottomColor: C.border,
+  	},
+  	tabButton: {
+  		flex: 1,
+  		paddingVertical: 16,
+  		alignItems: "center",
+  	},
+  	activeTabButton: {
+  		borderBottomWidth: 2,
+  		borderBottomColor: C.primary,
+  	},
+  	tabText: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	activeTabText: {
+  		color: C.primary,
+  		fontWeight: "600",
+  	},
+  	scrollContent: {
+  		padding: 16,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 20,
+  		fontWeight: "600",
+  		marginBottom: 8,
+  	},
+  	sectionDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 16,
+  	},
+  	boostCard: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	boostHeader: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		marginBottom: 12,
+  	},
+  	boostLogo: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		marginRight: 12,
+  	},
+  	boostInfo: {
+  		flex: 1,
+  	},
+  	boostName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	boostDiscount: {
+  		color: C.primary,
+  		fontSize: 14,
+  		fontWeight: "600",
+  	},
+  	activateButton: {
+  		backgroundColor: C.primary,
+  		borderRadius: 12,
+  		paddingVertical: 8,
+  		paddingHorizontal: 12,
+  	},
+  	activateButtonText: {
+  		color: C.background,
+  		fontSize: 14,
+  		fontWeight: "600",
+  	},
+  	boostDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 8,
+  	},
+  	expiryText: {
+  		color: C.secondaryText,
+  		fontSize: 12,
+  		fontStyle: "italic",
+  	},
+  	activeIndicator: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  		borderRadius: 12,
+  		paddingVertical: 6,
+  		paddingHorizontal: 10,
+  	},
+  	activeText: {
+  		color: C.success,
+  		fontSize: 14,
+  		fontWeight: "500",
+  		marginLeft: 4,
+  	},
+  	seeAllButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 16,
+  		marginTop: 8,
+  	},
+  	seeAllButtonText: {
+  		color: C.primary,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginRight: 4,
+  	},
+  	emptyState: {
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 32,
+  	},
+  	emptyStateTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginTop: 16,
+  		marginBottom: 8,
+  	},
+  	emptyStateText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  	},
+  })
 	const router = useRouter()
 	const [activeTab, setActiveTab] = useState("available")
 
@@ -69,7 +226,7 @@ export default function CardBoostScreen() {
 
 			<View style={styles.searchContainer}>
 				<View style={styles.searchBar}>
-					<Search size={20} color={Colors.dark.secondaryText} />
+					<Search size={20} color={C.secondaryText} />
 					<Text style={styles.searchPlaceholder}>Search for boosts</Text>
 				</View>
 			</View>
@@ -140,7 +297,7 @@ export default function CardBoostScreen() {
 							style={styles.seeAllButton}
 							onPress={() => router.push("/card-boost-all")}>
 							<Text style={styles.seeAllButtonText}>See All Boosts</Text>
-							<ChevronRight size={20} color={Colors.dark.primary} />
+							<ChevronRight size={20} color={C.primary} />
 						</Pressable>
 					</>
 				) : (
@@ -162,7 +319,7 @@ export default function CardBoostScreen() {
 										<Text style={styles.boostDiscount}>{boost.discount}</Text>
 									</View>
 									<View style={styles.activeIndicator}>
-										<Check size={16} color={Colors.dark.success} />
+										<Check size={16} color={C.success} />
 										<Text style={styles.activeText}>Active</Text>
 									</View>
 								</View>
@@ -176,7 +333,7 @@ export default function CardBoostScreen() {
 
 						{activeBoosts.length === 0 && (
 							<View style={styles.emptyState}>
-								<Tag size={48} color={Colors.dark.secondaryText} />
+								<Tag size={48} color={C.secondaryText} />
 								<Text style={styles.emptyStateTitle}>No Active Boosts</Text>
 								<Text style={styles.emptyStateText}>
 									You don't have any active boosts. Activate a boost to start
@@ -191,159 +348,3 @@ export default function CardBoostScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	searchContainer: {
-		padding: 16,
-		borderBottomWidth: 1,
-		borderBottomColor: Colors.dark.border,
-	},
-	searchBar: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		padding: 12,
-	},
-	searchPlaceholder: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginLeft: 8,
-	},
-	tabContainer: {
-		flexDirection: "row",
-		borderBottomWidth: 1,
-		borderBottomColor: Colors.dark.border,
-	},
-	tabButton: {
-		flex: 1,
-		paddingVertical: 16,
-		alignItems: "center",
-	},
-	activeTabButton: {
-		borderBottomWidth: 2,
-		borderBottomColor: Colors.dark.primary,
-	},
-	tabText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	activeTabText: {
-		color: Colors.dark.primary,
-		fontWeight: "600",
-	},
-	scrollContent: {
-		padding: 16,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 20,
-		fontWeight: "600",
-		marginBottom: 8,
-	},
-	sectionDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 16,
-	},
-	boostCard: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	boostHeader: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 12,
-	},
-	boostLogo: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		marginRight: 12,
-	},
-	boostInfo: {
-		flex: 1,
-	},
-	boostName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	boostDiscount: {
-		color: Colors.dark.primary,
-		fontSize: 14,
-		fontWeight: "600",
-	},
-	activateButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		paddingVertical: 8,
-		paddingHorizontal: 12,
-	},
-	activateButtonText: {
-		color: Colors.dark.background,
-		fontSize: 14,
-		fontWeight: "600",
-	},
-	boostDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 8,
-	},
-	expiryText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 12,
-		fontStyle: "italic",
-	},
-	activeIndicator: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-		borderRadius: 12,
-		paddingVertical: 6,
-		paddingHorizontal: 10,
-	},
-	activeText: {
-		color: Colors.dark.success,
-		fontSize: 14,
-		fontWeight: "500",
-		marginLeft: 4,
-	},
-	seeAllButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 16,
-		marginTop: 8,
-	},
-	seeAllButtonText: {
-		color: Colors.dark.primary,
-		fontSize: 16,
-		fontWeight: "500",
-		marginRight: 4,
-	},
-	emptyState: {
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 32,
-	},
-	emptyStateTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginTop: 16,
-		marginBottom: 8,
-	},
-	emptyStateText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-	},
-})

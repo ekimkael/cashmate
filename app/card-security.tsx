@@ -15,9 +15,158 @@ import {
 	AlertTriangle,
 	Smartphone,
 } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardSecurityScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	lockCard: {
+  		backgroundColor: C.card,
+  		borderRadius: 16,
+  		padding: 20,
+  		marginBottom: 24,
+  	},
+  	lockCardContent: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		marginBottom: 16,
+  	},
+  	lockIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 16,
+  	},
+  	lockedIcon: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  	},
+  	unlockedIcon: {
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  	},
+  	lockInfo: {
+  		flex: 1,
+  	},
+  	lockTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 4,
+  	},
+  	lockDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	lockButton: {
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	lockButtonRed: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  	},
+  	unlockButton: {
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  	},
+  	lockButtonText: {
+  		color: C.error,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	settingItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	settingIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	settingContent: {
+  		flex: 1,
+  	},
+  	settingLabel: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	settingDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	actionButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	actionIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	actionText: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	dangerButton: {
+  		backgroundColor: "rgba(255, 67, 42, 0.05)",
+  	},
+  	dangerIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	dangerText: {
+  		color: C.error,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	securityNote: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  		marginBottom: 24,
+  	},
+  })
 	const router = useRouter()
 	const [isCardLocked, setIsCardLocked] = useState(false)
 	const [locationBasedSecurity, setLocationBasedSecurity] = useState(true)
@@ -48,7 +197,7 @@ export default function CardSecurityScreen() {
 							]}>
 							<Lock
 								size={24}
-								color={isCardLocked ? Colors.dark.error : Colors.dark.success}
+								color={isCardLocked ? C.error : C.success}
 							/>
 						</View>
 						<View style={styles.lockInfo}>
@@ -80,7 +229,7 @@ export default function CardSecurityScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Smartphone size={20} color={Colors.dark.text} />
+							<Smartphone size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Location-Based Security</Text>
@@ -92,16 +241,16 @@ export default function CardSecurityScreen() {
 							value={locationBasedSecurity}
 							onValueChange={setLocationBasedSecurity}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<CreditCard size={20} color={Colors.dark.text} />
+							<CreditCard size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>
@@ -115,16 +264,16 @@ export default function CardSecurityScreen() {
 							value={internationalTransactions}
 							onValueChange={setInternationalTransactions}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<ShieldAlert size={20} color={Colors.dark.text} />
+							<ShieldAlert size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>ATM Withdrawals</Text>
@@ -136,10 +285,10 @@ export default function CardSecurityScreen() {
 							value={atmWithdrawals}
 							onValueChange={setAtmWithdrawals}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 				</View>
@@ -151,7 +300,7 @@ export default function CardSecurityScreen() {
 						style={styles.actionButton}
 						onPress={() => router.push("/card-pin")}>
 						<View style={styles.actionIcon}>
-							<Lock size={20} color={Colors.dark.text} />
+							<Lock size={20} color={C.text} />
 						</View>
 						<Text style={styles.actionText}>Change PIN</Text>
 					</Pressable>
@@ -160,7 +309,7 @@ export default function CardSecurityScreen() {
 						style={styles.actionButton}
 						onPress={() => router.push("/card-limits")}>
 						<View style={styles.actionIcon}>
-							<ShieldAlert size={20} color={Colors.dark.text} />
+							<ShieldAlert size={20} color={C.text} />
 						</View>
 						<Text style={styles.actionText}>Set Spending Limits</Text>
 					</Pressable>
@@ -169,7 +318,7 @@ export default function CardSecurityScreen() {
 						style={[styles.actionButton, styles.dangerButton]}
 						onPress={handleReportLost}>
 						<View style={styles.dangerIcon}>
-							<AlertTriangle size={20} color={Colors.dark.error} />
+							<AlertTriangle size={20} color={C.error} />
 						</View>
 						<Text style={styles.dangerText}>Report Lost or Stolen</Text>
 					</Pressable>
@@ -184,151 +333,3 @@ export default function CardSecurityScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	lockCard: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 16,
-		padding: 20,
-		marginBottom: 24,
-	},
-	lockCardContent: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 16,
-	},
-	lockIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 16,
-	},
-	lockedIcon: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-	},
-	unlockedIcon: {
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-	},
-	lockInfo: {
-		flex: 1,
-	},
-	lockTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 4,
-	},
-	lockDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	lockButton: {
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	lockButtonRed: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-	},
-	unlockButton: {
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-	},
-	lockButtonText: {
-		color: Colors.dark.error,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	settingItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	settingIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	settingContent: {
-		flex: 1,
-	},
-	settingLabel: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	settingDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	actionButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	actionIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	actionText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	dangerButton: {
-		backgroundColor: "rgba(255, 67, 42, 0.05)",
-	},
-	dangerIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	dangerText: {
-		color: Colors.dark.error,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	securityNote: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-		marginBottom: 24,
-	},
-})
