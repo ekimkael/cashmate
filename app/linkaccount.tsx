@@ -10,9 +10,138 @@ import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { CreditCard, Building, ChevronRight, Lock } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function LinkAccountScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	methodContainer: {
+  		flex: 1,
+  		padding: 20,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	title: {
+  		color: C.text,
+  		fontSize: 24,
+  		fontWeight: "600",
+  		marginBottom: 24,
+  	},
+  	methodCard: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 16,
+  	},
+  	methodIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 16,
+  	},
+  	methodInfo: {
+  		flex: 1,
+  	},
+  	methodTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	methodDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	securityNote: {
+  		flexDirection: "row",
+  		alignItems: "flex-start",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginTop: 24,
+  	},
+  	securityText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginLeft: 12,
+  		flex: 1,
+  	},
+  	searchContainer: {
+  		marginBottom: 24,
+  	},
+  	searchInput: {
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		padding: 16,
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  	bankList: {
+  		marginBottom: 24,
+  	},
+  	bankItem: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	bankName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	manualButton: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		borderWidth: 1,
+  		borderColor: C.border,
+  		borderStyle: "dashed",
+  	},
+  	manualButtonText: {
+  		color: C.primary,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	cardForm: {
+  		marginBottom: 24,
+  	},
+  	inputGroup: {
+  		marginBottom: 16,
+  	},
+  	inputRow: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  	},
+  	inputLabel: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 8,
+  	},
+  	input: {
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		padding: 16,
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  })
 	const router = useRouter()
 	const [linkMethod, setLinkMethod] = useState(null)
 
@@ -48,7 +177,7 @@ export default function LinkAccountScreen() {
 						style={styles.methodCard}
 						onPress={() => setLinkMethod("bank")}>
 						<View style={styles.methodIcon}>
-							<Building size={24} color={Colors.dark.text} />
+							<Building size={24} color={C.text} />
 						</View>
 						<View style={styles.methodInfo}>
 							<Text style={styles.methodTitle}>Link a Bank Account</Text>
@@ -56,14 +185,14 @@ export default function LinkAccountScreen() {
 								Connect your checking or savings account
 							</Text>
 						</View>
-						<ChevronRight size={20} color={Colors.dark.secondaryText} />
+						<ChevronRight size={20} color={C.secondaryText} />
 					</Pressable>
 
 					<Pressable
 						style={styles.methodCard}
 						onPress={() => setLinkMethod("card")}>
 						<View style={styles.methodIcon}>
-							<CreditCard size={24} color={Colors.dark.text} />
+							<CreditCard size={24} color={C.text} />
 						</View>
 						<View style={styles.methodInfo}>
 							<Text style={styles.methodTitle}>Link a Debit Card</Text>
@@ -71,11 +200,11 @@ export default function LinkAccountScreen() {
 								Connect your debit card for instant transfers
 							</Text>
 						</View>
-						<ChevronRight size={20} color={Colors.dark.secondaryText} />
+						<ChevronRight size={20} color={C.secondaryText} />
 					</Pressable>
 
 					<View style={styles.securityNote}>
-						<Lock size={16} color={Colors.dark.secondaryText} />
+						<Lock size={16} color={C.secondaryText} />
 						<Text style={styles.securityText}>
 							Your financial information is encrypted and secure. We use
 							bank-level security to protect your data.
@@ -90,7 +219,7 @@ export default function LinkAccountScreen() {
 						<TextInput
 							style={styles.searchInput}
 							placeholder="Search for your bank"
-							placeholderTextColor={Colors.dark.secondaryText}
+							placeholderTextColor={C.secondaryText}
 						/>
 					</View>
 
@@ -101,7 +230,7 @@ export default function LinkAccountScreen() {
 								style={styles.bankItem}
 								onPress={() => handleSelectBank(bank)}>
 								<Text style={styles.bankName}>{bank.name}</Text>
-								<ChevronRight size={20} color={Colors.dark.secondaryText} />
+								<ChevronRight size={20} color={C.secondaryText} />
 							</Pressable>
 						))}
 					</View>
@@ -122,7 +251,7 @@ export default function LinkAccountScreen() {
 							<TextInput
 								style={styles.input}
 								placeholder="1234 5678 9012 3456"
-								placeholderTextColor={Colors.dark.secondaryText}
+								placeholderTextColor={C.secondaryText}
 								keyboardType="number-pad"
 							/>
 						</View>
@@ -133,7 +262,7 @@ export default function LinkAccountScreen() {
 								<TextInput
 									style={styles.input}
 									placeholder="MM/YY"
-									placeholderTextColor={Colors.dark.secondaryText}
+									placeholderTextColor={C.secondaryText}
 									keyboardType="number-pad"
 								/>
 							</View>
@@ -143,7 +272,7 @@ export default function LinkAccountScreen() {
 								<TextInput
 									style={styles.input}
 									placeholder="123"
-									placeholderTextColor={Colors.dark.secondaryText}
+									placeholderTextColor={C.secondaryText}
 									keyboardType="number-pad"
 									secureTextEntry
 								/>
@@ -155,7 +284,7 @@ export default function LinkAccountScreen() {
 							<TextInput
 								style={styles.input}
 								placeholder="John Doe"
-								placeholderTextColor={Colors.dark.secondaryText}
+								placeholderTextColor={C.secondaryText}
 							/>
 						</View>
 
@@ -164,20 +293,16 @@ export default function LinkAccountScreen() {
 							<TextInput
 								style={styles.input}
 								placeholder="12345"
-								placeholderTextColor={Colors.dark.secondaryText}
+								placeholderTextColor={C.secondaryText}
 								keyboardType="number-pad"
 							/>
 						</View>
 					</View>
 
-					<Pressable
-						style={styles.addButton}
-						onPress={() => router.push("/linkedaccounts")}>
-						<Text style={styles.addButtonText}>Add Card</Text>
-					</Pressable>
+					<Button label="Add Card" onPress={() => router.push("/linkedaccounts")} style={{ marginBottom: 24 }} />
 
 					<View style={styles.securityNote}>
-						<Lock size={16} color={Colors.dark.secondaryText} />
+						<Lock size={16} color={C.secondaryText} />
 						<Text style={styles.securityText}>
 							Your card information is encrypted and secure. We use bank-level
 							security to protect your data.
@@ -189,143 +314,3 @@ export default function LinkAccountScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	methodContainer: {
-		flex: 1,
-		padding: 20,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	title: {
-		color: Colors.dark.text,
-		fontSize: 24,
-		fontWeight: "600",
-		marginBottom: 24,
-	},
-	methodCard: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 16,
-	},
-	methodIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 16,
-	},
-	methodInfo: {
-		flex: 1,
-	},
-	methodTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	methodDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	securityNote: {
-		flexDirection: "row",
-		alignItems: "flex-start",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginTop: 24,
-	},
-	securityText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginLeft: 12,
-		flex: 1,
-	},
-	searchContainer: {
-		marginBottom: 24,
-	},
-	searchInput: {
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		padding: 16,
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	bankList: {
-		marginBottom: 24,
-	},
-	bankItem: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	bankName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	manualButton: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-		borderWidth: 1,
-		borderColor: Colors.dark.border,
-		borderStyle: "dashed",
-	},
-	manualButtonText: {
-		color: Colors.dark.primary,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	cardForm: {
-		marginBottom: 24,
-	},
-	inputGroup: {
-		marginBottom: 16,
-	},
-	inputRow: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-	},
-	inputLabel: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 8,
-	},
-	input: {
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		padding: 16,
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	addButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-		marginBottom: 24,
-	},
-	addButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-})

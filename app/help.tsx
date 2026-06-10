@@ -21,9 +21,127 @@ import {
 	CreditCard,
 	Shield,
 } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function HelpScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	searchContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		paddingHorizontal: 12,
+  		marginBottom: 24,
+  	},
+  	searchIcon: {
+  		marginRight: 8,
+  	},
+  	searchInput: {
+  		flex: 1,
+  		height: 48,
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  	section: {
+  		marginBottom: 32,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	contactItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	contactIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 16,
+  	},
+  	contactContent: {
+  		flex: 1,
+  	},
+  	contactTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "600",
+  		marginBottom: 4,
+  	},
+  	contactDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	faqCategory: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	faqCategoryIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 16,
+  	},
+  	faqCategoryContent: {
+  		flex: 1,
+  	},
+  	faqCategoryTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "600",
+  		marginBottom: 4,
+  	},
+  	faqCategoryCount: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	resourceItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	resourceIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 16,
+  	},
+  	resourceTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  })
 	const router = useRouter()
 	const [searchQuery, setSearchQuery] = React.useState("")
 
@@ -82,13 +200,13 @@ export default function HelpScreen() {
 				<View style={styles.searchContainer}>
 					<Search
 						size={20}
-						color={Colors.dark.secondaryText}
+						color={C.secondaryText}
 						style={styles.searchIcon}
 					/>
 					<TextInput
 						style={styles.searchInput}
 						placeholder="Search for help"
-						placeholderTextColor={Colors.dark.secondaryText}
+						placeholderTextColor={C.secondaryText}
 						value={searchQuery}
 						onChangeText={setSearchQuery}
 					/>
@@ -99,7 +217,7 @@ export default function HelpScreen() {
 
 					<Pressable style={styles.contactItem} onPress={() => null}>
 						<View style={styles.contactIcon}>
-							<MessageCircle size={24} color={Colors.dark.text} />
+							<MessageCircle size={24} color={C.text} />
 						</View>
 						<View style={styles.contactContent}>
 							<Text style={styles.contactTitle}>Chat with Support</Text>
@@ -111,7 +229,7 @@ export default function HelpScreen() {
 
 					<Pressable style={styles.contactItem} onPress={() => null}>
 						<View style={styles.contactIcon}>
-							<Phone size={24} color={Colors.dark.text} />
+							<Phone size={24} color={C.text} />
 						</View>
 						<View style={styles.contactContent}>
 							<Text style={styles.contactTitle}>Call Support</Text>
@@ -123,7 +241,7 @@ export default function HelpScreen() {
 
 					<Pressable style={styles.contactItem} onPress={() => null}>
 						<View style={styles.contactIcon}>
-							<Mail size={24} color={Colors.dark.text} />
+							<Mail size={24} color={C.text} />
 						</View>
 						<View style={styles.contactContent}>
 							<Text style={styles.contactTitle}>Email Support</Text>
@@ -143,7 +261,7 @@ export default function HelpScreen() {
 							style={styles.faqCategory}
 							onPress={() => null}>
 							<View style={styles.faqCategoryIcon}>
-								<HelpCircle size={24} color={Colors.dark.text} />
+								<HelpCircle size={24} color={C.text} />
 							</View>
 							<View style={styles.faqCategoryContent}>
 								<Text style={styles.faqCategoryTitle}>{category.title}</Text>
@@ -153,7 +271,7 @@ export default function HelpScreen() {
 							</View>
 							<ArrowLeft
 								size={20}
-								color={Colors.dark.secondaryText}
+								color={C.secondaryText}
 								style={{ transform: [{ rotate: "180deg" }] }}
 							/>
 						</Pressable>
@@ -167,7 +285,7 @@ export default function HelpScreen() {
 						style={styles.resourceItem}
 						onPress={() => router.push("/terms")}>
 						<View style={styles.resourceIcon}>
-							<FileText size={24} color={Colors.dark.text} />
+							<FileText size={24} color={C.text} />
 						</View>
 						<Text style={styles.resourceTitle}>Terms of Service</Text>
 					</Pressable>
@@ -176,14 +294,14 @@ export default function HelpScreen() {
 						style={styles.resourceItem}
 						onPress={() => router.push("/privacy-policy")}>
 						<View style={styles.resourceIcon}>
-							<FileText size={24} color={Colors.dark.text} />
+							<FileText size={24} color={C.text} />
 						</View>
 						<Text style={styles.resourceTitle}>Privacy Policy</Text>
 					</Pressable>
 
 					<Pressable style={styles.resourceItem} onPress={() => null}>
 						<View style={styles.resourceIcon}>
-							<FileText size={24} color={Colors.dark.text} />
+							<FileText size={24} color={C.text} />
 						</View>
 						<Text style={styles.resourceTitle}>Licenses</Text>
 					</Pressable>
@@ -193,120 +311,3 @@ export default function HelpScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	searchContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		paddingHorizontal: 12,
-		marginBottom: 24,
-	},
-	searchIcon: {
-		marginRight: 8,
-	},
-	searchInput: {
-		flex: 1,
-		height: 48,
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	section: {
-		marginBottom: 32,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	contactItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	contactIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 16,
-	},
-	contactContent: {
-		flex: 1,
-	},
-	contactTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "600",
-		marginBottom: 4,
-	},
-	contactDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	faqCategory: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	faqCategoryIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 16,
-	},
-	faqCategoryContent: {
-		flex: 1,
-	},
-	faqCategoryTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "600",
-		marginBottom: 4,
-	},
-	faqCategoryCount: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	resourceItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	resourceIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 16,
-	},
-	resourceTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-})

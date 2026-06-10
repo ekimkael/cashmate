@@ -3,9 +3,103 @@ import { Stack, useRouter } from "expo-router"
 import { Copy, Info } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function DirectDepositScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	infoCard: {
+  		backgroundColor: C.card,
+  		borderRadius: 16,
+  		padding: 20,
+  		marginBottom: 24,
+  	},
+  	infoTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 8,
+  	},
+  	infoText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		lineHeight: 20,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	sectionDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 16,
+  	},
+  	accountInfoItem: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	accountInfoHeader: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		alignItems: "center",
+  		marginBottom: 8,
+  	},
+  	accountInfoLabel: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	accountInfoValue: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "500",
+  	},
+  	copyButton: {
+  		padding: 4,
+  	},
+  	noteContainer: {
+  		flexDirection: "row",
+  		alignItems: "flex-start",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	noteText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginLeft: 12,
+  		flex: 1,
+  	},
+  	copiedToast: {
+  		position: "absolute",
+  		bottom: 20,
+  		left: 20,
+  		right: 20,
+  		backgroundColor: C.success,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  	},
+  	copiedToastText: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  })
 	const router = useRouter()
 	const [copied, setCopied] = useState(false)
 
@@ -49,7 +143,7 @@ export default function DirectDepositScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(accountInfo.routingNumber)}>
-								<Copy size={18} color={Colors.dark.primary} />
+								<Copy size={18} color={C.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.accountInfoValue}>
@@ -63,7 +157,7 @@ export default function DirectDepositScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(accountInfo.accountNumber)}>
-								<Copy size={18} color={Colors.dark.primary} />
+								<Copy size={18} color={C.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.accountInfoValue}>
@@ -90,14 +184,12 @@ export default function DirectDepositScreen() {
 						Download and fill out this form to give to your employer.
 					</Text>
 
-					<Pressable style={styles.downloadButton} onPress={handleDownloadForm}>
-						<Text style={styles.downloadButtonText}>Download Form</Text>
-					</Pressable>
+					<Button label="Download Form" onPress={handleDownloadForm} />
 				</View>
 
 				<View style={styles.section}>
 					<View style={styles.noteContainer}>
-						<Info size={20} color={Colors.dark.secondaryText} />
+						<Info size={20} color={C.secondaryText} />
 						<Text style={styles.noteText}>
 							Your money is FDIC insured up to $250,000 through our banking
 							partners.
@@ -115,107 +207,3 @@ export default function DirectDepositScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	infoCard: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 16,
-		padding: 20,
-		marginBottom: 24,
-	},
-	infoTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 8,
-	},
-	infoText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		lineHeight: 20,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	sectionDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 16,
-	},
-	accountInfoItem: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	accountInfoHeader: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		marginBottom: 8,
-	},
-	accountInfoLabel: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	accountInfoValue: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "500",
-	},
-	copyButton: {
-		padding: 4,
-	},
-	downloadButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	downloadButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	noteContainer: {
-		flexDirection: "row",
-		alignItems: "flex-start",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-	},
-	noteText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginLeft: 12,
-		flex: 1,
-	},
-	copiedToast: {
-		position: "absolute",
-		bottom: 20,
-		left: 20,
-		right: 20,
-		backgroundColor: Colors.dark.success,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-	},
-	copiedToastText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-})

@@ -3,7 +3,8 @@ import { Stack, useRouter } from "expo-router"
 import { CreditCard, Building, Trash2, Plus } from "lucide-react-native"
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 const linkedAccounts = [
 	{
@@ -25,6 +26,119 @@ const linkedAccounts = [
 ]
 
 export default function LinkedAccountsScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	description: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginBottom: 24,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	accountCard: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	accountHeader: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		marginBottom: 16,
+  	},
+  	accountIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 16,
+  	},
+  	accountInfo: {
+  		flex: 1,
+  	},
+  	accountName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	accountDetails: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	accountActions: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		alignItems: "center",
+  	},
+  	defaultBadge: {
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  		borderRadius: 12,
+  		paddingVertical: 6,
+  		paddingHorizontal: 12,
+  	},
+  	defaultText: {
+  		color: C.primary,
+  		fontSize: 14,
+  		fontWeight: "500",
+  	},
+  	setDefaultButton: {
+  		paddingVertical: 6,
+  		paddingHorizontal: 12,
+  	},
+  	setDefaultText: {
+  		color: C.primary,
+  		fontSize: 14,
+  		fontWeight: "500",
+  	},
+  	removeButton: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	addButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 24,
+  		borderWidth: 1,
+  		borderColor: C.border,
+  		borderStyle: "dashed",
+  	},
+  	addButtonText: {
+  		color: C.primary,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginLeft: 8,
+  	},
+  	securityNote: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  	},
+  })
 	const router = useRouter()
 
 	const handleRemoveAccount = (account) => {
@@ -56,7 +170,7 @@ export default function LinkedAccountsScreen() {
 							<View key={account.id} style={styles.accountCard}>
 								<View style={styles.accountHeader}>
 									<View style={styles.accountIcon}>
-										<Building size={24} color={Colors.dark.text} />
+										<Building size={24} color={C.text} />
 									</View>
 									<View style={styles.accountInfo}>
 										<Text style={styles.accountName}>{account.name}</Text>
@@ -82,7 +196,7 @@ export default function LinkedAccountsScreen() {
 									<Pressable
 										style={styles.removeButton}
 										onPress={() => handleRemoveAccount(account)}>
-										<Trash2 size={20} color={Colors.dark.error} />
+										<Trash2 size={20} color={C.error} />
 									</Pressable>
 								</View>
 							</View>
@@ -98,7 +212,7 @@ export default function LinkedAccountsScreen() {
 							<View key={account.id} style={styles.accountCard}>
 								<View style={styles.accountHeader}>
 									<View style={styles.accountIcon}>
-										<CreditCard size={24} color={Colors.dark.text} />
+										<CreditCard size={24} color={C.text} />
 									</View>
 									<View style={styles.accountInfo}>
 										<Text style={styles.accountName}>{account.name}</Text>
@@ -124,7 +238,7 @@ export default function LinkedAccountsScreen() {
 									<Pressable
 										style={styles.removeButton}
 										onPress={() => handleRemoveAccount(account)}>
-										<Trash2 size={20} color={Colors.dark.error} />
+										<Trash2 size={20} color={C.error} />
 									</Pressable>
 								</View>
 							</View>
@@ -134,7 +248,7 @@ export default function LinkedAccountsScreen() {
 				<Pressable
 					style={styles.addButton}
 					onPress={() => router.push("/linkaccount")}>
-					<Plus size={20} color={Colors.dark.primary} />
+					<Plus size={20} color={C.primary} />
 					<Text style={styles.addButtonText}>Link a New Account</Text>
 				</Pressable>
 
@@ -147,115 +261,3 @@ export default function LinkedAccountsScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	description: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginBottom: 24,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	accountCard: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	accountHeader: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 16,
-	},
-	accountIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 16,
-	},
-	accountInfo: {
-		flex: 1,
-	},
-	accountName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	accountDetails: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	accountActions: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-	},
-	defaultBadge: {
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-		borderRadius: 12,
-		paddingVertical: 6,
-		paddingHorizontal: 12,
-	},
-	defaultText: {
-		color: Colors.dark.primary,
-		fontSize: 14,
-		fontWeight: "500",
-	},
-	setDefaultButton: {
-		paddingVertical: 6,
-		paddingHorizontal: 12,
-	},
-	setDefaultText: {
-		color: Colors.dark.primary,
-		fontSize: 14,
-		fontWeight: "500",
-	},
-	removeButton: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	addButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 24,
-		borderWidth: 1,
-		borderColor: Colors.dark.border,
-		borderStyle: "dashed",
-	},
-	addButtonText: {
-		color: Colors.dark.primary,
-		fontSize: 16,
-		fontWeight: "500",
-		marginLeft: 8,
-	},
-	securityNote: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-	},
-})

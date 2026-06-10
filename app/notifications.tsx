@@ -11,9 +11,97 @@ import React from "react"
 import { Stack, useRouter } from "expo-router"
 import { Bell, DollarSign, CreditCard, User } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function NotificationsScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: { flex: 1, backgroundColor: C.background },
+  	header: { padding: 16 },
+  	headerTitle: {
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  		color: C.text,
+  	},
+  	settings: { padding: 16, gap: 8 },
+  	settingItem: {
+  		gap: 16,
+  		padding: 16,
+  		borderRadius: 12,
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  	},
+  	settingIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		backgroundColor: C.inputBackground,
+  	},
+  	settingContent: { flex: 1, gap: 4 },
+  	settingLabel: {
+  		fontSize: 16,
+  		fontWeight: "500",
+  		color: C.text,
+  	},
+  	settingDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	recentTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	notificationItem: {
+  		flexDirection: "row",
+  		padding: 16,
+  		borderBottomWidth: 1,
+  		borderBottomColor: C.border,
+  	},
+  	unreadItem: {
+  		backgroundColor: "rgba(0, 214, 50, 0.05)",
+  	},
+  	notificationIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.card,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	notificationContent: {
+  		flex: 1,
+  	},
+  	notificationTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "600",
+  		marginBottom: 4,
+  	},
+  	notificationMessage: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 8,
+  	},
+  	notificationTime: {
+  		color: C.secondaryText,
+  		fontSize: 12,
+  	},
+  	emptyContainer: {
+  		padding: 20,
+  		alignItems: "center",
+  	},
+  	emptyText: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  	},
+  })
 	const router = useRouter()
 
 	const [notificationSettings, setNotificationSettings] = React.useState({
@@ -83,7 +171,7 @@ export default function NotificationsScreen() {
 				<View style={styles.settings}>
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<DollarSign size={20} color={Colors.dark.text} />
+							<DollarSign size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Payments</Text>
@@ -95,16 +183,16 @@ export default function NotificationsScreen() {
 							value={notificationSettings.payments}
 							onValueChange={() => toggleSetting("payments")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<DollarSign size={20} color={Colors.dark.text} />
+							<DollarSign size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Deposits</Text>
@@ -116,16 +204,16 @@ export default function NotificationsScreen() {
 							value={notificationSettings.deposits}
 							onValueChange={() => toggleSetting("deposits")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<CreditCard size={20} color={Colors.dark.text} />
+							<CreditCard size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Card Activity</Text>
@@ -137,16 +225,16 @@ export default function NotificationsScreen() {
 							value={notificationSettings.cardActivity}
 							onValueChange={() => toggleSetting("cardActivity")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Bell size={20} color={Colors.dark.text} />
+							<Bell size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Promotions</Text>
@@ -158,16 +246,16 @@ export default function NotificationsScreen() {
 							value={notificationSettings.promotions}
 							onValueChange={() => toggleSetting("promotions")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<User size={20} color={Colors.dark.text} />
+							<User size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Friend Activity</Text>
@@ -179,10 +267,10 @@ export default function NotificationsScreen() {
 							value={notificationSettings.friendActivity}
 							onValueChange={() => toggleSetting("friendActivity")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 				</View>
@@ -198,7 +286,7 @@ export default function NotificationsScreen() {
 								!item.read && styles.unreadItem,
 							]}>
 							<View style={styles.notificationIcon}>
-								<item.icon size={20} color={Colors.dark.text} />
+								<item.icon size={20} color={C.text} />
 							</View>
 							<View style={styles.notificationContent}>
 								<Text style={styles.notificationTitle}>{item.title}</Text>
@@ -223,90 +311,3 @@ export default function NotificationsScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: { flex: 1, backgroundColor: Colors.dark.background },
-	header: { padding: 16 },
-	headerTitle: {
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-		color: Colors.dark.text,
-	},
-	settings: { padding: 16, gap: 8 },
-	settingItem: {
-		gap: 16,
-		padding: 16,
-		borderRadius: 12,
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-	},
-	settingIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: Colors.dark.inputBackground,
-	},
-	settingContent: { flex: 1, gap: 4 },
-	settingLabel: {
-		fontSize: 16,
-		fontWeight: "500",
-		color: Colors.dark.text,
-	},
-	settingDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	recentTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	notificationItem: {
-		flexDirection: "row",
-		padding: 16,
-		borderBottomWidth: 1,
-		borderBottomColor: Colors.dark.border,
-	},
-	unreadItem: {
-		backgroundColor: "rgba(0, 214, 50, 0.05)",
-	},
-	notificationIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.card,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	notificationContent: {
-		flex: 1,
-	},
-	notificationTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "600",
-		marginBottom: 4,
-	},
-	notificationMessage: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 8,
-	},
-	notificationTime: {
-		color: Colors.dark.secondaryText,
-		fontSize: 12,
-	},
-	emptyContainer: {
-		padding: 20,
-		alignItems: "center",
-	},
-	emptyText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-	},
-})

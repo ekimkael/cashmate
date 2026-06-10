@@ -3,9 +3,43 @@ import { Stack, useRouter } from "expo-router"
 import { Check, Search } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, FlatList } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function LanguageScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	search: { padding: 16, paddingTop: 0 },
+  	searchBar: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 12,
+  	},
+  	searchPlaceholder: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginLeft: 12,
+  	},
+  	list: { padding: 16 },
+  	languageItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		justifyContent: "space-between",
+  		paddingVertical: 16,
+  		borderBottomWidth: 1,
+  		borderBottomColor: C.border,
+  	},
+  	languageName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  })
 	const router = useRouter()
 	const [selectedLanguage, setSelectedLanguage] = useState("en-US")
 
@@ -40,15 +74,15 @@ export default function LanguageScreen() {
 			<Stack.Screen
 				options={{
 					title: "Language",
-					headerTintColor: Colors.dark.text,
+					headerTintColor: C.text,
 					headerBackButtonDisplayMode: "minimal",
-					headerStyle: { backgroundColor: Colors.dark.background },
+					headerStyle: { backgroundColor: C.background },
 				}}
 			/>
 
 			<View style={styles.search}>
 				<View style={styles.searchBar}>
-					<Search size={20} color={Colors.dark.secondaryText} />
+					<Search size={20} color={C.secondaryText} />
 					<Text style={styles.searchPlaceholder}>Search languages</Text>
 				</View>
 			</View>
@@ -63,7 +97,7 @@ export default function LanguageScreen() {
 						onPress={() => handleSelect(item.code)}>
 						<Text style={styles.languageName}>{item.name}</Text>
 						{selectedLanguage === item.code && (
-							<Check size={24} color={Colors.dark.primary} />
+							<Check size={24} color={C.primary} />
 						)}
 					</Pressable>
 				)}
@@ -72,36 +106,3 @@ export default function LanguageScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	search: { padding: 16, paddingTop: 0 },
-	searchBar: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 12,
-	},
-	searchPlaceholder: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginLeft: 12,
-	},
-	list: { padding: 16 },
-	languageItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-		paddingVertical: 16,
-		borderBottomWidth: 1,
-		borderBottomColor: Colors.dark.border,
-	},
-	languageName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-})

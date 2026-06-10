@@ -9,10 +9,111 @@ import React from "react"
 import { Stack, useLocalSearchParams } from "expo-router"
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 import { useTransactionStore } from "@/store/transactionStore"
 
 export default function TransactionDetailScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		padding: 20,
+  	},
+  	card: {
+  		backgroundColor: C.card,
+  		borderRadius: 16,
+  		padding: 20,
+  	},
+  	userContainer: {
+  		alignItems: "center",
+  		marginBottom: 24,
+  	},
+  	avatar: {
+  		width: 80,
+  		height: 80,
+  		borderRadius: 40,
+  		marginBottom: 16,
+  	},
+  	iconContainer: {
+  		width: 80,
+  		height: 80,
+  		borderRadius: 40,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginBottom: 16,
+  	},
+  	userName: {
+  		color: C.text,
+  		fontSize: 20,
+  		fontWeight: "600",
+  		marginBottom: 4,
+  	},
+  	userUsername: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  	},
+  	amountContainer: {
+  		alignItems: "center",
+  		marginBottom: 24,
+  	},
+  	amount: {
+  		fontSize: 36,
+  		fontWeight: "700",
+  		marginBottom: 8,
+  	},
+  	status: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  	},
+  	noteContainer: {
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 24,
+  	},
+  	noteLabel: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 8,
+  	},
+  	note: {
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  	detailsContainer: {
+  		borderTopWidth: 1,
+  		borderTopColor: C.border,
+  		paddingTop: 16,
+  	},
+  	detailRow: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		marginBottom: 12,
+  	},
+  	detailLabel: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	detailValue: {
+  		color: C.text,
+  		fontSize: 14,
+  	},
+  	errorContainer: {
+  		flex: 1,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 20,
+  	},
+  	errorText: {
+  		color: C.text,
+  		fontSize: 16,
+  		textAlign: "center",
+  	},
+  })
 	const { id } = useLocalSearchParams()
 	const { transactions } = useTransactionStore()
 
@@ -47,15 +148,15 @@ export default function TransactionDetailScreen() {
 	const getIcon = () => {
 		switch (type) {
 			case "send":
-				return <ArrowUpRight size={24} color={Colors.dark.error} />
+				return <ArrowUpRight size={24} color={C.error} />
 			case "receive":
-				return <ArrowDownLeft size={24} color={Colors.dark.success} />
+				return <ArrowDownLeft size={24} color={C.success} />
 			case "payment":
-				return <CreditCard size={24} color={Colors.dark.secondaryText} />
+				return <CreditCard size={24} color={C.secondaryText} />
 			case "deposit":
-				return <Wallet size={24} color={Colors.dark.success} />
+				return <Wallet size={24} color={C.success} />
 			case "withdrawal":
-				return <DollarSign size={24} color={Colors.dark.error} />
+				return <DollarSign size={24} color={C.error} />
 			default:
 				return null
 		}
@@ -63,9 +164,9 @@ export default function TransactionDetailScreen() {
 
 	const getAmountColor = () => {
 		if (type === "send" || type === "payment" || type === "withdrawal") {
-			return Colors.dark.error
+			return C.error
 		}
-		return Colors.dark.success
+		return C.success
 	}
 
 	const getAmountPrefix = () => {
@@ -148,103 +249,3 @@ export default function TransactionDetailScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		padding: 20,
-	},
-	card: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 16,
-		padding: 20,
-	},
-	userContainer: {
-		alignItems: "center",
-		marginBottom: 24,
-	},
-	avatar: {
-		width: 80,
-		height: 80,
-		borderRadius: 40,
-		marginBottom: 16,
-	},
-	iconContainer: {
-		width: 80,
-		height: 80,
-		borderRadius: 40,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginBottom: 16,
-	},
-	userName: {
-		color: Colors.dark.text,
-		fontSize: 20,
-		fontWeight: "600",
-		marginBottom: 4,
-	},
-	userUsername: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-	},
-	amountContainer: {
-		alignItems: "center",
-		marginBottom: 24,
-	},
-	amount: {
-		fontSize: 36,
-		fontWeight: "700",
-		marginBottom: 8,
-	},
-	status: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-	},
-	noteContainer: {
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 24,
-	},
-	noteLabel: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 8,
-	},
-	note: {
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	detailsContainer: {
-		borderTopWidth: 1,
-		borderTopColor: Colors.dark.border,
-		paddingTop: 16,
-	},
-	detailRow: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		marginBottom: 12,
-	},
-	detailLabel: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	detailValue: {
-		color: Colors.dark.text,
-		fontSize: 14,
-	},
-	errorContainer: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 20,
-	},
-	errorText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		textAlign: "center",
-	},
-})

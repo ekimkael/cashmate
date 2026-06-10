@@ -3,10 +3,71 @@ import { Stack, useRouter } from "expo-router"
 import { Share2, Download } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, Image } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 import { useUserStore } from "@/store/userStore"
 
 export default function QRCodeScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 20,
+  	},
+  	qrContainer: {
+  		backgroundColor: C.card,
+  		borderRadius: 16,
+  		padding: 24,
+  		marginBottom: 24,
+  	},
+  	qrCode: {
+  		width: 250,
+  		height: 250,
+  		backgroundColor: "#FFFFFF",
+  		borderRadius: 8,
+  	},
+  	username: {
+  		color: C.text,
+  		fontSize: 24,
+  		fontWeight: "700",
+  		marginBottom: 12,
+  	},
+  	description: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		textAlign: "center",
+  		marginBottom: 32,
+  		paddingHorizontal: 20,
+  	},
+  	actionsContainer: {
+  		flexDirection: "row",
+  		justifyContent: "space-around",
+  		width: "100%",
+  	},
+  	actionButton: {
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		width: "45%",
+  	},
+  	actionText: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginTop: 8,
+  	},
+  	errorText: {
+  		color: C.text,
+  		fontSize: 16,
+  		textAlign: "center",
+  	},
+  })
 	const router = useRouter()
 	const { user } = useUserStore()
 
@@ -44,12 +105,12 @@ export default function QRCodeScreen() {
 
 				<View style={styles.actionsContainer}>
 					<Pressable style={styles.actionButton}>
-						<Share2 size={24} color={Colors.dark.text} />
+						<Share2 size={24} color={C.text} />
 						<Text style={styles.actionText}>Share</Text>
 					</Pressable>
 
 					<Pressable style={styles.actionButton}>
-						<Download size={24} color={Colors.dark.text} />
+						<Download size={24} color={C.text} />
 						<Text style={styles.actionText}>Save</Text>
 					</Pressable>
 				</View>
@@ -58,63 +119,3 @@ export default function QRCodeScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 20,
-	},
-	qrContainer: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 16,
-		padding: 24,
-		marginBottom: 24,
-	},
-	qrCode: {
-		width: 250,
-		height: 250,
-		backgroundColor: "#FFFFFF",
-		borderRadius: 8,
-	},
-	username: {
-		color: Colors.dark.text,
-		fontSize: 24,
-		fontWeight: "700",
-		marginBottom: 12,
-	},
-	description: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		textAlign: "center",
-		marginBottom: 32,
-		paddingHorizontal: 20,
-	},
-	actionsContainer: {
-		flexDirection: "row",
-		justifyContent: "space-around",
-		width: "100%",
-	},
-	actionButton: {
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		width: "45%",
-	},
-	actionText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginTop: 8,
-	},
-	errorText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		textAlign: "center",
-	},
-})

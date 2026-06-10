@@ -3,9 +3,85 @@ import { Stack, useRouter } from "expo-router"
 import { CreditCard, Plus, Trash2, Building } from "lucide-react-native"
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function PaymentMethodsScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	section: {
+  		marginBottom: 32,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	paymentMethod: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	paymentMethodIcon: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 16,
+  	},
+  	paymentMethodDetails: {
+  		flex: 1,
+  	},
+  	paymentMethodName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	paymentMethodNumber: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	deleteButton: {
+  		padding: 8,
+  	},
+  	addButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		borderWidth: 1,
+  		borderColor: C.border,
+  		borderStyle: "dashed",
+  	},
+  	addButtonText: {
+  		color: C.primary,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginLeft: 8,
+  	},
+  	securityNote: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  		marginTop: 16,
+  	},
+  })
 	const router = useRouter()
 
 	const paymentMethods = [
@@ -46,7 +122,7 @@ export default function PaymentMethodsScreen() {
 									})
 								}>
 								<View style={styles.paymentMethodIcon}>
-									<CreditCard size={24} color={Colors.dark.text} />
+									<CreditCard size={24} color={C.text} />
 								</View>
 								<View style={styles.paymentMethodDetails}>
 									<Text style={styles.paymentMethodName}>{card.name}</Text>
@@ -55,7 +131,7 @@ export default function PaymentMethodsScreen() {
 									</Text>
 								</View>
 								<Pressable style={styles.deleteButton}>
-									<Trash2 size={20} color={Colors.dark.secondaryText} />
+									<Trash2 size={20} color={C.secondaryText} />
 								</Pressable>
 							</Pressable>
 						))}
@@ -63,7 +139,7 @@ export default function PaymentMethodsScreen() {
 					<Pressable
 						style={styles.addButton}
 						onPress={() => router.push("/add-card")}>
-						<Plus size={20} color={Colors.dark.primary} />
+						<Plus size={20} color={C.primary} />
 						<Text style={styles.addButtonText}>Add New Card</Text>
 					</Pressable>
 				</View>
@@ -79,7 +155,7 @@ export default function PaymentMethodsScreen() {
 								style={styles.paymentMethod}
 								onPress={() => router.push(`/payment-method/${bank.id}`)}>
 								<View style={styles.paymentMethodIcon}>
-									<Building size={24} color={Colors.dark.text} />
+									<Building size={24} color={C.text} />
 								</View>
 								<View style={styles.paymentMethodDetails}>
 									<Text style={styles.paymentMethodName}>{bank.name}</Text>
@@ -88,7 +164,7 @@ export default function PaymentMethodsScreen() {
 									</Text>
 								</View>
 								<Pressable style={styles.deleteButton}>
-									<Trash2 size={20} color={Colors.dark.secondaryText} />
+									<Trash2 size={20} color={C.secondaryText} />
 								</Pressable>
 							</Pressable>
 						))}
@@ -96,7 +172,7 @@ export default function PaymentMethodsScreen() {
 					<Pressable
 						style={styles.addButton}
 						onPress={() => router.push("/add-bank")}>
-						<Plus size={20} color={Colors.dark.primary} />
+						<Plus size={20} color={C.primary} />
 						<Text style={styles.addButtonText}>Add Bank Account</Text>
 					</Pressable>
 				</View>
@@ -110,77 +186,3 @@ export default function PaymentMethodsScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	section: {
-		marginBottom: 32,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	paymentMethod: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	paymentMethodIcon: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 16,
-	},
-	paymentMethodDetails: {
-		flex: 1,
-	},
-	paymentMethodName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	paymentMethodNumber: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	deleteButton: {
-		padding: 8,
-	},
-	addButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		borderWidth: 1,
-		borderColor: Colors.dark.border,
-		borderStyle: "dashed",
-	},
-	addButtonText: {
-		color: Colors.dark.primary,
-		fontSize: 16,
-		fontWeight: "500",
-		marginLeft: 8,
-	},
-	securityNote: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-		marginTop: 16,
-	},
-})

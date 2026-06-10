@@ -3,9 +3,102 @@ import { QrCode, Scan } from "lucide-react-native"
 import React, { useState, useEffect } from "react"
 import { View, Text, StyleSheet, Pressable, Platform } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function ScanScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 20,
+  	},
+  	webPlaceholder: {
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	webPlaceholderText: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		textAlign: "center",
+  		marginTop: 20,
+  		marginBottom: 40,
+  	},
+  	scannerContainer: {
+  		flex: 1,
+  		width: "100%",
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	scanner: {
+  		width: 280,
+  		height: 280,
+  		backgroundColor: "rgba(0, 0, 0, 0.3)",
+  		borderRadius: 16,
+  		overflow: "hidden",
+  		marginBottom: 24,
+  	},
+  	scannerOverlay: {
+  		flex: 1,
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	scannerMarker: {
+  		width: 200,
+  		height: 200,
+  		borderWidth: 2,
+  		borderColor: C.primary,
+  		borderRadius: 12,
+  	},
+  	scannerText: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		textAlign: "center",
+  		marginBottom: 40,
+  	},
+  	permissionText: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		textAlign: "center",
+  	},
+  	simulateButton: {
+  		backgroundColor: C.primary,
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		width: "80%",
+  	},
+  	simulateButtonText: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  	footer: {
+  		padding: 16,
+  		borderTopWidth: 1,
+  		borderTopColor: C.border,
+  	},
+  	footerButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	footerButtonText: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginLeft: 8,
+  	},
+  })
 	const router = useRouter()
 	const [scanned, setScanned] = useState(false)
 	const [hasPermission, setHasPermission] = useState(null)
@@ -57,7 +150,7 @@ export default function ScanScreen() {
 				{Platform.OS === "web" ? (
 					// On web, show a placeholder since camera access is limited
 					<View style={styles.webPlaceholder}>
-						<Scan size={80} color={Colors.dark.secondaryText} />
+						<Scan size={80} color={C.secondaryText} />
 						<Text style={styles.webPlaceholderText}>
 							QR code scanning is not available on web.
 						</Text>
@@ -99,7 +192,7 @@ export default function ScanScreen() {
 				<Pressable
 					style={styles.footerButton}
 					onPress={() => router.push("/qrcode")}>
-					<QrCode size={24} color={Colors.dark.text} />
+					<QrCode size={24} color={C.text} />
 					<Text style={styles.footerButtonText}>Your QR Code</Text>
 				</Pressable>
 			</View>
@@ -107,95 +200,3 @@ export default function ScanScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 20,
-	},
-	webPlaceholder: {
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	webPlaceholderText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		textAlign: "center",
-		marginTop: 20,
-		marginBottom: 40,
-	},
-	scannerContainer: {
-		flex: 1,
-		width: "100%",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	scanner: {
-		width: 280,
-		height: 280,
-		backgroundColor: "rgba(0, 0, 0, 0.3)",
-		borderRadius: 16,
-		overflow: "hidden",
-		marginBottom: 24,
-	},
-	scannerOverlay: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	scannerMarker: {
-		width: 200,
-		height: 200,
-		borderWidth: 2,
-		borderColor: Colors.dark.primary,
-		borderRadius: 12,
-	},
-	scannerText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		textAlign: "center",
-		marginBottom: 40,
-	},
-	permissionText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		textAlign: "center",
-	},
-	simulateButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-		width: "80%",
-	},
-	simulateButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	footer: {
-		padding: 16,
-		borderTopWidth: 1,
-		borderTopColor: Colors.dark.border,
-	},
-	footerButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-	},
-	footerButtonText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginLeft: 8,
-	},
-})

@@ -3,9 +3,100 @@ import React, { useState } from "react"
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native"
 import { Download, Calendar, ChevronDown, ChevronUp } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function StatementsScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	infoCard: {
+  		backgroundColor: C.card,
+  		borderRadius: 16,
+  		padding: 20,
+  		marginBottom: 24,
+  	},
+  	infoTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 8,
+  	},
+  	infoText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		lineHeight: 20,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	monthContainer: {
+  		marginBottom: 16,
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		overflow: "hidden",
+  	},
+  	monthHeader: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		alignItems: "center",
+  		padding: 16,
+  	},
+  	monthTitleContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  	},
+  	monthTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginLeft: 12,
+  	},
+  	statementsContainer: {
+  		borderTopWidth: 1,
+  		borderTopColor: C.border,
+  	},
+  	statementItem: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		alignItems: "center",
+  		padding: 16,
+  		borderBottomWidth: 1,
+  		borderBottomColor: C.border,
+  	},
+  	statementInfo: {
+  		flex: 1,
+  	},
+  	statementType: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	statementDate: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	downloadButton: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	noteText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  	},
+  })
 	const [expandedMonth, setExpandedMonth] = useState(null)
 
 	const statements = [
@@ -77,13 +168,13 @@ export default function StatementsScreen() {
 								style={styles.monthHeader}
 								onPress={() => toggleMonth(monthData.month)}>
 								<View style={styles.monthTitleContainer}>
-									<Calendar size={20} color={Colors.dark.text} />
+									<Calendar size={20} color={C.text} />
 									<Text style={styles.monthTitle}>{monthData.month}</Text>
 								</View>
 								{expandedMonth === monthData.month ? (
-									<ChevronUp size={20} color={Colors.dark.text} />
+									<ChevronUp size={20} color={C.text} />
 								) : (
-									<ChevronDown size={20} color={Colors.dark.text} />
+									<ChevronDown size={20} color={C.text} />
 								)}
 							</Pressable>
 
@@ -102,7 +193,7 @@ export default function StatementsScreen() {
 											<Pressable
 												style={styles.downloadButton}
 												onPress={() => handleDownloadStatement(statement)}>
-												<Download size={20} color={Colors.dark.primary} />
+												<Download size={20} color={C.primary} />
 											</Pressable>
 										</View>
 									))}
@@ -123,92 +214,3 @@ export default function StatementsScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	infoCard: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 16,
-		padding: 20,
-		marginBottom: 24,
-	},
-	infoTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 8,
-	},
-	infoText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		lineHeight: 20,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	monthContainer: {
-		marginBottom: 16,
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		overflow: "hidden",
-	},
-	monthHeader: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		padding: 16,
-	},
-	monthTitleContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-	},
-	monthTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginLeft: 12,
-	},
-	statementsContainer: {
-		borderTopWidth: 1,
-		borderTopColor: Colors.dark.border,
-	},
-	statementItem: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		padding: 16,
-		borderBottomWidth: 1,
-		borderBottomColor: Colors.dark.border,
-	},
-	statementInfo: {
-		flex: 1,
-	},
-	statementType: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	statementDate: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	downloadButton: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	noteText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-	},
-})
