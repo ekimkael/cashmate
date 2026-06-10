@@ -1,30 +1,30 @@
-import { semantic } from "./colors"
+import { useThemeColors } from "./colors"
 
-// iOS Dynamic Type scale with semantic PlatformColor text colors.
-// Using PlatformColor("label") / "secondaryLabel" means these styles
-// adapt to dark/light mode and accessibility (increased contrast, bold text)
-// without any extra logic in components.
+// Returns the iOS Dynamic Type scale with colors driven by the app theme store.
+// Use `const t = useTypography()` in every component that renders text.
+export function useTypography() {
+  const C = useThemeColors()
+  const label          = C.text
+  const secondaryLabel = C.secondaryText
+  const tertiaryLabel  = C.secondaryText + "99" // ~60% opacity approximation
 
-export const type = {
-  largeTitle:  { fontSize: 34, fontWeight: "700" as const, color: semantic.label },
-  title1:      { fontSize: 28, fontWeight: "700" as const, color: semantic.label },
-  title2:      { fontSize: 22, fontWeight: "600" as const, color: semantic.label },
-  title3:      { fontSize: 20, fontWeight: "600" as const, color: semantic.label },
-  headline:    { fontSize: 17, fontWeight: "600" as const, color: semantic.label },
-  body:        { fontSize: 17, fontWeight: "400" as const, color: semantic.label },
-  callout:     { fontSize: 16, fontWeight: "400" as const, color: semantic.label },
-  subhead:     { fontSize: 15, fontWeight: "400" as const, color: semantic.secondaryLabel },
-  footnote:    { fontSize: 13, fontWeight: "400" as const, color: semantic.secondaryLabel },
-  caption1:    { fontSize: 12, fontWeight: "400" as const, color: semantic.secondaryLabel },
-  caption2:    { fontSize: 11, fontWeight: "400" as const, color: semantic.tertiaryLabel },
-
-  // Variants with different weights for the same size/role
-  headlineLight:  { fontSize: 17, fontWeight: "400" as const, color: semantic.label },
-  calloutMedium:  { fontSize: 16, fontWeight: "500" as const, color: semantic.label },
-  subheadMedium:  { fontSize: 15, fontWeight: "500" as const, color: semantic.secondaryLabel },
-
-  // Numeric counters — enforce tabular-nums alignment
-  numericLarge:  { fontSize: 34, fontWeight: "700" as const, color: semantic.label,          fontVariant: ["tabular-nums"] as const },
-  numericBody:   { fontSize: 17, fontWeight: "600" as const, color: semantic.label,          fontVariant: ["tabular-nums"] as const },
-  numericSmall:  { fontSize: 14, fontWeight: "500" as const, color: semantic.secondaryLabel, fontVariant: ["tabular-nums"] as const },
+  return {
+    largeTitle:    { fontSize: 34, fontWeight: "700" as const, color: label },
+    title1:        { fontSize: 28, fontWeight: "700" as const, color: label },
+    title2:        { fontSize: 22, fontWeight: "600" as const, color: label },
+    title3:        { fontSize: 20, fontWeight: "600" as const, color: label },
+    headline:      { fontSize: 17, fontWeight: "600" as const, color: label },
+    body:          { fontSize: 17, fontWeight: "400" as const, color: label },
+    callout:       { fontSize: 16, fontWeight: "400" as const, color: label },
+    subhead:       { fontSize: 15, fontWeight: "400" as const, color: secondaryLabel },
+    footnote:      { fontSize: 13, fontWeight: "400" as const, color: secondaryLabel },
+    caption1:      { fontSize: 12, fontWeight: "400" as const, color: secondaryLabel },
+    caption2:      { fontSize: 11, fontWeight: "400" as const, color: tertiaryLabel },
+    headlineLight: { fontSize: 17, fontWeight: "400" as const, color: label },
+    calloutMedium: { fontSize: 16, fontWeight: "500" as const, color: label },
+    subheadMedium: { fontSize: 15, fontWeight: "500" as const, color: secondaryLabel },
+    numericLarge:  { fontSize: 34, fontWeight: "700" as const, color: label,          fontVariant: ["tabular-nums"] as const },
+    numericBody:   { fontSize: 17, fontWeight: "600" as const, color: label,          fontVariant: ["tabular-nums"] as const },
+    numericSmall:  { fontSize: 14, fontWeight: "500" as const, color: secondaryLabel, fontVariant: ["tabular-nums"] as const },
+  }
 }

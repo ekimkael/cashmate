@@ -1,4 +1,5 @@
 import { PlatformColor } from "react-native"
+import { useThemeStore } from "@/store/themeStore"
 
 const palette = {
   dark: {
@@ -13,6 +14,23 @@ const palette = {
     error: "#FF432A",
     inputBackground: "#2A2A2A",
   },
+  light: {
+    background: "#F2F2F7",
+    card: "#FFFFFF",
+    text: "#0A0A0A",
+    secondaryText: "#6B6B6B",
+    primary: "#00B82A",
+    secondary: "#8A8D93",
+    border: "#E0E0E0",
+    success: "#00B82A",
+    error: "#FF432A",
+    inputBackground: "#EBEBF0",
+  },
+}
+
+export function useThemeColors() {
+  const isDark = useThemeStore((s) => s.isDark)
+  return isDark ? palette.dark : palette.light
 }
 
 // Adaptive iOS semantic colors — auto-switch between light and dark mode
