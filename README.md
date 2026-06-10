@@ -71,7 +71,7 @@ A fully-featured **mobile UI prototype** for a digital wallet and P2P payment ex
 ### Prerequisites
 
 - [Node.js](https://nodejs.org) ≥ 20
-- [Yarn](https://yarnpkg.com) (recommended) or npm
+- [npm](https://www.npmjs.com) ≥ 10
 - [Expo Go](https://expo.dev/go) on your device, **or** an iOS/Android simulator
 
 ### Installation
@@ -82,18 +82,18 @@ git clone https://github.com/ekimkael/cashmate.git
 cd cashmate
 
 # Install dependencies
-yarn install
+npm install
 
 # Start the development server
-yarn start
+npm start
 ```
 
 ### Running on a specific platform
 
 ```bash
-yarn ios       # iOS simulator
-yarn android   # Android emulator
-yarn web       # Web browser
+npm run ios       # iOS simulator
+npm run android   # Android emulator
+npm run web       # Web browser
 ```
 
 > **Note:** This is a UI prototype. All data is mocked locally — no backend or network calls are made.
