@@ -7,24 +7,24 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function ChangePasswordScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	content: {
   		flex: 1,
   		padding: 20,
   	},
   	title: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 24,
   		fontWeight: "700",
   		marginBottom: 8,
   	},
   	subtitle: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginBottom: 24,
   	},
@@ -35,7 +35,7 @@ export default function ChangePasswordScreen() {
   		marginBottom: 20,
   	},
   	errorText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 14,
   	},
   	successContainer: {
@@ -45,7 +45,7 @@ export default function ChangePasswordScreen() {
   		marginBottom: 20,
   	},
   	successText: {
-  		color: C.success,
+  		color: colors.success,
   		fontSize: 14,
   	},
   	form: {
@@ -54,7 +54,7 @@ export default function ChangePasswordScreen() {
   	inputContainer: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		marginBottom: 16,
   		paddingHorizontal: 16,
@@ -65,25 +65,25 @@ export default function ChangePasswordScreen() {
   	input: {
   		flex: 1,
   		height: 56,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   	passwordToggle: {
   		padding: 8,
   	},
   	passwordTips: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   	},
   	tipsTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "600",
   		marginBottom: 12,
   	},
   	tipItem: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 8,
   	},
@@ -151,13 +151,13 @@ export default function ChangePasswordScreen() {
 					<View style={styles.inputContainer}>
 						<Lock
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={styles.inputIcon}
 						/>
 						<TextInput
 							style={styles.input}
 							placeholder="Current Password"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 							value={currentPassword}
 							onChangeText={setCurrentPassword}
 							secureTextEntry={!showPasswords}
@@ -167,9 +167,9 @@ export default function ChangePasswordScreen() {
 							onPress={() => setShowPasswords(!showPasswords)}
 							style={styles.passwordToggle}>
 							{showPasswords ? (
-								<EyeOff size={20} color={C.secondaryText} />
+								<EyeOff size={20} color={colors.secondaryText} />
 							) : (
-								<Eye size={20} color={C.secondaryText} />
+								<Eye size={20} color={colors.secondaryText} />
 							)}
 						</Pressable>
 					</View>
@@ -177,13 +177,13 @@ export default function ChangePasswordScreen() {
 					<View style={styles.inputContainer}>
 						<Lock
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={styles.inputIcon}
 						/>
 						<TextInput
 							style={styles.input}
 							placeholder="New Password"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 							value={newPassword}
 							onChangeText={setNewPassword}
 							secureTextEntry={!showPasswords}
@@ -194,13 +194,13 @@ export default function ChangePasswordScreen() {
 					<View style={styles.inputContainer}>
 						<Lock
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={styles.inputIcon}
 						/>
 						<TextInput
 							style={styles.input}
 							placeholder="Confirm New Password"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 							value={confirmPassword}
 							onChangeText={setConfirmPassword}
 							secureTextEntry={!showPasswords}

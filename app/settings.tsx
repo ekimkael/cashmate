@@ -22,11 +22,11 @@ import { useUserStore } from '@/store/user-store'
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function SettingsScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
@@ -35,7 +35,7 @@ export default function SettingsScreen() {
   		marginBottom: 32,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
@@ -43,7 +43,7 @@ export default function SettingsScreen() {
   	menuItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -52,7 +52,7 @@ export default function SettingsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -61,19 +61,19 @@ export default function SettingsScreen() {
   		flex: 1,
   	},
   	menuItemTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	menuItemDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	settingItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -82,7 +82,7 @@ export default function SettingsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -91,13 +91,13 @@ export default function SettingsScreen() {
   		flex: 1,
   	},
   	settingLabel: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	settingDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	versionContainer: {
@@ -105,11 +105,11 @@ export default function SettingsScreen() {
   		marginTop: 16,
   	},
   	versionText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	errorText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		textAlign: "center",
   	},
@@ -157,7 +157,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/profile-settings")}>
 						<View style={styles.menuItemIcon}>
-							<User size={20} color={C.text} />
+							<User size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Profile Information</Text>
@@ -167,7 +167,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -176,7 +176,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/payment-methods")}>
 						<View style={styles.menuItemIcon}>
-							<DollarSign size={20} color={C.text} />
+							<DollarSign size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Payment Methods</Text>
@@ -186,7 +186,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -195,7 +195,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/notifications")}>
 						<View style={styles.menuItemIcon}>
-							<Bell size={20} color={C.text} />
+							<Bell size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Notifications</Text>
@@ -205,7 +205,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -214,7 +214,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/privacy")}>
 						<View style={styles.menuItemIcon}>
-							<Shield size={20} color={C.text} />
+							<Shield size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Privacy & Security</Text>
@@ -224,7 +224,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -235,7 +235,7 @@ export default function SettingsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Moon size={20} color={C.text} />
+							<Moon size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Dark Mode</Text>
@@ -245,16 +245,16 @@ export default function SettingsScreen() {
 							value={settings.darkMode}
 							onValueChange={() => toggleSetting("darkMode")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Bell size={20} color={C.text} />
+							<Bell size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Sound Effects</Text>
@@ -266,16 +266,16 @@ export default function SettingsScreen() {
 							value={settings.soundEffects}
 							onValueChange={() => toggleSetting("soundEffects")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Smartphone size={20} color={C.text} />
+							<Smartphone size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Haptic Feedback</Text>
@@ -287,10 +287,10 @@ export default function SettingsScreen() {
 							value={settings.hapticFeedback}
 							onValueChange={() => toggleSetting("hapticFeedback")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
@@ -298,7 +298,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/currency")}>
 						<View style={styles.menuItemIcon}>
-							<DollarSign size={20} color={C.text} />
+							<DollarSign size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Currency</Text>
@@ -308,7 +308,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -317,7 +317,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/language")}>
 						<View style={styles.menuItemIcon}>
-							<Globe size={20} color={C.text} />
+							<Globe size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Language</Text>
@@ -325,7 +325,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -342,7 +342,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -355,7 +355,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -368,7 +368,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>

@@ -5,17 +5,17 @@ import { View, Text, StyleSheet, ScrollView } from "react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function TermsOfServiceScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
   	},
   	lastUpdated: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 24,
   	},
@@ -23,13 +23,13 @@ export default function TermsOfServiceScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 12,
   	},
   	paragraph: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 14,
   		lineHeight: 22,
   		marginBottom: 12,

@@ -48,7 +48,7 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-	const C = useThemeColors()
+	const colors = useThemeColors()
 	const isDark = useThemeStore((s) => s.isDark)
 
 	return (
@@ -57,10 +57,10 @@ function RootLayoutNav() {
 			<Stack
 				screenOptions={{
 					headerShadowVisible: false,
-					headerTintColor: C.text,
+					headerTintColor: colors.text,
 					headerBackButtonDisplayMode: "minimal",
-					headerStyle: { backgroundColor: C.background },
-					contentStyle: { backgroundColor: C.background },
+					headerStyle: { backgroundColor: colors.background },
+					contentStyle: { backgroundColor: colors.background },
 				}}>
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 				<Stack.Screen name="send" />

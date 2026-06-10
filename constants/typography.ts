@@ -3,10 +3,10 @@ import { useThemeColors } from "./colors"
 // Returns the iOS Dynamic Type scale with colors driven by the app theme store.
 // Use `const t = useTypography()` in every component that renders text.
 export function useTypography() {
-  const C = useThemeColors()
-  const label          = C.text
-  const secondaryLabel = C.secondaryText
-  const tertiaryLabel  = C.secondaryText + "99" // ~60% opacity approximation
+  const colors = useThemeColors()
+  const label          = colors.text
+  const secondaryLabel = colors.secondaryText
+  const tertiaryLabel  = colors.secondaryText + "99" // ~60% opacity approximation
 
   return {
     largeTitle:    { fontSize: 34, fontWeight: "700" as const, color: label },

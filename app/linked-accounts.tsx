@@ -26,17 +26,17 @@ const linkedAccounts = [
 ]
 
 export default function LinkedAccountsScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
   	},
   	description: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginBottom: 24,
   	},
@@ -44,13 +44,13 @@ export default function LinkedAccountsScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
   	},
   	accountCard: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -64,7 +64,7 @@ export default function LinkedAccountsScreen() {
   		width: 48,
   		height: 48,
   		borderRadius: 24,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 16,
@@ -73,13 +73,13 @@ export default function LinkedAccountsScreen() {
   		flex: 1,
   	},
   	accountName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	accountDetails: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	accountActions: {
@@ -94,7 +94,7 @@ export default function LinkedAccountsScreen() {
   		paddingHorizontal: 12,
   	},
   	defaultText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 14,
   		fontWeight: "500",
   	},
@@ -103,7 +103,7 @@ export default function LinkedAccountsScreen() {
   		paddingHorizontal: 12,
   	},
   	setDefaultText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 14,
   		fontWeight: "500",
   	},
@@ -119,22 +119,22 @@ export default function LinkedAccountsScreen() {
   		flexDirection: "row",
   		alignItems: "center",
   		justifyContent: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 24,
   		borderWidth: 1,
-  		borderColor: C.border,
+  		borderColor: colors.border,
   		borderStyle: "dashed",
   	},
   	addButtonText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 16,
   		fontWeight: "500",
   		marginLeft: 8,
   	},
   	securityNote: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		textAlign: "center",
   	},
@@ -170,7 +170,7 @@ export default function LinkedAccountsScreen() {
 							<View key={account.id} style={styles.accountCard}>
 								<View style={styles.accountHeader}>
 									<View style={styles.accountIcon}>
-										<Building size={24} color={C.text} />
+										<Building size={24} color={colors.text} />
 									</View>
 									<View style={styles.accountInfo}>
 										<Text style={styles.accountName}>{account.name}</Text>
@@ -196,7 +196,7 @@ export default function LinkedAccountsScreen() {
 									<Pressable
 										style={styles.removeButton}
 										onPress={() => handleRemoveAccount(account)}>
-										<Trash2 size={20} color={C.error} />
+										<Trash2 size={20} color={colors.error} />
 									</Pressable>
 								</View>
 							</View>
@@ -212,7 +212,7 @@ export default function LinkedAccountsScreen() {
 							<View key={account.id} style={styles.accountCard}>
 								<View style={styles.accountHeader}>
 									<View style={styles.accountIcon}>
-										<CreditCard size={24} color={C.text} />
+										<CreditCard size={24} color={colors.text} />
 									</View>
 									<View style={styles.accountInfo}>
 										<Text style={styles.accountName}>{account.name}</Text>
@@ -238,7 +238,7 @@ export default function LinkedAccountsScreen() {
 									<Pressable
 										style={styles.removeButton}
 										onPress={() => handleRemoveAccount(account)}>
-										<Trash2 size={20} color={C.error} />
+										<Trash2 size={20} color={colors.error} />
 									</Pressable>
 								</View>
 							</View>
@@ -248,7 +248,7 @@ export default function LinkedAccountsScreen() {
 				<Pressable
 					style={styles.addButton}
 					onPress={() => router.push("/link-account")}>
-					<Plus size={20} color={C.primary} />
+					<Plus size={20} color={colors.primary} />
 					<Text style={styles.addButtonText}>Link a New Account</Text>
 				</Pressable>
 

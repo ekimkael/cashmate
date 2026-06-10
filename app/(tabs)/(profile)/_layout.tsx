@@ -2,7 +2,7 @@ import { Stack } from "expo-router/stack"
 import { useThemeColors } from "@/constants/colors"
 
 export default function ProfileStack() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   return (
     <Stack
       screenOptions={{
@@ -10,9 +10,9 @@ export default function ProfileStack() {
         headerShadowVisible: false,
         headerLargeTitleShadowVisible: false,
         headerLargeStyle: { backgroundColor: "transparent" },
-        headerTitleStyle: { color: C.text },
-        headerLargeTitleStyle: { color: C.text },
-        headerTintColor: C.primary,
+        headerTitleStyle: { color: colors.text },
+        headerLargeTitleStyle: { color: colors.text },
+        headerTintColor: colors.primary,
         headerLargeTitle: true,
         headerBlurEffect: "systemChromeMaterial",
         headerBackButtonDisplayMode: "minimal",

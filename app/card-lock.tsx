@@ -6,11 +6,11 @@ import { View, Text, StyleSheet, Pressable, Alert } from "react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardLockScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	content: {
   		flex: 1,
@@ -43,13 +43,13 @@ export default function CardLockScreen() {
   		backgroundColor: "rgba(0, 214, 50, 0.2)",
   	},
   	statusTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 20,
   		fontWeight: "600",
   		marginBottom: 8,
   	},
   	statusDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		textAlign: "center",
   	},
@@ -57,13 +57,13 @@ export default function CardLockScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
   	},
   	reasonOption: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -71,16 +71,16 @@ export default function CardLockScreen() {
   		borderColor: "transparent",
   	},
   	selectedReason: {
-  		borderColor: C.primary,
+  		borderColor: colors.primary,
   	},
   	reasonTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	reasonDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	selectedIndicator: {
@@ -90,55 +90,55 @@ export default function CardLockScreen() {
   		width: 20,
   		height: 20,
   		borderRadius: 10,
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   	},
   	warningContainer: {
   		flexDirection: "row",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 24,
   	},
   	warningText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginLeft: 12,
   		flex: 1,
   	},
   	lockButton: {
-  		backgroundColor: C.error,
+  		backgroundColor: colors.error,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
   		marginBottom: 12,
   	},
   	lockButtonText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "600",
   	},
   	unlockButton: {
-  		backgroundColor: C.success,
+  		backgroundColor: colors.success,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
   		marginBottom: 12,
   	},
   	unlockButtonText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "600",
   	},
   	reportButton: {
   		backgroundColor: "transparent",
   		borderWidth: 1,
-  		borderColor: C.error,
+  		borderColor: colors.error,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
   	},
   	reportButtonText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 16,
   		fontWeight: "600",
   	},
@@ -183,9 +183,9 @@ export default function CardLockScreen() {
 							isLocked ? styles.lockedIcon : styles.unlockedIcon,
 						]}>
 						{isLocked ? (
-							<Lock size={32} color={C.error} />
+							<Lock size={32} color={colors.error} />
 						) : (
-							<Unlock size={32} color={C.success} />
+							<Unlock size={32} color={colors.success} />
 						)}
 					</View>
 
@@ -250,7 +250,7 @@ export default function CardLockScreen() {
 				)}
 
 				<View style={styles.warningContainer}>
-					<AlertTriangle size={20} color={C.secondaryText} />
+					<AlertTriangle size={20} color={colors.secondaryText} />
 					<Text style={styles.warningText}>
 						{isLocked
 							? "Unlocking your card will allow transactions to be processed again."

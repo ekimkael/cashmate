@@ -11,7 +11,7 @@ interface NumPadProps {
 }
 
 export default function NumPad(props: NumPadProps) {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		width: "100%",
@@ -33,12 +33,12 @@ export default function NumPad(props: NumPadProps) {
   		opacity: 0.7,
   	},
   	buttonText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 28,
   		fontWeight: "500",
   	},
   	doneButton: {
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
@@ -49,7 +49,7 @@ export default function NumPad(props: NumPadProps) {
   		opacity: 0.8,
   	},
   	doneButtonText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 18,
   		fontWeight: "600",
   	},
@@ -89,7 +89,7 @@ export default function NumPad(props: NumPadProps) {
 							}
 						}}>
 						{button === "delete" ? (
-							<Delete size={24} color={C.text} />
+							<Delete size={24} color={colors.text} />
 						) : (
 							<Text style={styles.buttonText}>{button}</Text>
 						)}

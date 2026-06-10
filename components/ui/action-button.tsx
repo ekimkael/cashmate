@@ -21,7 +21,7 @@ export default function ActionButton({
   textStyle,
   variant = "primary",
 }: ActionButtonProps) {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const t = useTypography()
   const isPrimary = variant === "primary"
 
@@ -36,19 +36,19 @@ export default function ActionButton({
           justifyContent: "center",
           minWidth: 80,
           opacity: pressed ? 0.8 : 1,
-          backgroundColor: isPrimary ? C.primary : C.card,
-          ...(isPrimary ? {} : { borderWidth: 1, borderColor: C.border }),
+          backgroundColor: isPrimary ? colors.primary : colors.card,
+          ...(isPrimary ? {} : { borderWidth: 1, borderColor: colors.border }),
         },
         style,
       ]}
       onPress={onPress}
     >
-      <Icon size={24} color={isPrimary ? C.background : C.primary} />
+      <Icon size={24} color={isPrimary ? colors.background : colors.primary} />
       <Text
         style={[
           t.callout,
           { marginTop: 8, fontWeight: "500" },
-          { color: isPrimary ? C.background : C.text },
+          { color: isPrimary ? colors.background : colors.text },
           textStyle,
         ]}
       >

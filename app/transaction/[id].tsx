@@ -13,17 +13,17 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import { useTransactionStore } from '@/store/transaction-store'
 
 export default function TransactionDetailScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	content: {
   		padding: 20,
   	},
   	card: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 16,
   		padding: 20,
   	},
@@ -41,19 +41,19 @@ export default function TransactionDetailScreen() {
   		width: 80,
   		height: 80,
   		borderRadius: 40,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginBottom: 16,
   	},
   	userName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 20,
   		fontWeight: "600",
   		marginBottom: 4,
   	},
   	userUsername: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   	},
   	amountContainer: {
@@ -66,27 +66,27 @@ export default function TransactionDetailScreen() {
   		marginBottom: 8,
   	},
   	status: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   	},
   	noteContainer: {
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 24,
   	},
   	noteLabel: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 8,
   	},
   	note: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   	detailsContainer: {
   		borderTopWidth: 1,
-  		borderTopColor: C.border,
+  		borderTopColor: colors.border,
   		paddingTop: 16,
   	},
   	detailRow: {
@@ -95,11 +95,11 @@ export default function TransactionDetailScreen() {
   		marginBottom: 12,
   	},
   	detailLabel: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	detailValue: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 14,
   	},
   	errorContainer: {
@@ -109,7 +109,7 @@ export default function TransactionDetailScreen() {
   		padding: 20,
   	},
   	errorText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		textAlign: "center",
   	},
@@ -148,15 +148,15 @@ export default function TransactionDetailScreen() {
 	const getIcon = () => {
 		switch (type) {
 			case "send":
-				return <ArrowUpRight size={24} color={C.error} />
+				return <ArrowUpRight size={24} color={colors.error} />
 			case "receive":
-				return <ArrowDownLeft size={24} color={C.success} />
+				return <ArrowDownLeft size={24} color={colors.success} />
 			case "payment":
-				return <CreditCard size={24} color={C.secondaryText} />
+				return <CreditCard size={24} color={colors.secondaryText} />
 			case "deposit":
-				return <Wallet size={24} color={C.success} />
+				return <Wallet size={24} color={colors.success} />
 			case "withdrawal":
-				return <DollarSign size={24} color={C.error} />
+				return <DollarSign size={24} color={colors.error} />
 			default:
 				return null
 		}
@@ -164,9 +164,9 @@ export default function TransactionDetailScreen() {
 
 	const getAmountColor = () => {
 		if (type === "send" || type === "payment" || type === "withdrawal") {
-			return C.error
+			return colors.error
 		}
-		return C.success
+		return colors.success
 	}
 
 	const getAmountPrefix = () => {

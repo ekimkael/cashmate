@@ -10,7 +10,7 @@ interface ContactItemProps {
 }
 
 export default function ContactItem({ contact, onPress }: ContactItemProps) {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flexDirection: "row",
@@ -20,7 +20,7 @@ export default function ContactItem({ contact, onPress }: ContactItemProps) {
   		borderRadius: 12,
   	},
   	pressed: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   	},
   	avatarContainer: {
   		marginRight: 12,
@@ -34,7 +34,7 @@ export default function ContactItem({ contact, onPress }: ContactItemProps) {
   		width: 48,
   		height: 48,
   		borderRadius: 24,
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		alignItems: "center",
   		justifyContent: "center",
   	},
@@ -42,13 +42,13 @@ export default function ContactItem({ contact, onPress }: ContactItemProps) {
   		flex: 1,
   	},
   	name: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	username: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   })
@@ -61,7 +61,7 @@ export default function ContactItem({ contact, onPress }: ContactItemProps) {
 					<Image source={{ uri: contact.avatar }} style={styles.avatar} />
 				) : (
 					<View style={styles.defaultAvatar}>
-						<User size={20} color={C.text} />
+						<User size={20} color={colors.text} />
 					</View>
 				)}
 			</View>

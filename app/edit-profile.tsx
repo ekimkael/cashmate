@@ -16,11 +16,11 @@ import Button from "@/components/ui/button"
 import { useUserStore } from '@/store/user-store'
 
 export default function EditProfileScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	content: {
   		flex: 1,
@@ -40,7 +40,7 @@ export default function EditProfileScreen() {
   		width: 100,
   		height: 100,
   		borderRadius: 50,
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		alignItems: "center",
   		justifyContent: "center",
   		marginBottom: 16,
@@ -48,13 +48,13 @@ export default function EditProfileScreen() {
   	changePhotoButton: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 20,
   		paddingVertical: 8,
   		paddingHorizontal: 16,
   	},
   	changePhotoText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 14,
   		fontWeight: "500",
   		marginLeft: 8,
@@ -66,7 +66,7 @@ export default function EditProfileScreen() {
   		marginBottom: 20,
   	},
   	errorText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 14,
   	},
   	form: {
@@ -76,7 +76,7 @@ export default function EditProfileScreen() {
   		marginBottom: 20,
   	},
   	inputLabel: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 14,
   		fontWeight: "500",
   		marginBottom: 8,
@@ -84,7 +84,7 @@ export default function EditProfileScreen() {
   	inputContainer: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		paddingHorizontal: 16,
   	},
@@ -94,13 +94,13 @@ export default function EditProfileScreen() {
   	input: {
   		flex: 1,
   		height: 56,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   	footer: {
   		padding: 20,
   		borderTopWidth: 1,
-  		borderTopColor: C.border,
+  		borderTopColor: colors.border,
   	},
   })
 	const router = useRouter()
@@ -163,11 +163,11 @@ export default function EditProfileScreen() {
 						<Image source={{ uri: avatar }} style={styles.avatar} />
 					) : (
 						<View style={styles.defaultAvatar}>
-							<User size={40} color={C.text} />
+							<User size={40} color={colors.text} />
 						</View>
 					)}
 					<Pressable style={styles.changePhotoButton} onPress={pickImage}>
-						<Camera size={20} color={C.text} />
+						<Camera size={20} color={colors.text} />
 						<Text style={styles.changePhotoText}>Change Photo</Text>
 					</Pressable>
 				</View>
@@ -184,13 +184,13 @@ export default function EditProfileScreen() {
 						<View style={styles.inputContainer}>
 							<User
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Full Name"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={name}
 								onChangeText={setName}
 							/>
@@ -202,13 +202,13 @@ export default function EditProfileScreen() {
 						<View style={styles.inputContainer}>
 							<AtSign
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Username"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={username}
 								onChangeText={setUsername}
 								autoCapitalize="none"
@@ -221,13 +221,13 @@ export default function EditProfileScreen() {
 						<View style={styles.inputContainer}>
 							<Mail
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Email"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={email}
 								onChangeText={setEmail}
 								autoCapitalize="none"

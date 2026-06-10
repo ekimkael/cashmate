@@ -6,11 +6,11 @@ import { View, Text, StyleSheet, Pressable, Platform } from "react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function ScanScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	content: {
   		flex: 1,
@@ -23,7 +23,7 @@ export default function ScanScreen() {
   		justifyContent: "center",
   	},
   	webPlaceholderText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		textAlign: "center",
   		marginTop: 20,
@@ -52,22 +52,22 @@ export default function ScanScreen() {
   		width: 200,
   		height: 200,
   		borderWidth: 2,
-  		borderColor: C.primary,
+  		borderColor: colors.primary,
   		borderRadius: 12,
   	},
   	scannerText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		textAlign: "center",
   		marginBottom: 40,
   	},
   	permissionText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		textAlign: "center",
   	},
   	simulateButton: {
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
@@ -75,25 +75,25 @@ export default function ScanScreen() {
   		width: "80%",
   	},
   	simulateButtonText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "600",
   	},
   	footer: {
   		padding: 16,
   		borderTopWidth: 1,
-  		borderTopColor: C.border,
+  		borderTopColor: colors.border,
   	},
   	footerButton: {
   		flexDirection: "row",
   		alignItems: "center",
   		justifyContent: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   	},
   	footerButtonText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginLeft: 8,
@@ -150,7 +150,7 @@ export default function ScanScreen() {
 				{Platform.OS === "web" ? (
 					// On web, show a placeholder since camera access is limited
 					<View style={styles.webPlaceholder}>
-						<Scan size={80} color={C.secondaryText} />
+						<Scan size={80} color={colors.secondaryText} />
 						<Text style={styles.webPlaceholderText}>
 							QR code scanning is not available on web.
 						</Text>
@@ -192,7 +192,7 @@ export default function ScanScreen() {
 				<Pressable
 					style={styles.footerButton}
 					onPress={() => router.push("/qr-code")}>
-					<QrCode size={24} color={C.text} />
+					<QrCode size={24} color={colors.text} />
 					<Text style={styles.footerButtonText}>Your QR Code</Text>
 				</Pressable>
 			</View>

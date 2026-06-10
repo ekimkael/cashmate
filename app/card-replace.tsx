@@ -19,11 +19,11 @@ import {
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardReplaceScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
@@ -36,14 +36,14 @@ export default function CardReplaceScreen() {
   		marginBottom: 24,
   	},
   	alertTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginTop: 12,
   		marginBottom: 8,
   	},
   	alertDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		textAlign: "center",
   	},
@@ -51,7 +51,7 @@ export default function CardReplaceScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
@@ -59,7 +59,7 @@ export default function CardReplaceScreen() {
   	reasonOption: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -67,13 +67,13 @@ export default function CardReplaceScreen() {
   		borderColor: "transparent",
   	},
   	selectedReason: {
-  		borderColor: C.primary,
+  		borderColor: colors.primary,
   	},
   	reasonIcon: {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -82,25 +82,25 @@ export default function CardReplaceScreen() {
   		flex: 1,
   	},
   	reasonTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	reasonDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	selectedIndicator: {
   		width: 20,
   		height: 20,
   		borderRadius: 10,
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   	},
   	addressOption: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -108,13 +108,13 @@ export default function CardReplaceScreen() {
   		borderColor: "transparent",
   	},
   	selectedAddress: {
-  		borderColor: C.primary,
+  		borderColor: colors.primary,
   	},
   	addressIcon: {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -123,37 +123,37 @@ export default function CardReplaceScreen() {
   		flex: 1,
   	},
   	addressTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	addressDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	infoSection: {
   		flexDirection: "row",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 24,
   	},
   	infoText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginLeft: 12,
   		flex: 1,
   	},
   	requestButton: {
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
   		marginBottom: 12,
   	},
   	requestButtonText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "600",
   	},
@@ -164,7 +164,7 @@ export default function CardReplaceScreen() {
   		alignItems: "center",
   	},
   	cancelButtonText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -188,7 +188,7 @@ export default function CardReplaceScreen() {
 
 			<ScrollView contentContainerStyle={styles.scrollContent}>
 				<View style={styles.alertContainer}>
-					<AlertTriangle size={24} color={C.error} />
+					<AlertTriangle size={24} color={colors.error} />
 					<Text style={styles.alertTitle}>Report Lost or Stolen Card</Text>
 					<Text style={styles.alertDescription}>
 						Your card will be immediately locked and a replacement will be sent
@@ -206,7 +206,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setReason("lost")}>
 						<View style={styles.reasonIcon}>
-							<MapPin size={20} color={C.text} />
+							<MapPin size={20} color={colors.text} />
 						</View>
 						<View style={styles.reasonContent}>
 							<Text style={styles.reasonTitle}>Lost Card</Text>
@@ -222,7 +222,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setReason("stolen")}>
 						<View style={styles.reasonIcon}>
-							<AlertTriangle size={20} color={C.text} />
+							<AlertTriangle size={20} color={colors.text} />
 						</View>
 						<View style={styles.reasonContent}>
 							<Text style={styles.reasonTitle}>Stolen Card</Text>
@@ -238,7 +238,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setReason("damaged")}>
 						<View style={styles.reasonIcon}>
-							<CreditCard size={20} color={C.text} />
+							<CreditCard size={20} color={colors.text} />
 						</View>
 						<View style={styles.reasonContent}>
 							<Text style={styles.reasonTitle}>Damaged Card</Text>
@@ -262,7 +262,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setAddress("current")}>
 						<View style={styles.addressIcon}>
-							<Home size={20} color={C.text} />
+							<Home size={20} color={colors.text} />
 						</View>
 						<View style={styles.addressContent}>
 							<Text style={styles.addressTitle}>Current Address</Text>
@@ -280,7 +280,7 @@ export default function CardReplaceScreen() {
 						]}
 						onPress={() => setAddress("new")}>
 						<View style={styles.addressIcon}>
-							<MapPin size={20} color={C.text} />
+							<MapPin size={20} color={colors.text} />
 						</View>
 						<View style={styles.addressContent}>
 							<Text style={styles.addressTitle}>New Address</Text>
@@ -293,7 +293,7 @@ export default function CardReplaceScreen() {
 				</View>
 
 				<View style={styles.infoSection}>
-					<Truck size={20} color={C.secondaryText} />
+					<Truck size={20} color={colors.secondaryText} />
 					<Text style={styles.infoText}>
 						Your replacement card should arrive within 7-10 business days. You
 						can use your virtual card for online purchases in the meantime.

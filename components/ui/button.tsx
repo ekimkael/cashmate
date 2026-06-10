@@ -29,12 +29,12 @@ export default function Button({
   icon: Icon,
   style,
 }: ButtonProps) {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const config: Record<Variant, { bg: string; text: string; border?: string }> = {
-    primary:   { bg: C.primary, text: C.background },
-    secondary: { bg: C.card,    text: C.primary, border: C.border },
-    ghost:     { bg: "transparent", text: C.text, border: C.border },
-    danger:    { bg: C.error,   text: C.background },
+    primary:   { bg: colors.primary, text: colors.background },
+    secondary: { bg: colors.card,    text: colors.primary, border: colors.border },
+    ghost:     { bg: "transparent", text: colors.text, border: colors.border },
+    danger:    { bg: colors.error,   text: colors.background },
   }
   const c = config[variant]
   const hasBorder = !!c.border

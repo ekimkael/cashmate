@@ -18,11 +18,11 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function LoginScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	keyboardAvoidingView: {
   		flex: 1,
@@ -36,13 +36,13 @@ export default function LoginScreen() {
   		marginBottom: 40,
   	},
   	title: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 32,
   		fontWeight: "700",
   		marginBottom: 8,
   	},
   	subtitle: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   	},
   	errorContainer: {
@@ -52,7 +52,7 @@ export default function LoginScreen() {
   		marginBottom: 20,
   	},
   	errorText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 14,
   	},
   	form: {
@@ -61,7 +61,7 @@ export default function LoginScreen() {
   	inputContainer: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		marginBottom: 16,
   		paddingHorizontal: 16,
@@ -72,7 +72,7 @@ export default function LoginScreen() {
   	input: {
   		flex: 1,
   		height: 56,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   	passwordToggle: {
@@ -83,7 +83,7 @@ export default function LoginScreen() {
   		marginBottom: 24,
   	},
   	forgotPasswordText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 14,
   		fontWeight: "500",
   	},
@@ -93,12 +93,12 @@ export default function LoginScreen() {
   		alignItems: "center",
   	},
   	footerText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginRight: 4,
   	},
   	signUpText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 14,
   		fontWeight: "600",
   	},
@@ -157,13 +157,13 @@ export default function LoginScreen() {
 						<View style={styles.inputContainer}>
 							<Mail
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Email"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={email}
 								onChangeText={setEmail}
 								autoCapitalize="none"
@@ -174,13 +174,13 @@ export default function LoginScreen() {
 						<View style={styles.inputContainer}>
 							<Lock
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Password"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={password}
 								onChangeText={setPassword}
 								secureTextEntry={!showPassword}
@@ -190,9 +190,9 @@ export default function LoginScreen() {
 								onPress={() => setShowPassword(!showPassword)}
 								style={styles.passwordToggle}>
 								{showPassword ? (
-									<EyeOff size={20} color={C.secondaryText} />
+									<EyeOff size={20} color={colors.secondaryText} />
 								) : (
-									<Eye size={20} color={C.secondaryText} />
+									<Eye size={20} color={colors.secondaryText} />
 								)}
 							</Pressable>
 						</View>

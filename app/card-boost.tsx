@@ -13,33 +13,33 @@ import { Search, Tag, ChevronRight, Check } from "lucide-react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardBoostScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	searchContainer: {
   		padding: 16,
   		borderBottomWidth: 1,
-  		borderBottomColor: C.border,
+  		borderBottomColor: colors.border,
   	},
   	searchBar: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		padding: 12,
   	},
   	searchPlaceholder: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginLeft: 8,
   	},
   	tabContainer: {
   		flexDirection: "row",
   		borderBottomWidth: 1,
-  		borderBottomColor: C.border,
+  		borderBottomColor: colors.border,
   	},
   	tabButton: {
   		flex: 1,
@@ -48,33 +48,33 @@ export default function CardBoostScreen() {
   	},
   	activeTabButton: {
   		borderBottomWidth: 2,
-  		borderBottomColor: C.primary,
+  		borderBottomColor: colors.primary,
   	},
   	tabText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		fontWeight: "500",
   	},
   	activeTabText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontWeight: "600",
   	},
   	scrollContent: {
   		padding: 16,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 20,
   		fontWeight: "600",
   		marginBottom: 8,
   	},
   	sectionDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 16,
   	},
   	boostCard: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -94,34 +94,34 @@ export default function CardBoostScreen() {
   		flex: 1,
   	},
   	boostName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	boostDiscount: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 14,
   		fontWeight: "600",
   	},
   	activateButton: {
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   		borderRadius: 12,
   		paddingVertical: 8,
   		paddingHorizontal: 12,
   	},
   	activateButtonText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 14,
   		fontWeight: "600",
   	},
   	boostDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 8,
   	},
   	expiryText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 12,
   		fontStyle: "italic",
   	},
@@ -134,7 +134,7 @@ export default function CardBoostScreen() {
   		paddingHorizontal: 10,
   	},
   	activeText: {
-  		color: C.success,
+  		color: colors.success,
   		fontSize: 14,
   		fontWeight: "500",
   		marginLeft: 4,
@@ -147,7 +147,7 @@ export default function CardBoostScreen() {
   		marginTop: 8,
   	},
   	seeAllButtonText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 16,
   		fontWeight: "500",
   		marginRight: 4,
@@ -158,14 +158,14 @@ export default function CardBoostScreen() {
   		padding: 32,
   	},
   	emptyStateTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginTop: 16,
   		marginBottom: 8,
   	},
   	emptyStateText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		textAlign: "center",
   	},
@@ -226,7 +226,7 @@ export default function CardBoostScreen() {
 
 			<View style={styles.searchContainer}>
 				<View style={styles.searchBar}>
-					<Search size={20} color={C.secondaryText} />
+					<Search size={20} color={colors.secondaryText} />
 					<Text style={styles.searchPlaceholder}>Search for boosts</Text>
 				</View>
 			</View>
@@ -297,7 +297,7 @@ export default function CardBoostScreen() {
 							style={styles.seeAllButton}
 							onPress={() => router.push("/card-boost-all")}>
 							<Text style={styles.seeAllButtonText}>See All Boosts</Text>
-							<ChevronRight size={20} color={C.primary} />
+							<ChevronRight size={20} color={colors.primary} />
 						</Pressable>
 					</>
 				) : (
@@ -319,7 +319,7 @@ export default function CardBoostScreen() {
 										<Text style={styles.boostDiscount}>{boost.discount}</Text>
 									</View>
 									<View style={styles.activeIndicator}>
-										<Check size={16} color={C.success} />
+										<Check size={16} color={colors.success} />
 										<Text style={styles.activeText}>Active</Text>
 									</View>
 								</View>
@@ -333,7 +333,7 @@ export default function CardBoostScreen() {
 
 						{activeBoosts.length === 0 && (
 							<View style={styles.emptyState}>
-								<Tag size={48} color={C.secondaryText} />
+								<Tag size={48} color={colors.secondaryText} />
 								<Text style={styles.emptyStateTitle}>No Active Boosts</Text>
 								<Text style={styles.emptyStateText}>
 									You don't have any active boosts. Activate a boost to start

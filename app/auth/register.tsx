@@ -17,11 +17,11 @@ import Button from "@/components/ui/button"
 import { useUserStore } from '@/store/user-store'
 
 export default function RegisterScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	keyboardAvoidingView: {
   		flex: 1,
@@ -34,13 +34,13 @@ export default function RegisterScreen() {
   		marginBottom: 32,
   	},
   	title: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 32,
   		fontWeight: "700",
   		marginBottom: 8,
   	},
   	subtitle: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   	},
   	errorContainer: {
@@ -50,7 +50,7 @@ export default function RegisterScreen() {
   		marginBottom: 20,
   	},
   	errorText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 14,
   	},
   	form: {
@@ -59,7 +59,7 @@ export default function RegisterScreen() {
   	inputContainer: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		marginBottom: 16,
   		paddingHorizontal: 16,
@@ -68,14 +68,14 @@ export default function RegisterScreen() {
   		marginRight: 12,
   	},
   	atSymbol: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 18,
   		marginRight: 12,
   	},
   	input: {
   		flex: 1,
   		height: 56,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   	passwordToggle: {
@@ -87,12 +87,12 @@ export default function RegisterScreen() {
   		alignItems: "center",
   	},
   	footerText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginRight: 4,
   	},
   	signInText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 14,
   		fontWeight: "600",
   	},
@@ -140,13 +140,13 @@ export default function RegisterScreen() {
 					title: "Create Account",
 					headerLeft: () => (
 						<Pressable onPress={() => router.back()}>
-							<ArrowLeft size={24} color={C.text} />
+							<ArrowLeft size={24} color={colors.text} />
 						</Pressable>
 					),
 					headerStyle: {
-						backgroundColor: C.background,
+						backgroundColor: colors.background,
 					},
-					headerTintColor: C.text,
+					headerTintColor: colors.text,
 				}}
 			/>
 
@@ -169,13 +169,13 @@ export default function RegisterScreen() {
 						<View style={styles.inputContainer}>
 							<User
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Full Name"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={name}
 								onChangeText={setName}
 							/>
@@ -184,13 +184,13 @@ export default function RegisterScreen() {
 						<View style={styles.inputContainer}>
 							<Mail
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Email"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={email}
 								onChangeText={setEmail}
 								autoCapitalize="none"
@@ -203,7 +203,7 @@ export default function RegisterScreen() {
 							<TextInput
 								style={styles.input}
 								placeholder="Username"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={username}
 								onChangeText={setUsername}
 								autoCapitalize="none"
@@ -213,13 +213,13 @@ export default function RegisterScreen() {
 						<View style={styles.inputContainer}>
 							<Lock
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Password"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={password}
 								onChangeText={setPassword}
 								secureTextEntry={!showPassword}
@@ -229,9 +229,9 @@ export default function RegisterScreen() {
 								onPress={() => setShowPassword(!showPassword)}
 								style={styles.passwordToggle}>
 								{showPassword ? (
-									<EyeOff size={20} color={C.secondaryText} />
+									<EyeOff size={20} color={colors.secondaryText} />
 								) : (
-									<Eye size={20} color={C.secondaryText} />
+									<Eye size={20} color={colors.secondaryText} />
 								)}
 							</Pressable>
 						</View>
@@ -239,13 +239,13 @@ export default function RegisterScreen() {
 						<View style={styles.inputContainer}>
 							<Lock
 								size={20}
-								color={C.secondaryText}
+								color={colors.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Confirm Password"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								value={confirmPassword}
 								onChangeText={setConfirmPassword}
 								secureTextEntry={!showPassword}

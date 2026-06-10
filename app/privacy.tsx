@@ -21,11 +21,11 @@ import {
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function PrivacySecurityScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
@@ -34,7 +34,7 @@ export default function PrivacySecurityScreen() {
   		marginBottom: 32,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
@@ -42,7 +42,7 @@ export default function PrivacySecurityScreen() {
   	menuItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -51,7 +51,7 @@ export default function PrivacySecurityScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -60,19 +60,19 @@ export default function PrivacySecurityScreen() {
   		flex: 1,
   	},
   	menuItemTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	menuItemDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	settingItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -81,7 +81,7 @@ export default function PrivacySecurityScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -90,13 +90,13 @@ export default function PrivacySecurityScreen() {
   		flex: 1,
   	},
   	settingLabel: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	settingDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	dangerItem: {
@@ -104,7 +104,7 @@ export default function PrivacySecurityScreen() {
   		backgroundColor: "rgba(255, 67, 42, 0.1)",
   	},
   	dangerText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 16,
   		fontWeight: "600",
   	},
@@ -146,7 +146,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/change-password")}>
 						<View style={styles.menuItemIcon}>
-							<Lock size={20} color={C.text} />
+							<Lock size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Change Password</Text>
@@ -156,14 +156,14 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Fingerprint size={20} color={C.text} />
+							<Fingerprint size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Biometric Login</Text>
@@ -175,10 +175,10 @@ export default function PrivacySecurityScreen() {
 							value={privacySettings.biometricLogin}
 							onValueChange={() => toggleSetting("biometricLogin")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
@@ -186,7 +186,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/security-alerts")}>
 						<View style={styles.menuItemIcon}>
-							<Bell size={20} color={C.text} />
+							<Bell size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Security Alerts</Text>
@@ -196,7 +196,7 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -205,7 +205,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/login-history")}>
 						<View style={styles.menuItemIcon}>
-							<Shield size={20} color={C.text} />
+							<Shield size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Login History</Text>
@@ -215,7 +215,7 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -226,7 +226,7 @@ export default function PrivacySecurityScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Eye size={20} color={C.text} />
+							<Eye size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Private Activity</Text>
@@ -238,16 +238,16 @@ export default function PrivacySecurityScreen() {
 							value={privacySettings.activityPrivate}
 							onValueChange={() => toggleSetting("activityPrivate")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<User size={20} color={C.text} />
+							<User size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Contacts Access</Text>
@@ -259,10 +259,10 @@ export default function PrivacySecurityScreen() {
 							value={privacySettings.contactsAccess}
 							onValueChange={() => toggleSetting("contactsAccess")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
@@ -270,7 +270,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/blocked-users")}>
 						<View style={styles.menuItemIcon}>
-							<User size={20} color={C.text} />
+							<User size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Blocked Users</Text>
@@ -280,7 +280,7 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -291,7 +291,7 @@ export default function PrivacySecurityScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Shield size={20} color={C.text} />
+							<Shield size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Data Collection</Text>
@@ -303,10 +303,10 @@ export default function PrivacySecurityScreen() {
 							value={privacySettings.dataCollection}
 							onValueChange={() => toggleSetting("dataCollection")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
@@ -314,7 +314,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/data-download")}>
 						<View style={styles.menuItemIcon}>
-							<Shield size={20} color={C.text} />
+							<Shield size={20} color={colors.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Download Your Data</Text>
@@ -324,7 +324,7 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>

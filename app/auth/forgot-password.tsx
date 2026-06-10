@@ -15,11 +15,11 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function ForgotPasswordScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	keyboardAvoidingView: {
   		flex: 1,
@@ -33,13 +33,13 @@ export default function ForgotPasswordScreen() {
   		marginBottom: 32,
   	},
   	title: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 32,
   		fontWeight: "700",
   		marginBottom: 8,
   	},
   	subtitle: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		lineHeight: 22,
   	},
@@ -50,7 +50,7 @@ export default function ForgotPasswordScreen() {
   		marginBottom: 20,
   	},
   	errorText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 14,
   	},
   	form: {
@@ -59,7 +59,7 @@ export default function ForgotPasswordScreen() {
   	inputContainer: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		marginBottom: 16,
   		paddingHorizontal: 16,
@@ -70,7 +70,7 @@ export default function ForgotPasswordScreen() {
   	input: {
   		flex: 1,
   		height: 56,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   	successContent: {
@@ -80,14 +80,14 @@ export default function ForgotPasswordScreen() {
   		alignItems: "center",
   	},
   	successTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 24,
   		fontWeight: "700",
   		marginTop: 24,
   		marginBottom: 12,
   	},
   	successMessage: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		textAlign: "center",
   		marginBottom: 32,
@@ -117,13 +117,13 @@ export default function ForgotPasswordScreen() {
 					title: "Forgot Password",
 					headerLeft: () => (
 						<Pressable onPress={() => router.back()}>
-							<ArrowLeft size={24} color={C.text} />
+							<ArrowLeft size={24} color={colors.text} />
 						</Pressable>
 					),
 					headerStyle: {
-						backgroundColor: C.background,
+						backgroundColor: colors.background,
 					},
-					headerTintColor: C.text,
+					headerTintColor: colors.text,
 				}}
 			/>
 
@@ -150,13 +150,13 @@ export default function ForgotPasswordScreen() {
 							<View style={styles.inputContainer}>
 								<Mail
 									size={20}
-									color={C.secondaryText}
+									color={colors.secondaryText}
 									style={styles.inputIcon}
 								/>
 								<TextInput
 									style={styles.input}
 									placeholder="Email"
-									placeholderTextColor={C.secondaryText}
+									placeholderTextColor={colors.secondaryText}
 									value={email}
 									onChangeText={setEmail}
 									autoCapitalize="none"
@@ -169,7 +169,7 @@ export default function ForgotPasswordScreen() {
 					</View>
 				) : (
 					<View style={styles.successContent}>
-						<CheckCircle size={80} color={C.primary} />
+						<CheckCircle size={80} color={colors.primary} />
 						<Text style={styles.successTitle}>Check Your Email</Text>
 						<Text style={styles.successMessage}>
 							We've sent password reset instructions to {email}

@@ -7,11 +7,11 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function RequestSuccessScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	content: {
   		flex: 1,
@@ -23,7 +23,7 @@ export default function RequestSuccessScreen() {
   		marginBottom: 24,
   	},
   	title: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 28,
   		fontWeight: "700",
   		marginBottom: 24,
@@ -33,17 +33,17 @@ export default function RequestSuccessScreen() {
   		marginBottom: 24,
   	},
   	amountText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 48,
   		fontWeight: "600",
   		marginBottom: 8,
   	},
   	recipientText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 18,
   	},
   	message: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		textAlign: "center",
   	},
@@ -69,7 +69,7 @@ export default function RequestSuccessScreen() {
 
 			<View style={styles.content}>
 				<View style={styles.iconContainer}>
-					<CheckCircle size={80} color={C.success} />
+					<CheckCircle size={80} color={colors.success} />
 				</View>
 
 				<Text style={styles.title}>Request Sent!</Text>

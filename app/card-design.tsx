@@ -21,11 +21,11 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function CardDesignScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
@@ -34,7 +34,7 @@ export default function CardDesignScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
@@ -79,14 +79,14 @@ export default function CardDesignScreen() {
   	designOption: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
   	},
   	selectedDesign: {
   		borderWidth: 1,
-  		borderColor: C.primary,
+  		borderColor: colors.primary,
   	},
   	designPreview: {
   		width: 60,
@@ -112,13 +112,13 @@ export default function CardDesignScreen() {
   		flex: 1,
   	},
   	designName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	designDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	checkIcon: {
@@ -133,7 +133,7 @@ export default function CardDesignScreen() {
   		marginBottom: 24,
   	},
   	customDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 16,
   	},
@@ -144,7 +144,7 @@ export default function CardDesignScreen() {
   	customButton: {
   		flex: 1,
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginHorizontal: 6,
@@ -153,25 +153,25 @@ export default function CardDesignScreen() {
   		width: 48,
   		height: 48,
   		borderRadius: 24,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginBottom: 8,
   	},
   	customButtonText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 14,
   		fontWeight: "500",
   	},
   	infoSection: {
   		flexDirection: "row",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 24,
   	},
   	infoText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginLeft: 12,
   		flex: 1,
@@ -184,7 +184,7 @@ export default function CardDesignScreen() {
 		{
 			id: "default",
 			name: "Default Green",
-			color: C.primary,
+			color: colors.primary,
 			image: null,
 		},
 		{
@@ -238,14 +238,14 @@ export default function CardDesignScreen() {
 				<View style={styles.cardHeader}>
 					<CreditCard
 						size={24}
-						color={design.id === "default" ? C.background : "#FFFFFF"}
+						color={design.id === "default" ? colors.background : "#FFFFFF"}
 					/>
 					<Text
 						style={[
 							styles.cardName,
 							{
 								color:
-									design.id === "default" ? C.background : "#FFFFFF",
+									design.id === "default" ? colors.background : "#FFFFFF",
 							},
 						]}>
 						John Doe
@@ -257,7 +257,7 @@ export default function CardDesignScreen() {
 							styles.cardNumber,
 							{
 								color:
-									design.id === "default" ? C.background : "#FFFFFF",
+									design.id === "default" ? colors.background : "#FFFFFF",
 							},
 						]}>
 						•••• 1234
@@ -316,7 +316,7 @@ export default function CardDesignScreen() {
 							</View>
 							{selectedDesign === design.id && (
 								<View style={styles.checkIcon}>
-									<Check size={20} color={C.primary} />
+									<Check size={20} color={colors.primary} />
 								</View>
 							)}
 						</Pressable>
@@ -332,14 +332,14 @@ export default function CardDesignScreen() {
 					<View style={styles.customButtons}>
 						<Pressable style={styles.customButton} onPress={handleUploadImage}>
 							<View style={styles.customButtonIcon}>
-								<Upload size={24} color={C.text} />
+								<Upload size={24} color={colors.text} />
 							</View>
 							<Text style={styles.customButtonText}>Upload Image</Text>
 						</Pressable>
 
 						<Pressable style={styles.customButton} onPress={handleTakePhoto}>
 							<View style={styles.customButtonIcon}>
-								<Camera size={24} color={C.text} />
+								<Camera size={24} color={colors.text} />
 							</View>
 							<Text style={styles.customButtonText}>Take Photo</Text>
 						</Pressable>
@@ -347,7 +347,7 @@ export default function CardDesignScreen() {
 				</View>
 
 				<View style={styles.infoSection}>
-					<Palette size={20} color={C.secondaryText} />
+					<Palette size={20} color={colors.secondaryText} />
 					<Text style={styles.infoText}>
 						Your physical card will be updated with the new design. It may take
 						7-10 business days to receive your new card.

@@ -7,29 +7,29 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function StatementsScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
   	},
   	infoCard: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 16,
   		padding: 20,
   		marginBottom: 24,
   	},
   	infoTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 8,
   	},
   	infoText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		lineHeight: 20,
   	},
@@ -38,7 +38,7 @@ export default function StatementsScreen() {
   	},
   	monthContainer: {
   		marginBottom: 16,
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		overflow: "hidden",
   	},
@@ -53,14 +53,14 @@ export default function StatementsScreen() {
   		alignItems: "center",
   	},
   	monthTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginLeft: 12,
   	},
   	statementsContainer: {
   		borderTopWidth: 1,
-  		borderTopColor: C.border,
+  		borderTopColor: colors.border,
   	},
   	statementItem: {
   		flexDirection: "row",
@@ -68,19 +68,19 @@ export default function StatementsScreen() {
   		alignItems: "center",
   		padding: 16,
   		borderBottomWidth: 1,
-  		borderBottomColor: C.border,
+  		borderBottomColor: colors.border,
   	},
   	statementInfo: {
   		flex: 1,
   	},
   	statementType: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	statementDate: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	downloadButton: {
@@ -92,7 +92,7 @@ export default function StatementsScreen() {
   		justifyContent: "center",
   	},
   	noteText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		textAlign: "center",
   	},
@@ -168,13 +168,13 @@ export default function StatementsScreen() {
 								style={styles.monthHeader}
 								onPress={() => toggleMonth(monthData.month)}>
 								<View style={styles.monthTitleContainer}>
-									<Calendar size={20} color={C.text} />
+									<Calendar size={20} color={colors.text} />
 									<Text style={styles.monthTitle}>{monthData.month}</Text>
 								</View>
 								{expandedMonth === monthData.month ? (
-									<ChevronUp size={20} color={C.text} />
+									<ChevronUp size={20} color={colors.text} />
 								) : (
-									<ChevronDown size={20} color={C.text} />
+									<ChevronDown size={20} color={colors.text} />
 								)}
 							</Pressable>
 
@@ -193,7 +193,7 @@ export default function StatementsScreen() {
 											<Pressable
 												style={styles.downloadButton}
 												onPress={() => handleDownloadStatement(statement)}>
-												<Download size={20} color={C.primary} />
+												<Download size={20} color={colors.primary} />
 											</Pressable>
 										</View>
 									))}

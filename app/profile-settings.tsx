@@ -15,11 +15,11 @@ import Button from "@/components/ui/button"
 import { useUserStore } from '@/store/user-store'
 
 export default function ProfileSettingsScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
@@ -32,7 +32,7 @@ export default function ProfileSettingsScreen() {
   		width: 100,
   		height: 100,
   		borderRadius: 50,
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		alignItems: "center",
   		justifyContent: "center",
   		marginBottom: 16,
@@ -41,7 +41,7 @@ export default function ProfileSettingsScreen() {
   		padding: 8,
   	},
   	changePhotoText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -51,7 +51,7 @@ export default function ProfileSettingsScreen() {
   	inputContainer: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 16,
@@ -60,14 +60,14 @@ export default function ProfileSettingsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
   	},
   	input: {
   		flex: 1,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   })
@@ -104,7 +104,7 @@ export default function ProfileSettingsScreen() {
 			<ScrollView contentContainerStyle={styles.scrollContent}>
 				<View style={styles.profileImageContainer}>
 					<View style={styles.profileImage}>
-						<User size={40} color={C.text} />
+						<User size={40} color={colors.text} />
 					</View>
 					<Pressable style={styles.changePhotoButton}>
 						<Text style={styles.changePhotoText}>Change Photo</Text>
@@ -114,73 +114,73 @@ export default function ProfileSettingsScreen() {
 				<View style={styles.section}>
 					<View style={styles.inputContainer}>
 						<View style={styles.inputIcon}>
-							<User size={20} color={C.text} />
+							<User size={20} color={colors.text} />
 						</View>
 						<TextInput
 							style={styles.input}
 							placeholder="Full Name"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 							value={profile.name}
 							onChangeText={(text) => handleChange("name", text)}
-							selectionColor={C.primary}
+							selectionColor={colors.primary}
 						/>
 					</View>
 
 					<View style={styles.inputContainer}>
 						<View style={styles.inputIcon}>
-							<Mail size={20} color={C.text} />
+							<Mail size={20} color={colors.text} />
 						</View>
 						<TextInput
 							style={styles.input}
 							placeholder="Email Address"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 							value={profile.email}
 							onChangeText={(text) => handleChange("email", text)}
 							keyboardType="email-address"
-							selectionColor={C.primary}
+							selectionColor={colors.primary}
 						/>
 					</View>
 
 					<View style={styles.inputContainer}>
 						<View style={styles.inputIcon}>
-							<Phone size={20} color={C.text} />
+							<Phone size={20} color={colors.text} />
 						</View>
 						<TextInput
 							style={styles.input}
 							placeholder="Phone Number"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 							value={profile.phone}
 							onChangeText={(text) => handleChange("phone", text)}
 							keyboardType="phone-pad"
-							selectionColor={C.primary}
+							selectionColor={colors.primary}
 						/>
 					</View>
 
 					<View style={styles.inputContainer}>
 						<View style={styles.inputIcon}>
-							<MapPin size={20} color={C.text} />
+							<MapPin size={20} color={colors.text} />
 						</View>
 						<TextInput
 							style={styles.input}
 							placeholder="Address"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 							value={profile.address}
 							onChangeText={(text) => handleChange("address", text)}
-							selectionColor={C.primary}
+							selectionColor={colors.primary}
 						/>
 					</View>
 
 					<View style={styles.inputContainer}>
 						<View style={styles.inputIcon}>
-							<Calendar size={20} color={C.text} />
+							<Calendar size={20} color={colors.text} />
 						</View>
 						<TextInput
 							style={styles.input}
 							placeholder="Date of Birth (MM/DD/YYYY)"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 							value={profile.birthdate}
 							onChangeText={(text) => handleChange("birthdate", text)}
-							selectionColor={C.primary}
+							selectionColor={colors.primary}
 						/>
 					</View>
 				</View>

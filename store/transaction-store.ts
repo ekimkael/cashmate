@@ -3,7 +3,7 @@ import { persist, createJSONStorage } from "zustand/middleware"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { Transaction } from "@/types"
 import { transactions as mockTransactions } from "@/mocks/data"
-import { useUserStore } from "./userStore"
+import { useUserStore } from "./user-store"
 
 interface TransactionState {
 	transactions: Transaction[]

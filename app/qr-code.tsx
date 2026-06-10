@@ -7,11 +7,11 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import { useUserStore } from '@/store/user-store'
 
 export default function QRCodeScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	content: {
   		flex: 1,
@@ -20,7 +20,7 @@ export default function QRCodeScreen() {
   		padding: 20,
   	},
   	qrContainer: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 16,
   		padding: 24,
   		marginBottom: 24,
@@ -32,13 +32,13 @@ export default function QRCodeScreen() {
   		borderRadius: 8,
   	},
   	username: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 24,
   		fontWeight: "700",
   		marginBottom: 12,
   	},
   	description: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		textAlign: "center",
   		marginBottom: 32,
@@ -51,19 +51,19 @@ export default function QRCodeScreen() {
   	},
   	actionButton: {
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		width: "45%",
   	},
   	actionText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginTop: 8,
   	},
   	errorText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		textAlign: "center",
   	},
@@ -105,12 +105,12 @@ export default function QRCodeScreen() {
 
 				<View style={styles.actionsContainer}>
 					<Pressable style={styles.actionButton}>
-						<Share2 size={24} color={C.text} />
+						<Share2 size={24} color={colors.text} />
 						<Text style={styles.actionText}>Share</Text>
 					</Pressable>
 
 					<Pressable style={styles.actionButton}>
-						<Download size={24} color={C.text} />
+						<Download size={24} color={colors.text} />
 						<Text style={styles.actionText}>Save</Text>
 					</Pressable>
 				</View>

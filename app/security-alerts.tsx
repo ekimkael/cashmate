@@ -6,17 +6,17 @@ import { Bell, Shield, CreditCard, User, Lock } from "lucide-react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function SecurityAlertsScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
   	},
   	description: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginBottom: 24,
   	},
@@ -26,7 +26,7 @@ export default function SecurityAlertsScreen() {
   	alertItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -35,7 +35,7 @@ export default function SecurityAlertsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -44,17 +44,17 @@ export default function SecurityAlertsScreen() {
   		flex: 1,
   	},
   	alertTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	alertDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	note: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		textAlign: "center",
   	},
@@ -85,7 +85,7 @@ export default function SecurityAlertsScreen() {
 				<View style={styles.section}>
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<Shield size={20} color={C.text} />
+							<Shield size={20} color={colors.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Suspicious Login Attempts</Text>
@@ -97,16 +97,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.loginAttempts}
 							onValueChange={() => toggleAlert("loginAttempts")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<Bell size={20} color={C.text} />
+							<Bell size={20} color={colors.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>New Device Login</Text>
@@ -118,16 +118,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.newDevices}
 							onValueChange={() => toggleAlert("newDevices")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<Lock size={20} color={C.text} />
+							<Lock size={20} color={colors.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Password Changes</Text>
@@ -139,16 +139,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.passwordChanges}
 							onValueChange={() => toggleAlert("passwordChanges")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<Shield size={20} color={C.text} />
+							<Shield size={20} color={colors.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Suspicious Activity</Text>
@@ -160,16 +160,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.suspiciousActivity}
 							onValueChange={() => toggleAlert("suspiciousActivity")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<CreditCard size={20} color={C.text} />
+							<CreditCard size={20} color={colors.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Payment Method Changes</Text>
@@ -181,16 +181,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.paymentMethods}
 							onValueChange={() => toggleAlert("paymentMethods")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<User size={20} color={C.text} />
+							<User size={20} color={colors.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Profile Changes</Text>
@@ -202,10 +202,10 @@ export default function SecurityAlertsScreen() {
 							value={alerts.profileChanges}
 							onValueChange={() => toggleAlert("profileChanges")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 				</View>

@@ -13,29 +13,29 @@ import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardVirtualScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
   	},
   	infoCard: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 16,
   		padding: 20,
   		marginBottom: 24,
   	},
   	infoTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 8,
   	},
   	infoText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		lineHeight: 20,
   	},
@@ -43,7 +43,7 @@ export default function CardVirtualScreen() {
   		marginBottom: 24,
   	},
   	virtualCard: {
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   		borderRadius: 16,
   		padding: 20,
   		marginBottom: 16,
@@ -54,7 +54,7 @@ export default function CardVirtualScreen() {
   		marginBottom: 24,
   	},
   	virtualCardName: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 18,
   		fontWeight: "600",
   		marginLeft: 12,
@@ -63,7 +63,7 @@ export default function CardVirtualScreen() {
   		alignItems: "flex-start",
   	},
   	virtualCardNumber: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 18,
   		fontWeight: "500",
   		marginBottom: 16,
@@ -78,7 +78,7 @@ export default function CardVirtualScreen() {
   		marginBottom: 4,
   	},
   	virtualCardExpiry: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -91,7 +91,7 @@ export default function CardVirtualScreen() {
   		marginBottom: 4,
   	},
   	virtualCardCvv: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -99,12 +99,12 @@ export default function CardVirtualScreen() {
   		flexDirection: "row",
   		alignItems: "center",
   		justifyContent: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   	},
   	showDetailsText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginLeft: 8,
@@ -113,13 +113,13 @@ export default function CardVirtualScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
   	},
   	cardInfoItem: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -131,11 +131,11 @@ export default function CardVirtualScreen() {
   		marginBottom: 8,
   	},
   	cardInfoLabel: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	cardInfoValue: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -145,7 +145,7 @@ export default function CardVirtualScreen() {
   	actionButton: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -154,7 +154,7 @@ export default function CardVirtualScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -172,20 +172,20 @@ export default function CardVirtualScreen() {
   		marginRight: 12,
   	},
   	actionText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
   	securityNote: {
   		flexDirection: "row",
   		alignItems: "flex-start",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 24,
   	},
   	securityText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginLeft: 12,
   		flex: 1,
@@ -195,13 +195,13 @@ export default function CardVirtualScreen() {
   		bottom: 20,
   		left: 20,
   		right: 20,
-  		backgroundColor: C.success,
+  		backgroundColor: colors.success,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
   	},
   	copiedToastText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -244,7 +244,7 @@ export default function CardVirtualScreen() {
 				<View style={styles.virtualCardContainer}>
 					<View style={styles.virtualCard}>
 						<View style={styles.virtualCardHeader}>
-							<CreditCard size={24} color={C.background} />
+							<CreditCard size={24} color={colors.background} />
 							<Text style={styles.virtualCardName}>{virtualCard.name}</Text>
 						</View>
 						<View style={styles.virtualCardDetails}>
@@ -270,9 +270,9 @@ export default function CardVirtualScreen() {
 						style={styles.showDetailsButton}
 						onPress={() => setShowCardDetails(!showCardDetails)}>
 						{showCardDetails ? (
-							<EyeOff size={20} color={C.text} />
+							<EyeOff size={20} color={colors.text} />
 						) : (
-							<Eye size={20} color={C.text} />
+							<Eye size={20} color={colors.text} />
 						)}
 						<Text style={styles.showDetailsText}>
 							{showCardDetails ? "Hide Card Details" : "Show Card Details"}
@@ -289,7 +289,7 @@ export default function CardVirtualScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(virtualCard.number)}>
-								<Copy size={18} color={C.primary} />
+								<Copy size={18} color={colors.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.cardInfoValue}>
@@ -303,7 +303,7 @@ export default function CardVirtualScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(virtualCard.expiry)}>
-								<Copy size={18} color={C.primary} />
+								<Copy size={18} color={colors.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.cardInfoValue}>
@@ -317,7 +317,7 @@ export default function CardVirtualScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(virtualCard.cvv)}>
-								<Copy size={18} color={C.primary} />
+								<Copy size={18} color={colors.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.cardInfoValue}>
@@ -336,7 +336,7 @@ export default function CardVirtualScreen() {
 
 					<Pressable style={styles.actionButton} onPress={handleRegenerateCard}>
 						<View style={styles.actionIcon}>
-							<RefreshCw size={20} color={C.text} />
+							<RefreshCw size={20} color={colors.text} />
 						</View>
 						<Text style={styles.actionText}>Regenerate Card</Text>
 					</Pressable>
@@ -345,14 +345,14 @@ export default function CardVirtualScreen() {
 						style={[styles.actionButton, styles.lockButton]}
 						onPress={() => router.push("/card-security")}>
 						<View style={styles.lockIcon}>
-							<Lock size={20} color={C.text} />
+							<Lock size={20} color={colors.text} />
 						</View>
 						<Text style={styles.actionText}>Lock Virtual Card</Text>
 					</Pressable>
 				</View>
 
 				<View style={styles.securityNote}>
-					<Lock size={16} color={C.secondaryText} />
+					<Lock size={16} color={colors.secondaryText} />
 					<Text style={styles.securityText}>
 						Your virtual card details are encrypted and secure. We use
 						bank-level security to protect your data.

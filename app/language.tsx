@@ -6,22 +6,22 @@ import { View, Text, StyleSheet, Pressable, FlatList } from "react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function LanguageScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	search: { padding: 16, paddingTop: 0 },
   	searchBar: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 12,
   	},
   	searchPlaceholder: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginLeft: 12,
   	},
@@ -32,10 +32,10 @@ export default function LanguageScreen() {
   		justifyContent: "space-between",
   		paddingVertical: 16,
   		borderBottomWidth: 1,
-  		borderBottomColor: C.border,
+  		borderBottomColor: colors.border,
   	},
   	languageName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -74,15 +74,15 @@ export default function LanguageScreen() {
 			<Stack.Screen
 				options={{
 					title: "Language",
-					headerTintColor: C.text,
+					headerTintColor: colors.text,
 					headerBackButtonDisplayMode: "minimal",
-					headerStyle: { backgroundColor: C.background },
+					headerStyle: { backgroundColor: colors.background },
 				}}
 			/>
 
 			<View style={styles.search}>
 				<View style={styles.searchBar}>
-					<Search size={20} color={C.secondaryText} />
+					<Search size={20} color={colors.secondaryText} />
 					<Text style={styles.searchPlaceholder}>Search languages</Text>
 				</View>
 			</View>
@@ -97,7 +97,7 @@ export default function LanguageScreen() {
 						onPress={() => handleSelect(item.code)}>
 						<Text style={styles.languageName}>{item.name}</Text>
 						{selectedLanguage === item.code && (
-							<Check size={24} color={C.primary} />
+							<Check size={24} color={colors.primary} />
 						)}
 					</Pressable>
 				)}

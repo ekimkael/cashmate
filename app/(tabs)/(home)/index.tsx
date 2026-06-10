@@ -1,30 +1,25 @@
 import React from "react"
 import { ScrollView, View, Text } from "react-native"
-import { useRouter, Stack } from "expo-router"
-import * as Haptics from "expo-haptics"
+import { Stack } from "expo-router"
+import { useHapticNavigation } from "@/hooks/use-haptic-navigation"
 
-import Colors, { useThemeColors } from "@/constants/colors"
-import { useUserStore } from '@/store/user-store'
+import { useThemeColors } from "@/constants/colors"
+import { useRequireUser } from "@/hooks/use-require-user"
 import BalanceCard from "@/components/ui/balance-card"
 import ActionButton from "@/components/ui/action-button"
 import { ArrowUpRight, ArrowDownLeft, Scan, QrCode } from "lucide-react-native"
 
 export default function HomeScreen() {
-  const C = useThemeColors()
-  const router = useRouter()
-  const { user } = useUserStore()
+  const colors = useThemeColors()
+  const navigate = useHapticNavigation()
+  const user = useRequireUser()
 
   if (!user) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: C.background }}>
-        <Text style={{ color: C.text, fontSize: 16 }}>User not found</Text>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.background }}>
+        <Text style={{ color: colors.text, fontSize: 16 }}>User not found</Text>
       </View>
     )
-  }
-
-  const handleAction = (path: string) => {
-    if (process.env.EXPO_OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    router.push(path as any)
   }
 
   return (
@@ -32,7 +27,7 @@ export default function HomeScreen() {
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
           icon="bell"
-          onPress={() => router.push("/notifications" as any)}
+          onPress={() => navigate("/notifications")}
         />
       </Stack.Toolbar>
 
@@ -47,13 +42,13 @@ export default function HomeScreen() {
             <ActionButton
               icon={ArrowUpRight}
               label="Send"
-              onPress={() => handleAction("/send")}
+              onPress={() => navigate("/send")}
               style={{ flex: 1 }}
             />
             <ActionButton
               icon={ArrowDownLeft}
               label="Request"
-              onPress={() => handleAction("/request")}
+              onPress={() => navigate("/request")}
               style={{ flex: 1 }}
             />
           </View>
@@ -61,14 +56,14 @@ export default function HomeScreen() {
             <ActionButton
               icon={Scan}
               label="Scan"
-              onPress={() => handleAction("/scan")}
+              onPress={() => navigate("/scan")}
               style={{ flex: 1 }}
               variant="secondary"
             />
             <ActionButton
               icon={QrCode}
               label="QR Code"
-              onPress={() => handleAction("/qr-code")}
+              onPress={() => navigate("/qr-code")}
               style={{ flex: 1 }}
               variant="secondary"
             />
@@ -76,7 +71,7 @@ export default function HomeScreen() {
         </View>
 
         <View>
-          <Text style={{ fontSize: 18, fontWeight: "600", color: C.text, marginBottom: 12 }}>
+          <Text style={{ fontSize: 18, fontWeight: "600", color: colors.text, marginBottom: 12 }}>
             Instant Deposit
           </Text>
           <View
@@ -84,17 +79,17 @@ export default function HomeScreen() {
               padding: 20,
               borderRadius: 16,
               borderCurve: "continuous",
-              backgroundColor: C.card,
+              backgroundColor: colors.card,
               boxShadow: "0 2px 12px rgba(0,0,0,0.25)",
             }}
           >
             <Text
-              style={{ fontSize: 17, fontWeight: "600", color: C.text, marginBottom: 6 }}
-              onPress={() => handleAction("/deposit")}
+              style={{ fontSize: 17, fontWeight: "600", color: colors.text, marginBottom: 6 }}
+              onPress={() => navigate("/deposit")}
             >
               Add Cash
             </Text>
-            <Text style={{ fontSize: 14, color: C.secondaryText }}>
+            <Text style={{ fontSize: 14, color: colors.secondaryText }}>
               Instantly deposit money to your CashMate
             </Text>
           </View>

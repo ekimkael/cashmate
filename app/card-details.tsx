@@ -21,11 +21,11 @@ import { useUserStore } from '@/store/user-store'
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardDetailsScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
@@ -34,7 +34,7 @@ export default function CardDetailsScreen() {
   		marginBottom: 24,
   	},
   	card: {
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   		borderRadius: 16,
   		padding: 20,
   		height: 180,
@@ -46,7 +46,7 @@ export default function CardDetailsScreen() {
   		alignItems: "center",
   	},
   	cardName: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 18,
   		fontWeight: "600",
   		marginLeft: 12,
@@ -55,7 +55,7 @@ export default function CardDetailsScreen() {
   		alignItems: "flex-end",
   	},
   	cardNumber: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -64,11 +64,11 @@ export default function CardDetailsScreen() {
   		alignItems: "center",
   		justifyContent: "center",
   		padding: 12,
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   	},
   	showNumberText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginLeft: 8,
@@ -77,7 +77,7 @@ export default function CardDetailsScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
@@ -87,21 +87,21 @@ export default function CardDetailsScreen() {
   		justifyContent: "space-between",
   		paddingVertical: 12,
   		borderBottomWidth: 1,
-  		borderBottomColor: C.border,
+  		borderBottomColor: colors.border,
   	},
   	detailLabel: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   	},
   	detailValue: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
   	settingItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -110,7 +110,7 @@ export default function CardDetailsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -119,19 +119,19 @@ export default function CardDetailsScreen() {
   		flex: 1,
   	},
   	settingLabel: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	settingDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	actionButton: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -140,13 +140,13 @@ export default function CardDetailsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
   	},
   	actionText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -155,12 +155,12 @@ export default function CardDetailsScreen() {
   		backgroundColor: "rgba(255, 67, 42, 0.1)",
   	},
   	dangerText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 16,
   		fontWeight: "600",
   	},
   	errorText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		textAlign: "center",
   	},
@@ -188,7 +188,7 @@ export default function CardDetailsScreen() {
 				<View style={styles.cardContainer}>
 					<View style={styles.card}>
 						<View style={styles.cardHeader}>
-							<CreditCard size={24} color={C.background} />
+							<CreditCard size={24} color={colors.background} />
 							<Text style={styles.cardName}>{user.name}</Text>
 						</View>
 						<View style={styles.cardFooter}>
@@ -202,9 +202,9 @@ export default function CardDetailsScreen() {
 						style={styles.showNumberButton}
 						onPress={() => setShowCardNumber(!showCardNumber)}>
 						{showCardNumber ? (
-							<EyeOff size={20} color={C.text} />
+							<EyeOff size={20} color={colors.text} />
 						) : (
-							<Eye size={20} color={C.text} />
+							<Eye size={20} color={colors.text} />
 						)}
 						<Text style={styles.showNumberText}>
 							{showCardNumber ? "Hide Card Number" : "Show Card Number"}
@@ -247,7 +247,7 @@ export default function CardDetailsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Smartphone size={20} color={C.text} />
+							<Smartphone size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Contactless Payments</Text>
@@ -259,16 +259,16 @@ export default function CardDetailsScreen() {
 							value={contactlessEnabled}
 							onValueChange={setContactlessEnabled}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<DollarSign size={20} color={C.text} />
+							<DollarSign size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Online Transactions</Text>
@@ -280,10 +280,10 @@ export default function CardDetailsScreen() {
 							value={onlineTransactionsEnabled}
 							onValueChange={setOnlineTransactionsEnabled}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
@@ -291,7 +291,7 @@ export default function CardDetailsScreen() {
 						style={styles.actionButton}
 						onPress={() => router.push("/card-pin")}>
 						<View style={styles.actionIcon}>
-							<Lock size={20} color={C.text} />
+							<Lock size={20} color={colors.text} />
 						</View>
 						<Text style={styles.actionText}>Change PIN</Text>
 					</Pressable>
@@ -300,7 +300,7 @@ export default function CardDetailsScreen() {
 						style={styles.actionButton}
 						onPress={() => router.push("/card-design")}>
 						<View style={styles.actionIcon}>
-							<Settings size={20} color={C.text} />
+							<Settings size={20} color={colors.text} />
 						</View>
 						<Text style={styles.actionText}>Customize Card Design</Text>
 					</Pressable>

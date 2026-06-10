@@ -18,17 +18,17 @@ import {
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardSecurityScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
   	},
   	lockCard: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 16,
   		padding: 20,
   		marginBottom: 24,
@@ -56,13 +56,13 @@ export default function CardSecurityScreen() {
   		flex: 1,
   	},
   	lockTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 4,
   	},
   	lockDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	lockButton: {
@@ -78,7 +78,7 @@ export default function CardSecurityScreen() {
   		backgroundColor: "rgba(0, 214, 50, 0.1)",
   	},
   	lockButtonText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 16,
   		fontWeight: "600",
   	},
@@ -86,7 +86,7 @@ export default function CardSecurityScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
@@ -94,7 +94,7 @@ export default function CardSecurityScreen() {
   	settingItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -103,7 +103,7 @@ export default function CardSecurityScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -112,19 +112,19 @@ export default function CardSecurityScreen() {
   		flex: 1,
   	},
   	settingLabel: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	settingDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	actionButton: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -133,13 +133,13 @@ export default function CardSecurityScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
   	},
   	actionText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -156,12 +156,12 @@ export default function CardSecurityScreen() {
   		marginRight: 12,
   	},
   	dangerText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 16,
   		fontWeight: "500",
   	},
   	securityNote: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		textAlign: "center",
   		marginBottom: 24,
@@ -197,7 +197,7 @@ export default function CardSecurityScreen() {
 							]}>
 							<Lock
 								size={24}
-								color={isCardLocked ? C.error : C.success}
+								color={isCardLocked ? colors.error : colors.success}
 							/>
 						</View>
 						<View style={styles.lockInfo}>
@@ -229,7 +229,7 @@ export default function CardSecurityScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Smartphone size={20} color={C.text} />
+							<Smartphone size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Location-Based Security</Text>
@@ -241,16 +241,16 @@ export default function CardSecurityScreen() {
 							value={locationBasedSecurity}
 							onValueChange={setLocationBasedSecurity}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<CreditCard size={20} color={C.text} />
+							<CreditCard size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>
@@ -264,16 +264,16 @@ export default function CardSecurityScreen() {
 							value={internationalTransactions}
 							onValueChange={setInternationalTransactions}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<ShieldAlert size={20} color={C.text} />
+							<ShieldAlert size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>ATM Withdrawals</Text>
@@ -285,10 +285,10 @@ export default function CardSecurityScreen() {
 							value={atmWithdrawals}
 							onValueChange={setAtmWithdrawals}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 				</View>
@@ -300,7 +300,7 @@ export default function CardSecurityScreen() {
 						style={styles.actionButton}
 						onPress={() => router.push("/card-pin")}>
 						<View style={styles.actionIcon}>
-							<Lock size={20} color={C.text} />
+							<Lock size={20} color={colors.text} />
 						</View>
 						<Text style={styles.actionText}>Change PIN</Text>
 					</Pressable>
@@ -309,7 +309,7 @@ export default function CardSecurityScreen() {
 						style={styles.actionButton}
 						onPress={() => router.push("/card-limits")}>
 						<View style={styles.actionIcon}>
-							<ShieldAlert size={20} color={C.text} />
+							<ShieldAlert size={20} color={colors.text} />
 						</View>
 						<Text style={styles.actionText}>Set Spending Limits</Text>
 					</Pressable>
@@ -318,7 +318,7 @@ export default function CardSecurityScreen() {
 						style={[styles.actionButton, styles.dangerButton]}
 						onPress={handleReportLost}>
 						<View style={styles.dangerIcon}>
-							<AlertTriangle size={20} color={C.error} />
+							<AlertTriangle size={20} color={colors.error} />
 						</View>
 						<Text style={styles.dangerText}>Report Lost or Stolen</Text>
 					</Pressable>

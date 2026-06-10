@@ -7,29 +7,29 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function DirectDepositScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
   	},
   	infoCard: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 16,
   		padding: 20,
   		marginBottom: 24,
   	},
   	infoTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 8,
   	},
   	infoText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		lineHeight: 20,
   	},
@@ -37,18 +37,18 @@ export default function DirectDepositScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
   	},
   	sectionDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 16,
   	},
   	accountInfoItem: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -60,11 +60,11 @@ export default function DirectDepositScreen() {
   		marginBottom: 8,
   	},
   	accountInfoLabel: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	accountInfoValue: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "500",
   	},
@@ -74,12 +74,12 @@ export default function DirectDepositScreen() {
   	noteContainer: {
   		flexDirection: "row",
   		alignItems: "flex-start",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   	},
   	noteText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginLeft: 12,
   		flex: 1,
@@ -89,13 +89,13 @@ export default function DirectDepositScreen() {
   		bottom: 20,
   		left: 20,
   		right: 20,
-  		backgroundColor: C.success,
+  		backgroundColor: colors.success,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
   	},
   	copiedToastText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -143,7 +143,7 @@ export default function DirectDepositScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(accountInfo.routingNumber)}>
-								<Copy size={18} color={C.primary} />
+								<Copy size={18} color={colors.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.accountInfoValue}>
@@ -157,7 +157,7 @@ export default function DirectDepositScreen() {
 							<Pressable
 								style={styles.copyButton}
 								onPress={() => handleCopy(accountInfo.accountNumber)}>
-								<Copy size={18} color={C.primary} />
+								<Copy size={18} color={colors.primary} />
 							</Pressable>
 						</View>
 						<Text style={styles.accountInfoValue}>
@@ -189,7 +189,7 @@ export default function DirectDepositScreen() {
 
 				<View style={styles.section}>
 					<View style={styles.noteContainer}>
-						<Info size={20} color={C.secondaryText} />
+						<Info size={20} color={colors.secondaryText} />
 						<Text style={styles.noteText}>
 							Your money is FDIC insured up to $250,000 through our banking
 							partners.

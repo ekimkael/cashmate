@@ -13,7 +13,7 @@ interface TransactionItemProps {
 }
 
 export default function TransactionItem({ transaction, onPress }: TransactionItemProps) {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const t = useTypography()
   const { type, amount, date, user, note, status } = transaction
 
@@ -23,16 +23,16 @@ export default function TransactionItem({ transaction, onPress }: TransactionIte
   })
 
   const isDebit = type === "send" || type === "payment" || type === "withdrawal"
-  const amountColor = isDebit ? C.error : C.success
+  const amountColor = isDebit ? colors.error : colors.success
   const prefix = isDebit ? "-" : "+"
 
   const iconEl = () => {
     switch (type) {
-      case "send":       return <ArrowUpRight  size={20} color={C.error} />
-      case "receive":    return <ArrowDownLeft size={20} color={C.success} />
-      case "payment":    return <CreditCard    size={20} color={C.secondaryText} />
-      case "deposit":    return <Wallet        size={20} color={C.success} />
-      case "withdrawal": return <DollarSign    size={20} color={C.error} />
+      case "send":       return <ArrowUpRight  size={20} color={colors.error} />
+      case "receive":    return <ArrowDownLeft size={20} color={colors.success} />
+      case "payment":    return <CreditCard    size={20} color={colors.secondaryText} />
+      case "deposit":    return <Wallet        size={20} color={colors.success} />
+      case "withdrawal": return <DollarSign    size={20} color={colors.error} />
       default:           return null
     }
   }
@@ -45,8 +45,8 @@ export default function TransactionItem({ transaction, onPress }: TransactionIte
         paddingVertical: 16,
         paddingHorizontal: 20,
         borderBottomWidth: 1,
-        borderBottomColor: C.border,
-        backgroundColor: pressed ? C.card : "transparent",
+        borderBottomColor: colors.border,
+        backgroundColor: pressed ? colors.card : "transparent",
       })}
       onPress={() => onPress?.(transaction)}
     >
@@ -58,7 +58,7 @@ export default function TransactionItem({ transaction, onPress }: TransactionIte
           <View
             style={{
               width: 48, height: 48, borderRadius: 24,
-              backgroundColor: C.inputBackground,
+              backgroundColor: colors.inputBackground,
               alignItems: "center", justifyContent: "center",
             }}
           >

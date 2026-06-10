@@ -11,17 +11,17 @@ import { View, Text, StyleSheet, Pressable, FlatList } from "react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function LoginHistoryScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
   	},
   	description: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginBottom: 24,
   	},
@@ -29,14 +29,14 @@ export default function LoginHistoryScreen() {
   		marginBottom: 24,
   	},
   	loginItem: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 16,
   	},
   	currentDevice: {
   		borderWidth: 1,
-  		borderColor: C.primary,
+  		borderColor: colors.primary,
   	},
   	loginHeader: {
   		flexDirection: "row",
@@ -52,18 +52,18 @@ export default function LoginHistoryScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
   	},
   	deviceName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
   	loginDate: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginTop: 4,
   	},
@@ -71,7 +71,7 @@ export default function LoginHistoryScreen() {
   		paddingVertical: 8,
   	},
   	loginDetails: {
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 8,
   		padding: 12,
   	},
@@ -81,28 +81,28 @@ export default function LoginHistoryScreen() {
   		marginBottom: 8,
   	},
   	detailLabel: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	detailValue: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 14,
   		fontWeight: "500",
   	},
   	successText: {
-  		color: C.primary,
+  		color: colors.primary,
   	},
   	blockedText: {
-  		color: C.error,
+  		color: colors.error,
   	},
   	currentTag: {
-  		backgroundColor: C.primary,
+  		backgroundColor: colors.primary,
   		borderRadius: 12,
   		paddingHorizontal: 8,
   		paddingVertical: 4,
   	},
   	currentTagText: {
-  		color: C.background,
+  		color: colors.background,
   		fontSize: 12,
   		fontWeight: "600",
   	},
@@ -114,7 +114,7 @@ export default function LoginHistoryScreen() {
   		justifyContent: "center",
   	},
   	reportButtonText: {
-  		color: C.error,
+  		color: colors.error,
   		fontSize: 16,
   		fontWeight: "600",
   	},
@@ -169,9 +169,9 @@ export default function LoginHistoryScreen() {
 
 	const getDeviceIcon = (device: string | string[]) => {
 		if (device.includes("iPhone") || device.includes("iPad")) {
-			return <Smartphone size={20} color={C.text} />
+			return <Smartphone size={20} color={colors.text} />
 		} else {
-			return <Laptop size={20} color={C.text} />
+			return <Laptop size={20} color={colors.text} />
 		}
 	}
 
@@ -214,11 +214,11 @@ export default function LoginHistoryScreen() {
 												</Text>
 											</View>
 										) : (
-											<CheckCircle size={20} color={C.primary} />
+											<CheckCircle size={20} color={colors.primary} />
 										)}
 									</Fragment>
 								) : (
-									<AlertTriangle size={20} color={C.error} />
+									<AlertTriangle size={20} color={colors.error} />
 								)}
 							</View>
 						</View>

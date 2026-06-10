@@ -13,27 +13,27 @@ import { ArrowLeft, User, Search, X } from "lucide-react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function BlockedUsersScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	searchContainer: {
   		padding: 16,
   		borderBottomWidth: 1,
-  		borderBottomColor: C.border,
+  		borderBottomColor: colors.border,
   	},
   	searchBar: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 12,
   	},
   	searchInput: {
   		flex: 1,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		marginLeft: 12,
   	},
@@ -41,7 +41,7 @@ export default function BlockedUsersScreen() {
   		padding: 20,
   	},
   	description: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginBottom: 24,
   	},
@@ -51,7 +51,7 @@ export default function BlockedUsersScreen() {
   	userItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -60,7 +60,7 @@ export default function BlockedUsersScreen() {
   		width: 48,
   		height: 48,
   		borderRadius: 24,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 16,
@@ -69,23 +69,23 @@ export default function BlockedUsersScreen() {
   		flex: 1,
   	},
   	userName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	userUsername: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	unblockButton: {
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 8,
   		paddingHorizontal: 12,
   		paddingVertical: 8,
   	},
   	unblockButtonText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 14,
   		fontWeight: "600",
   	},
@@ -95,23 +95,23 @@ export default function BlockedUsersScreen() {
   		padding: 32,
   	},
   	emptyStateText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		textAlign: "center",
   	},
   	infoBox: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   	},
   	infoTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "600",
   		marginBottom: 12,
   	},
   	infoText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		lineHeight: 22,
   	},
@@ -134,12 +134,12 @@ export default function BlockedUsersScreen() {
 
 			<View style={styles.searchContainer}>
 				<View style={styles.searchBar}>
-					<Search size={20} color={C.secondaryText} />
+					<Search size={20} color={colors.secondaryText} />
 					<TextInput
 						style={styles.searchInput}
 						placeholder="Search blocked users"
-						placeholderTextColor={C.secondaryText}
-						selectionColor={C.primary}
+						placeholderTextColor={colors.secondaryText}
+						selectionColor={colors.primary}
 					/>
 				</View>
 			</View>
@@ -155,7 +155,7 @@ export default function BlockedUsersScreen() {
 						blockedUsers.map((user) => (
 							<View key={user.id} style={styles.userItem}>
 								<View style={styles.userAvatar}>
-									<User size={24} color={C.text} />
+									<User size={24} color={colors.text} />
 								</View>
 								<View style={styles.userInfo}>
 									<Text style={styles.userName}>{user.name}</Text>

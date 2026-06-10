@@ -7,11 +7,11 @@ import NumPad from "@/components/ui/num-pad"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardPinScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	content: {
   		flex: 1,
@@ -29,14 +29,14 @@ export default function CardPinScreen() {
   		marginBottom: 24,
   	},
   	title: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 24,
   		fontWeight: "600",
   		marginBottom: 12,
   		textAlign: "center",
   	},
   	description: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginBottom: 32,
   		textAlign: "center",
@@ -51,17 +51,17 @@ export default function CardPinScreen() {
   		height: 48,
   		borderRadius: 24,
   		borderWidth: 1,
-  		borderColor: C.border,
+  		borderColor: colors.border,
   		marginHorizontal: 8,
   		alignItems: "center",
   		justifyContent: "center",
   	},
   	pinDotFilled: {
-  		backgroundColor: C.card,
-  		borderColor: C.primary,
+  		backgroundColor: colors.card,
+  		borderColor: colors.primary,
   	},
   	pinDotText: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 20,
   		fontWeight: "600",
   	},
@@ -71,7 +71,7 @@ export default function CardPinScreen() {
   		padding: 8,
   	},
   	showPinText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginLeft: 8,
   	},
@@ -175,7 +175,7 @@ export default function CardPinScreen() {
 
 			<View style={styles.content}>
 				<View style={styles.lockIconContainer}>
-					<Lock size={32} color={C.primary} />
+					<Lock size={32} color={colors.primary} />
 				</View>
 
 				<Text style={styles.title}>
@@ -202,9 +202,9 @@ export default function CardPinScreen() {
 					style={styles.showPinButton}
 					onPress={() => setShowPin(!showPin)}>
 					{showPin ? (
-						<EyeOff size={20} color={C.secondaryText} />
+						<EyeOff size={20} color={colors.secondaryText} />
 					) : (
-						<Eye size={20} color={C.secondaryText} />
+						<Eye size={20} color={colors.secondaryText} />
 					)}
 					<Text style={styles.showPinText}>
 						{showPin ? "Hide PIN" : "Show PIN"}

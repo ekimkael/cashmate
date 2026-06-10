@@ -20,11 +20,11 @@ import {
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CardSettingsScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	scrollContent: {
   		padding: 20,
@@ -33,7 +33,7 @@ export default function CardSettingsScreen() {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
@@ -41,7 +41,7 @@ export default function CardSettingsScreen() {
   	settingItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -50,7 +50,7 @@ export default function CardSettingsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -59,31 +59,31 @@ export default function CardSettingsScreen() {
   		flex: 1,
   	},
   	settingLabel: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	settingDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	actionButton: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
   		justifyContent: "center",
   	},
   	actionText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 16,
   		fontWeight: "500",
   	},
   	managementItem: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
@@ -92,7 +92,7 @@ export default function CardSettingsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -101,13 +101,13 @@ export default function CardSettingsScreen() {
   		flex: 1,
   	},
   	managementLabel: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	managementDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   })
@@ -126,7 +126,7 @@ export default function CardSettingsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Bell size={20} color={C.text} />
+							<Bell size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Transaction Notifications</Text>
@@ -138,10 +138,10 @@ export default function CardSettingsScreen() {
 							value={notificationsEnabled}
 							onValueChange={setNotificationsEnabled}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 				</View>
@@ -151,7 +151,7 @@ export default function CardSettingsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<DollarSign size={20} color={C.text} />
+							<DollarSign size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Auto-Reload</Text>
@@ -163,10 +163,10 @@ export default function CardSettingsScreen() {
 							value={autoReloadEnabled}
 							onValueChange={setAutoReloadEnabled}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
@@ -184,7 +184,7 @@ export default function CardSettingsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<CreditCard size={20} color={C.text} />
+							<CreditCard size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Round Up Purchases</Text>
@@ -196,10 +196,10 @@ export default function CardSettingsScreen() {
 							value={roundUpEnabled}
 							onValueChange={setRoundUpEnabled}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
@@ -219,7 +219,7 @@ export default function CardSettingsScreen() {
 						style={styles.managementItem}
 						onPress={() => router.push("/card-design")}>
 						<View style={styles.managementIcon}>
-							<Settings size={20} color={C.text} />
+							<Settings size={20} color={colors.text} />
 						</View>
 						<View style={styles.managementContent}>
 							<Text style={styles.managementLabel}>Customize Card Design</Text>
@@ -229,7 +229,7 @@ export default function CardSettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -238,7 +238,7 @@ export default function CardSettingsScreen() {
 						style={styles.managementItem}
 						onPress={() => router.push("/card-virtual")}>
 						<View style={styles.managementIcon}>
-							<Smartphone size={20} color={C.text} />
+							<Smartphone size={20} color={colors.text} />
 						</View>
 						<View style={styles.managementContent}>
 							<Text style={styles.managementLabel}>Virtual Card</Text>
@@ -248,7 +248,7 @@ export default function CardSettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -257,7 +257,7 @@ export default function CardSettingsScreen() {
 						style={styles.managementItem}
 						onPress={() => router.push("/card-security")}>
 						<View style={styles.managementIcon}>
-							<CreditCard size={20} color={C.text} />
+							<CreditCard size={20} color={colors.text} />
 						</View>
 						<View style={styles.managementContent}>
 							<Text style={styles.managementLabel}>Card Security</Text>
@@ -267,7 +267,7 @@ export default function CardSettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={C.secondaryText}
+							color={colors.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>

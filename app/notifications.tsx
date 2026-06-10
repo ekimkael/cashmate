@@ -14,15 +14,15 @@ import { Bell, DollarSign, CreditCard, User } from "lucide-react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function NotificationsScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
-  	container: { flex: 1, backgroundColor: C.background },
+  	container: { flex: 1, backgroundColor: colors.background },
   	header: { padding: 16 },
   	headerTitle: {
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
-  		color: C.text,
+  		color: colors.text,
   	},
   	settings: { padding: 16, gap: 8 },
   	settingItem: {
@@ -31,7 +31,7 @@ export default function NotificationsScreen() {
   		borderRadius: 12,
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   	},
   	settingIcon: {
   		width: 40,
@@ -39,20 +39,20 @@ export default function NotificationsScreen() {
   		borderRadius: 20,
   		alignItems: "center",
   		justifyContent: "center",
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   	},
   	settingContent: { flex: 1, gap: 4 },
   	settingLabel: {
   		fontSize: 16,
   		fontWeight: "500",
-  		color: C.text,
+  		color: colors.text,
   	},
   	settingDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	recentTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginBottom: 16,
@@ -61,7 +61,7 @@ export default function NotificationsScreen() {
   		flexDirection: "row",
   		padding: 16,
   		borderBottomWidth: 1,
-  		borderBottomColor: C.border,
+  		borderBottomColor: colors.border,
   	},
   	unreadItem: {
   		backgroundColor: "rgba(0, 214, 50, 0.05)",
@@ -70,7 +70,7 @@ export default function NotificationsScreen() {
   		width: 40,
   		height: 40,
   		borderRadius: 20,
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 12,
@@ -79,18 +79,18 @@ export default function NotificationsScreen() {
   		flex: 1,
   	},
   	notificationTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "600",
   		marginBottom: 4,
   	},
   	notificationMessage: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 8,
   	},
   	notificationTime: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 12,
   	},
   	emptyContainer: {
@@ -98,7 +98,7 @@ export default function NotificationsScreen() {
   		alignItems: "center",
   	},
   	emptyText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   	},
   })
@@ -171,7 +171,7 @@ export default function NotificationsScreen() {
 				<View style={styles.settings}>
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<DollarSign size={20} color={C.text} />
+							<DollarSign size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Payments</Text>
@@ -183,16 +183,16 @@ export default function NotificationsScreen() {
 							value={notificationSettings.payments}
 							onValueChange={() => toggleSetting("payments")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<DollarSign size={20} color={C.text} />
+							<DollarSign size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Deposits</Text>
@@ -204,16 +204,16 @@ export default function NotificationsScreen() {
 							value={notificationSettings.deposits}
 							onValueChange={() => toggleSetting("deposits")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<CreditCard size={20} color={C.text} />
+							<CreditCard size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Card Activity</Text>
@@ -225,16 +225,16 @@ export default function NotificationsScreen() {
 							value={notificationSettings.cardActivity}
 							onValueChange={() => toggleSetting("cardActivity")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Bell size={20} color={C.text} />
+							<Bell size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Promotions</Text>
@@ -246,16 +246,16 @@ export default function NotificationsScreen() {
 							value={notificationSettings.promotions}
 							onValueChange={() => toggleSetting("promotions")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<User size={20} color={C.text} />
+							<User size={20} color={colors.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Friend Activity</Text>
@@ -267,10 +267,10 @@ export default function NotificationsScreen() {
 							value={notificationSettings.friendActivity}
 							onValueChange={() => toggleSetting("friendActivity")}
 							trackColor={{
-								false: C.border,
-								true: C.primary,
+								false: colors.border,
+								true: colors.primary,
 							}}
-							thumbColor={C.text}
+							thumbColor={colors.text}
 						/>
 					</View>
 				</View>
@@ -286,7 +286,7 @@ export default function NotificationsScreen() {
 								!item.read && styles.unreadItem,
 							]}>
 							<View style={styles.notificationIcon}>
-								<item.icon size={20} color={C.text} />
+								<item.icon size={20} color={colors.text} />
 							</View>
 							<View style={styles.notificationContent}>
 								<Text style={styles.notificationTitle}>{item.title}</Text>

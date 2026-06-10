@@ -9,16 +9,16 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import ContactItem from "@/components/ui/contact-item"
 
 export default function SendScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	searchContainer: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		margin: 16,
   		paddingHorizontal: 12,
@@ -29,14 +29,14 @@ export default function SendScreen() {
   	searchInput: {
   		flex: 1,
   		height: 48,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   	recentSection: {
   		marginBottom: 24,
   	},
   	sectionTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 18,
   		fontWeight: "600",
   		marginHorizontal: 16,
@@ -51,7 +51,7 @@ export default function SendScreen() {
   		alignItems: "center",
   	},
   	emptyText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   	},
   })
@@ -80,13 +80,13 @@ export default function SendScreen() {
 			<View style={styles.searchContainer}>
 				<Search
 					size={20}
-					color={C.secondaryText}
+					color={colors.secondaryText}
 					style={styles.searchIcon}
 				/>
 				<TextInput
 					style={styles.searchInput}
 					placeholder="Search name or $cashtag"
-					placeholderTextColor={C.secondaryText}
+					placeholderTextColor={colors.secondaryText}
 					value={searchQuery}
 					onChangeText={setSearchQuery}
 					autoCapitalize="none"

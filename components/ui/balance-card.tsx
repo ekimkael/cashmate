@@ -9,14 +9,14 @@ interface BalanceCardProps {
 }
 
 export default function BalanceCard({ balance }: BalanceCardProps) {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const t = useTypography()
   const [hidden, setHidden] = React.useState(false)
 
   return (
     <View
       style={{
-        backgroundColor: C.card,
+        backgroundColor: colors.card,
         borderRadius: 16,
         borderCurve: "continuous",
         padding: 20,
@@ -35,9 +35,9 @@ export default function BalanceCard({ balance }: BalanceCardProps) {
         </Text>
         <Pressable onPress={() => setHidden((h) => !h)} style={{ padding: 8 }}>
           {hidden ? (
-            <EyeOff size={20} color={C.secondaryText} />
+            <EyeOff size={20} color={colors.secondaryText} />
           ) : (
-            <Eye size={20} color={C.secondaryText} />
+            <Eye size={20} color={colors.secondaryText} />
           )}
         </Pressable>
       </View>

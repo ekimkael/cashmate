@@ -1,31 +1,26 @@
 import React from "react"
 import { ScrollView, View, Text, Pressable } from "react-native"
-import { useRouter, Stack } from "expo-router"
-import * as Haptics from "expo-haptics"
+import { Stack } from "expo-router"
+import { useHapticNavigation } from "@/hooks/use-haptic-navigation"
 import {
   Wallet, Building, DollarSign, CreditCard,
   ArrowDownToLine, ArrowUpFromLine,
 } from "lucide-react-native"
 
-import Colors, { useThemeColors } from "@/constants/colors"
-import { useUserStore } from '@/store/user-store'
+import { useThemeColors } from "@/constants/colors"
+import { useRequireUser } from "@/hooks/use-require-user"
 
 export default function BankingScreen() {
-  const C = useThemeColors()
-  const router = useRouter()
-  const { user } = useUserStore()
+  const colors = useThemeColors()
+  const navigate = useHapticNavigation()
+  const user = useRequireUser()
 
   if (!user) {
     return (
-      <View style={{ flex: 1, backgroundColor: C.background, alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ color: C.text, fontSize: 16 }}>User not found</Text>
+      <View style={{ flex: 1, backgroundColor: colors.background, alignItems: "center", justifyContent: "center" }}>
+        <Text style={{ color: colors.text, fontSize: 16 }}>User not found</Text>
       </View>
     )
-  }
-
-  const handlePress = (path: string) => {
-    if (process.env.EXPO_OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    router.push(path as any)
   }
 
   return (
@@ -33,7 +28,7 @@ export default function BankingScreen() {
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
           icon="plus.circle"
-          onPress={() => handlePress("/link-account")}
+          onPress={() => navigate("/link-account")}
         />
       </Stack.Toolbar>
 
@@ -43,9 +38,9 @@ export default function BankingScreen() {
       >
         {/* Virtual Card */}
         <Pressable
-          onPress={() => handlePress("/card")}
+          onPress={() => navigate("/card")}
           style={{
-            backgroundColor: C.primary,
+            backgroundColor: colors.primary,
             borderRadius: 20,
             borderCurve: "continuous",
             padding: 24,
@@ -55,12 +50,12 @@ export default function BankingScreen() {
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
-            <CreditCard size={24} color={C.background} />
-            <Text style={{ fontSize: 18, fontWeight: "600", color: C.background }}>
+            <CreditCard size={24} color={colors.background} />
+            <Text style={{ fontSize: 18, fontWeight: "600", color: colors.background }}>
               {user.name}
             </Text>
           </View>
-          <Text style={{ fontSize: 16, fontWeight: "500", color: C.background, alignSelf: "flex-end" }}>
+          <Text style={{ fontSize: 16, fontWeight: "500", color: colors.background, alignSelf: "flex-end" }}>
             •••• 1234
           </Text>
         </Pressable>
@@ -68,22 +63,22 @@ export default function BankingScreen() {
         {/* Cash Balance */}
         <View
           style={{
-            backgroundColor: C.card,
+            backgroundColor: colors.card,
             borderRadius: 16,
             borderCurve: "continuous",
             padding: 20,
             gap: 6,
           }}
         >
-          <Text style={{ fontSize: 14, color: C.secondaryText }}>Cash Balance</Text>
-          <Text style={{ fontSize: 34, fontWeight: "700", color: C.text, fontVariant: ["tabular-nums"] }}>
+          <Text style={{ fontSize: 14, color: colors.secondaryText }}>Cash Balance</Text>
+          <Text style={{ fontSize: 34, fontWeight: "700", color: colors.text, fontVariant: ["tabular-nums"] }}>
             ${user.balance.toFixed(2)}
           </Text>
         </View>
 
         {/* Actions grid */}
         <View>
-          <Text style={{ fontSize: 18, fontWeight: "600", color: C.text, marginBottom: 12 }}>
+          <Text style={{ fontSize: 18, fontWeight: "600", color: colors.text, marginBottom: 12 }}>
             Actions
           </Text>
           <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12 }}>
@@ -95,10 +90,10 @@ export default function BankingScreen() {
             ].map(({ icon: Icon, label, path }) => (
               <Pressable
                 key={label}
-                onPress={() => handlePress(path)}
+                onPress={() => navigate(path)}
                 style={{
                   width: "47%",
-                  backgroundColor: C.card,
+                  backgroundColor: colors.card,
                   borderRadius: 16,
                   borderCurve: "continuous",
                   padding: 16,
@@ -110,14 +105,14 @@ export default function BankingScreen() {
                     width: 44,
                     height: 44,
                     borderRadius: 22,
-                    backgroundColor: "rgba(0, 214, 50, 0.12)",
+                    backgroundColor: colors.primaryMuted,
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <Icon size={22} color={C.primary} />
+                  <Icon size={22} color={colors.primary} />
                 </View>
-                <Text style={{ fontSize: 15, fontWeight: "500", color: C.text }}>{label}</Text>
+                <Text style={{ fontSize: 15, fontWeight: "500", color: colors.text }}>{label}</Text>
               </Pressable>
             ))}
           </View>
@@ -125,16 +120,16 @@ export default function BankingScreen() {
 
         {/* Linked Accounts */}
         <View style={{ gap: 12 }}>
-          <Text style={{ fontSize: 18, fontWeight: "600", color: C.text }}>
+          <Text style={{ fontSize: 18, fontWeight: "600", color: colors.text }}>
             Linked Accounts
           </Text>
           <Pressable
-            onPress={() => handlePress("/linked-accounts")}
+            onPress={() => navigate("/linked-accounts")}
             style={{
               flexDirection: "row",
               alignItems: "center",
               gap: 16,
-              backgroundColor: C.card,
+              backgroundColor: colors.card,
               borderRadius: 16,
               borderCurve: "continuous",
               padding: 16,
@@ -150,11 +145,11 @@ export default function BankingScreen() {
                 justifyContent: "center",
               }}
             >
-              <Wallet size={24} color={C.text} />
+              <Wallet size={24} color={colors.text} />
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 16, fontWeight: "500", color: C.text }}>Bank Account</Text>
-              <Text style={{ fontSize: 14, color: C.secondaryText }}>•••• 5678</Text>
+              <Text style={{ fontSize: 16, fontWeight: "500", color: colors.text }}>Bank Account</Text>
+              <Text style={{ fontSize: 14, color: colors.secondaryText }}>•••• 5678</Text>
             </View>
           </Pressable>
         </View>

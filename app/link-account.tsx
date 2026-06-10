@@ -14,11 +14,11 @@ import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
 
 export default function LinkAccountScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	methodContainer: {
   		flex: 1,
@@ -28,7 +28,7 @@ export default function LinkAccountScreen() {
   		padding: 20,
   	},
   	title: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 24,
   		fontWeight: "600",
   		marginBottom: 24,
@@ -36,7 +36,7 @@ export default function LinkAccountScreen() {
   	methodCard: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 16,
@@ -45,7 +45,7 @@ export default function LinkAccountScreen() {
   		width: 48,
   		height: 48,
   		borderRadius: 24,
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		alignItems: "center",
   		justifyContent: "center",
   		marginRight: 16,
@@ -54,25 +54,25 @@ export default function LinkAccountScreen() {
   		flex: 1,
   	},
   	methodTitle: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   		marginBottom: 4,
   	},
   	methodDescription: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   	},
   	securityNote: {
   		flexDirection: "row",
   		alignItems: "flex-start",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginTop: 24,
   	},
   	securityText: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginLeft: 12,
   		flex: 1,
@@ -81,10 +81,10 @@ export default function LinkAccountScreen() {
   		marginBottom: 24,
   	},
   	searchInput: {
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		padding: 16,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   	bankList: {
@@ -94,28 +94,28 @@ export default function LinkAccountScreen() {
   		flexDirection: "row",
   		justifyContent: "space-between",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		marginBottom: 12,
   	},
   	bankName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
   	manualButton: {
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 16,
   		alignItems: "center",
   		justifyContent: "center",
   		borderWidth: 1,
-  		borderColor: C.border,
+  		borderColor: colors.border,
   		borderStyle: "dashed",
   	},
   	manualButtonText: {
-  		color: C.primary,
+  		color: colors.primary,
   		fontSize: 16,
   		fontWeight: "500",
   	},
@@ -130,15 +130,15 @@ export default function LinkAccountScreen() {
   		justifyContent: "space-between",
   	},
   	inputLabel: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginBottom: 8,
   	},
   	input: {
-  		backgroundColor: C.inputBackground,
+  		backgroundColor: colors.inputBackground,
   		borderRadius: 12,
   		padding: 16,
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   	},
   })
@@ -177,7 +177,7 @@ export default function LinkAccountScreen() {
 						style={styles.methodCard}
 						onPress={() => setLinkMethod("bank")}>
 						<View style={styles.methodIcon}>
-							<Building size={24} color={C.text} />
+							<Building size={24} color={colors.text} />
 						</View>
 						<View style={styles.methodInfo}>
 							<Text style={styles.methodTitle}>Link a Bank Account</Text>
@@ -185,14 +185,14 @@ export default function LinkAccountScreen() {
 								Connect your checking or savings account
 							</Text>
 						</View>
-						<ChevronRight size={20} color={C.secondaryText} />
+						<ChevronRight size={20} color={colors.secondaryText} />
 					</Pressable>
 
 					<Pressable
 						style={styles.methodCard}
 						onPress={() => setLinkMethod("card")}>
 						<View style={styles.methodIcon}>
-							<CreditCard size={24} color={C.text} />
+							<CreditCard size={24} color={colors.text} />
 						</View>
 						<View style={styles.methodInfo}>
 							<Text style={styles.methodTitle}>Link a Debit Card</Text>
@@ -200,11 +200,11 @@ export default function LinkAccountScreen() {
 								Connect your debit card for instant transfers
 							</Text>
 						</View>
-						<ChevronRight size={20} color={C.secondaryText} />
+						<ChevronRight size={20} color={colors.secondaryText} />
 					</Pressable>
 
 					<View style={styles.securityNote}>
-						<Lock size={16} color={C.secondaryText} />
+						<Lock size={16} color={colors.secondaryText} />
 						<Text style={styles.securityText}>
 							Your financial information is encrypted and secure. We use
 							bank-level security to protect your data.
@@ -219,7 +219,7 @@ export default function LinkAccountScreen() {
 						<TextInput
 							style={styles.searchInput}
 							placeholder="Search for your bank"
-							placeholderTextColor={C.secondaryText}
+							placeholderTextColor={colors.secondaryText}
 						/>
 					</View>
 
@@ -230,7 +230,7 @@ export default function LinkAccountScreen() {
 								style={styles.bankItem}
 								onPress={() => handleSelectBank(bank)}>
 								<Text style={styles.bankName}>{bank.name}</Text>
-								<ChevronRight size={20} color={C.secondaryText} />
+								<ChevronRight size={20} color={colors.secondaryText} />
 							</Pressable>
 						))}
 					</View>
@@ -251,7 +251,7 @@ export default function LinkAccountScreen() {
 							<TextInput
 								style={styles.input}
 								placeholder="1234 5678 9012 3456"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								keyboardType="number-pad"
 							/>
 						</View>
@@ -262,7 +262,7 @@ export default function LinkAccountScreen() {
 								<TextInput
 									style={styles.input}
 									placeholder="MM/YY"
-									placeholderTextColor={C.secondaryText}
+									placeholderTextColor={colors.secondaryText}
 									keyboardType="number-pad"
 								/>
 							</View>
@@ -272,7 +272,7 @@ export default function LinkAccountScreen() {
 								<TextInput
 									style={styles.input}
 									placeholder="123"
-									placeholderTextColor={C.secondaryText}
+									placeholderTextColor={colors.secondaryText}
 									keyboardType="number-pad"
 									secureTextEntry
 								/>
@@ -284,7 +284,7 @@ export default function LinkAccountScreen() {
 							<TextInput
 								style={styles.input}
 								placeholder="John Doe"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 							/>
 						</View>
 
@@ -293,7 +293,7 @@ export default function LinkAccountScreen() {
 							<TextInput
 								style={styles.input}
 								placeholder="12345"
-								placeholderTextColor={C.secondaryText}
+								placeholderTextColor={colors.secondaryText}
 								keyboardType="number-pad"
 							/>
 						</View>
@@ -302,7 +302,7 @@ export default function LinkAccountScreen() {
 					<Button label="Add Card" onPress={() => router.push("/linked-accounts")} style={{ marginBottom: 24 }} />
 
 					<View style={styles.securityNote}>
-						<Lock size={16} color={C.secondaryText} />
+						<Lock size={16} color={colors.secondaryText} />
 						<Text style={styles.securityText}>
 							Your card information is encrypted and secure. We use bank-level
 							security to protect your data.

@@ -6,11 +6,11 @@ import { View, Text, StyleSheet, Pressable, FlatList } from "react-native"
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function CurrencyScreen() {
-  const C = useThemeColors()
+  const colors = useThemeColors()
   const styles = StyleSheet.create({
   	container: {
   		flex: 1,
-  		backgroundColor: C.background,
+  		backgroundColor: colors.background,
   	},
   	search: {
   		padding: 16,
@@ -19,12 +19,12 @@ export default function CurrencyScreen() {
   	searchBar: {
   		flexDirection: "row",
   		alignItems: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   		borderRadius: 12,
   		padding: 12,
   	},
   	searchPlaceholder: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 16,
   		marginLeft: 12,
   	},
@@ -35,7 +35,7 @@ export default function CurrencyScreen() {
   		justifyContent: "space-between",
   		paddingVertical: 16,
   		borderBottomWidth: 1,
-  		borderBottomColor: C.border,
+  		borderBottomColor: colors.border,
   	},
   	currencyInfo: {
   		gap: 16,
@@ -48,21 +48,21 @@ export default function CurrencyScreen() {
   		borderRadius: 20,
   		alignItems: "center",
   		justifyContent: "center",
-  		backgroundColor: C.card,
+  		backgroundColor: colors.card,
   	},
   	currencySymbolText: {
   		textAlign: "center",
   		fontSize: 18,
   		fontWeight: "600",
-  		color: C.text,
+  		color: colors.text,
   	},
   	currencyName: {
-  		color: C.text,
+  		color: colors.text,
   		fontSize: 16,
   		fontWeight: "500",
   	},
   	currencyCode: {
-  		color: C.secondaryText,
+  		color: colors.secondaryText,
   		fontSize: 14,
   		marginTop: 4,
   	},
@@ -101,15 +101,15 @@ export default function CurrencyScreen() {
 			<Stack.Screen
 				options={{
 					title: "Currency",
-					headerTintColor: C.text,
+					headerTintColor: colors.text,
 					headerBackButtonDisplayMode: "minimal",
-					headerStyle: { backgroundColor: C.background },
+					headerStyle: { backgroundColor: colors.background },
 				}}
 			/>
 
 			<View style={styles.search}>
 				<View style={styles.searchBar}>
-					<Search size={20} color={C.secondaryText} />
+					<Search size={20} color={colors.secondaryText} />
 					<Text style={styles.searchPlaceholder}>Search currencies</Text>
 				</View>
 			</View>
@@ -134,7 +134,7 @@ export default function CurrencyScreen() {
 						</View>
 
 						{selectedCurrency === item.code && (
-							<Check size={24} color={C.primary} />
+							<Check size={24} color={colors.primary} />
 						)}
 					</Pressable>
 				)}
