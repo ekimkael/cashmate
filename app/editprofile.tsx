@@ -11,10 +11,98 @@ import { Stack, useRouter } from "expo-router"
 import * as ImagePicker from "expo-image-picker"
 import { Camera, User, Mail, AtSign } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 import { useUserStore } from "@/store/userStore"
 
 export default function EditProfileScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		padding: 20,
+  	},
+  	avatarContainer: {
+  		alignItems: "center",
+  		marginBottom: 32,
+  	},
+  	avatar: {
+  		width: 100,
+  		height: 100,
+  		borderRadius: 50,
+  		marginBottom: 16,
+  	},
+  	defaultAvatar: {
+  		width: 100,
+  		height: 100,
+  		borderRadius: 50,
+  		backgroundColor: C.card,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginBottom: 16,
+  	},
+  	changePhotoButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 20,
+  		paddingVertical: 8,
+  		paddingHorizontal: 16,
+  	},
+  	changePhotoText: {
+  		color: C.text,
+  		fontSize: 14,
+  		fontWeight: "500",
+  		marginLeft: 8,
+  	},
+  	errorContainer: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		borderRadius: 8,
+  		padding: 12,
+  		marginBottom: 20,
+  	},
+  	errorText: {
+  		color: C.error,
+  		fontSize: 14,
+  	},
+  	form: {
+  		marginBottom: 32,
+  	},
+  	inputGroup: {
+  		marginBottom: 20,
+  	},
+  	inputLabel: {
+  		color: C.text,
+  		fontSize: 14,
+  		fontWeight: "500",
+  		marginBottom: 8,
+  	},
+  	inputContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		paddingHorizontal: 16,
+  	},
+  	inputIcon: {
+  		marginRight: 12,
+  	},
+  	input: {
+  		flex: 1,
+  		height: 56,
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  	footer: {
+  		padding: 20,
+  		borderTopWidth: 1,
+  		borderTopColor: C.border,
+  	},
+  })
 	const router = useRouter()
 	const { user, setUser } = useUserStore()
 
@@ -75,11 +163,11 @@ export default function EditProfileScreen() {
 						<Image source={{ uri: avatar }} style={styles.avatar} />
 					) : (
 						<View style={styles.defaultAvatar}>
-							<User size={40} color={Colors.dark.text} />
+							<User size={40} color={C.text} />
 						</View>
 					)}
 					<Pressable style={styles.changePhotoButton} onPress={pickImage}>
-						<Camera size={20} color={Colors.dark.text} />
+						<Camera size={20} color={C.text} />
 						<Text style={styles.changePhotoText}>Change Photo</Text>
 					</Pressable>
 				</View>
@@ -96,13 +184,13 @@ export default function EditProfileScreen() {
 						<View style={styles.inputContainer}>
 							<User
 								size={20}
-								color={Colors.dark.secondaryText}
+								color={C.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Full Name"
-								placeholderTextColor={Colors.dark.secondaryText}
+								placeholderTextColor={C.secondaryText}
 								value={name}
 								onChangeText={setName}
 							/>
@@ -114,13 +202,13 @@ export default function EditProfileScreen() {
 						<View style={styles.inputContainer}>
 							<AtSign
 								size={20}
-								color={Colors.dark.secondaryText}
+								color={C.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Username"
-								placeholderTextColor={Colors.dark.secondaryText}
+								placeholderTextColor={C.secondaryText}
 								value={username}
 								onChangeText={setUsername}
 								autoCapitalize="none"
@@ -133,13 +221,13 @@ export default function EditProfileScreen() {
 						<View style={styles.inputContainer}>
 							<Mail
 								size={20}
-								color={Colors.dark.secondaryText}
+								color={C.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Email"
-								placeholderTextColor={Colors.dark.secondaryText}
+								placeholderTextColor={C.secondaryText}
 								value={email}
 								onChangeText={setEmail}
 								autoCapitalize="none"
@@ -151,109 +239,9 @@ export default function EditProfileScreen() {
 			</View>
 
 			<View style={styles.footer}>
-				<Pressable style={styles.saveButton} onPress={handleSave}>
-					<Text style={styles.saveButtonText}>Save Changes</Text>
-				</Pressable>
+				<Button label="Save Changes" onPress={handleSave} />
 			</View>
 		</View>
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		padding: 20,
-	},
-	avatarContainer: {
-		alignItems: "center",
-		marginBottom: 32,
-	},
-	avatar: {
-		width: 100,
-		height: 100,
-		borderRadius: 50,
-		marginBottom: 16,
-	},
-	defaultAvatar: {
-		width: 100,
-		height: 100,
-		borderRadius: 50,
-		backgroundColor: Colors.dark.card,
-		alignItems: "center",
-		justifyContent: "center",
-		marginBottom: 16,
-	},
-	changePhotoButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 20,
-		paddingVertical: 8,
-		paddingHorizontal: 16,
-	},
-	changePhotoText: {
-		color: Colors.dark.text,
-		fontSize: 14,
-		fontWeight: "500",
-		marginLeft: 8,
-	},
-	errorContainer: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		borderRadius: 8,
-		padding: 12,
-		marginBottom: 20,
-	},
-	errorText: {
-		color: Colors.dark.error,
-		fontSize: 14,
-	},
-	form: {
-		marginBottom: 32,
-	},
-	inputGroup: {
-		marginBottom: 20,
-	},
-	inputLabel: {
-		color: Colors.dark.text,
-		fontSize: 14,
-		fontWeight: "500",
-		marginBottom: 8,
-	},
-	inputContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		paddingHorizontal: 16,
-	},
-	inputIcon: {
-		marginRight: 12,
-	},
-	input: {
-		flex: 1,
-		height: 56,
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	footer: {
-		padding: 20,
-		borderTopWidth: 1,
-		borderTopColor: Colors.dark.border,
-	},
-	saveButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		height: 56,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	saveButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-})

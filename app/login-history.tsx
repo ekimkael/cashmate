@@ -8,9 +8,117 @@ import { Stack } from "expo-router"
 import React, { Fragment } from "react"
 import { View, Text, StyleSheet, Pressable, FlatList } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function LoginHistoryScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	description: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginBottom: 24,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	loginItem: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 16,
+  	},
+  	currentDevice: {
+  		borderWidth: 1,
+  		borderColor: C.primary,
+  	},
+  	loginHeader: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		justifyContent: "space-between",
+  		marginBottom: 16,
+  	},
+  	deviceInfo: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  	},
+  	deviceIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	deviceName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  	},
+  	loginDate: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginTop: 4,
+  	},
+  	statusContainer: {
+  		paddingVertical: 8,
+  	},
+  	loginDetails: {
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 8,
+  		padding: 12,
+  	},
+  	detailRow: {
+  		flexDirection: "row",
+  		justifyContent: "space-between",
+  		marginBottom: 8,
+  	},
+  	detailLabel: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	detailValue: {
+  		color: C.text,
+  		fontSize: 14,
+  		fontWeight: "500",
+  	},
+  	successText: {
+  		color: C.primary,
+  	},
+  	blockedText: {
+  		color: C.error,
+  	},
+  	currentTag: {
+  		backgroundColor: C.primary,
+  		borderRadius: 12,
+  		paddingHorizontal: 8,
+  		paddingVertical: 4,
+  	},
+  	currentTagText: {
+  		color: C.background,
+  		fontSize: 12,
+  		fontWeight: "600",
+  	},
+  	reportButton: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		borderRadius: 12,
+  		padding: 16,
+  		alignItems: "center",
+  		justifyContent: "center",
+  	},
+  	reportButtonText: {
+  		color: C.error,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  })
 	const loginHistory = [
 		{
 			id: "1",
@@ -61,9 +169,9 @@ export default function LoginHistoryScreen() {
 
 	const getDeviceIcon = (device: string | string[]) => {
 		if (device.includes("iPhone") || device.includes("iPad")) {
-			return <Smartphone size={20} color={Colors.dark.text} />
+			return <Smartphone size={20} color={C.text} />
 		} else {
-			return <Laptop size={20} color={Colors.dark.text} />
+			return <Laptop size={20} color={C.text} />
 		}
 	}
 
@@ -106,11 +214,11 @@ export default function LoginHistoryScreen() {
 												</Text>
 											</View>
 										) : (
-											<CheckCircle size={20} color={Colors.dark.primary} />
+											<CheckCircle size={20} color={C.primary} />
 										)}
 									</Fragment>
 								) : (
-									<AlertTriangle size={20} color={Colors.dark.error} />
+									<AlertTriangle size={20} color={C.error} />
 								)}
 							</View>
 						</View>
@@ -153,110 +261,3 @@ export default function LoginHistoryScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	description: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginBottom: 24,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	loginItem: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 16,
-	},
-	currentDevice: {
-		borderWidth: 1,
-		borderColor: Colors.dark.primary,
-	},
-	loginHeader: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-		marginBottom: 16,
-	},
-	deviceInfo: {
-		flexDirection: "row",
-		alignItems: "center",
-	},
-	deviceIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	deviceName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-	},
-	loginDate: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginTop: 4,
-	},
-	statusContainer: {
-		paddingVertical: 8,
-	},
-	loginDetails: {
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 8,
-		padding: 12,
-	},
-	detailRow: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		marginBottom: 8,
-	},
-	detailLabel: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	detailValue: {
-		color: Colors.dark.text,
-		fontSize: 14,
-		fontWeight: "500",
-	},
-	successText: {
-		color: Colors.dark.primary,
-	},
-	blockedText: {
-		color: Colors.dark.error,
-	},
-	currentTag: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		paddingHorizontal: 8,
-		paddingVertical: 4,
-	},
-	currentTagText: {
-		color: Colors.dark.background,
-		fontSize: 12,
-		fontWeight: "600",
-	},
-	reportButton: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	reportButtonText: {
-		color: Colors.dark.error,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-})

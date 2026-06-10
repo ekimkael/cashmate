@@ -9,9 +9,107 @@ import {
 	CheckCircle,
 	Clock,
 } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function DataDownloadScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	description: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginBottom: 24,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	dataItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	dataIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	dataContent: {
+  		flex: 1,
+  	},
+  	dataTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	dataDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	infoBox: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 24,
+  	},
+  	infoText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		lineHeight: 20,
+  	},
+  	requestButton: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		justifyContent: "center",
+  		backgroundColor: C.primary,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	requestButtonText: {
+  		color: C.background,
+  		fontSize: 16,
+  		fontWeight: "600",
+  		marginLeft: 8,
+  	},
+  	statusContainer: {
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 24,
+  	},
+  	statusTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginTop: 16,
+  		marginBottom: 8,
+  	},
+  	statusDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  		lineHeight: 20,
+  	},
+  })
 	const router = useRouter()
 
 	const [requestStatus, setRequestStatus] = useState("none") // none, pending, complete
@@ -39,7 +137,7 @@ export default function DataDownloadScreen() {
 
 					<View style={styles.dataItem}>
 						<View style={styles.dataIcon}>
-							<FileText size={20} color={Colors.dark.text} />
+							<FileText size={20} color={C.text} />
 						</View>
 						<View style={styles.dataContent}>
 							<Text style={styles.dataTitle}>Account Information</Text>
@@ -51,7 +149,7 @@ export default function DataDownloadScreen() {
 
 					<View style={styles.dataItem}>
 						<View style={styles.dataIcon}>
-							<FileText size={20} color={Colors.dark.text} />
+							<FileText size={20} color={C.text} />
 						</View>
 						<View style={styles.dataContent}>
 							<Text style={styles.dataTitle}>Transaction History</Text>
@@ -63,7 +161,7 @@ export default function DataDownloadScreen() {
 
 					<View style={styles.dataItem}>
 						<View style={styles.dataIcon}>
-							<FileText size={20} color={Colors.dark.text} />
+							<FileText size={20} color={C.text} />
 						</View>
 						<View style={styles.dataContent}>
 							<Text style={styles.dataTitle}>Payment Methods</Text>
@@ -75,7 +173,7 @@ export default function DataDownloadScreen() {
 
 					<View style={styles.dataItem}>
 						<View style={styles.dataIcon}>
-							<FileText size={20} color={Colors.dark.text} />
+							<FileText size={20} color={C.text} />
 						</View>
 						<View style={styles.dataContent}>
 							<Text style={styles.dataTitle}>Login Activity</Text>
@@ -96,14 +194,14 @@ export default function DataDownloadScreen() {
 
 				{requestStatus === "none" && (
 					<Pressable style={styles.requestButton} onPress={handleRequestData}>
-						<Download size={20} color={Colors.dark.background} />
+						<Download size={20} color={C.background} />
 						<Text style={styles.requestButtonText}>Request Data Download</Text>
 					</Pressable>
 				)}
 
 				{requestStatus === "pending" && (
 					<View style={styles.statusContainer}>
-						<Clock size={24} color={Colors.dark.primary} />
+						<Clock size={24} color={C.primary} />
 						<Text style={styles.statusTitle}>Request Processing</Text>
 						<Text style={styles.statusDescription}>
 							We're preparing your data. This may take up to 48 hours. We'll
@@ -114,7 +212,7 @@ export default function DataDownloadScreen() {
 
 				{requestStatus === "complete" && (
 					<View style={styles.statusContainer}>
-						<CheckCircle size={24} color={Colors.dark.primary} />
+						<CheckCircle size={24} color={C.primary} />
 						<Text style={styles.statusTitle}>Request Received</Text>
 						<Text style={styles.statusDescription}>
 							Your data request has been received. We'll email you when your
@@ -127,100 +225,3 @@ export default function DataDownloadScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	description: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginBottom: 24,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	dataItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	dataIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	dataContent: {
-		flex: 1,
-	},
-	dataTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	dataDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	infoBox: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 24,
-	},
-	infoText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		lineHeight: 20,
-	},
-	requestButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-	},
-	requestButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-		marginLeft: 8,
-	},
-	statusContainer: {
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 24,
-	},
-	statusTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginTop: 16,
-		marginBottom: 8,
-	},
-	statusDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-		lineHeight: 20,
-	},
-})

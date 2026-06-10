@@ -18,9 +18,97 @@ import {
 	Fingerprint,
 } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function PrivacySecurityScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	section: {
+  		marginBottom: 32,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	menuItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	menuItemIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	menuItemContent: {
+  		flex: 1,
+  	},
+  	menuItemTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	menuItemDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	settingItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	settingIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	settingContent: {
+  		flex: 1,
+  	},
+  	settingLabel: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	settingDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	dangerItem: {
+  		justifyContent: "center",
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  	},
+  	dangerText: {
+  		color: C.error,
+  		fontSize: 16,
+  		fontWeight: "600",
+  	},
+  })
 	const router = useRouter()
 
 	const [privacySettings, setPrivacySettings] = React.useState({
@@ -58,7 +146,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/change-password")}>
 						<View style={styles.menuItemIcon}>
-							<Lock size={20} color={Colors.dark.text} />
+							<Lock size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Change Password</Text>
@@ -68,14 +156,14 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Fingerprint size={20} color={Colors.dark.text} />
+							<Fingerprint size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Biometric Login</Text>
@@ -87,10 +175,10 @@ export default function PrivacySecurityScreen() {
 							value={privacySettings.biometricLogin}
 							onValueChange={() => toggleSetting("biometricLogin")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
@@ -98,7 +186,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/security-alerts")}>
 						<View style={styles.menuItemIcon}>
-							<Bell size={20} color={Colors.dark.text} />
+							<Bell size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Security Alerts</Text>
@@ -108,7 +196,7 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -117,7 +205,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/login-history")}>
 						<View style={styles.menuItemIcon}>
-							<Shield size={20} color={Colors.dark.text} />
+							<Shield size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Login History</Text>
@@ -127,7 +215,7 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -138,7 +226,7 @@ export default function PrivacySecurityScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Eye size={20} color={Colors.dark.text} />
+							<Eye size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Private Activity</Text>
@@ -150,16 +238,16 @@ export default function PrivacySecurityScreen() {
 							value={privacySettings.activityPrivate}
 							onValueChange={() => toggleSetting("activityPrivate")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<User size={20} color={Colors.dark.text} />
+							<User size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Contacts Access</Text>
@@ -171,10 +259,10 @@ export default function PrivacySecurityScreen() {
 							value={privacySettings.contactsAccess}
 							onValueChange={() => toggleSetting("contactsAccess")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
@@ -182,7 +270,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/blocked-users")}>
 						<View style={styles.menuItemIcon}>
-							<User size={20} color={Colors.dark.text} />
+							<User size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Blocked Users</Text>
@@ -192,7 +280,7 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -203,7 +291,7 @@ export default function PrivacySecurityScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Shield size={20} color={Colors.dark.text} />
+							<Shield size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Data Collection</Text>
@@ -215,10 +303,10 @@ export default function PrivacySecurityScreen() {
 							value={privacySettings.dataCollection}
 							onValueChange={() => toggleSetting("dataCollection")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
@@ -226,7 +314,7 @@ export default function PrivacySecurityScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/data-download")}>
 						<View style={styles.menuItemIcon}>
-							<Shield size={20} color={Colors.dark.text} />
+							<Shield size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Download Your Data</Text>
@@ -236,7 +324,7 @@ export default function PrivacySecurityScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -252,90 +340,3 @@ export default function PrivacySecurityScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	section: {
-		marginBottom: 32,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	menuItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	menuItemIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	menuItemContent: {
-		flex: 1,
-	},
-	menuItemTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	menuItemDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	settingItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	settingIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	settingContent: {
-		flex: 1,
-	},
-	settingLabel: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	settingDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	dangerItem: {
-		justifyContent: "center",
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-	},
-	dangerText: {
-		color: Colors.dark.error,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-})

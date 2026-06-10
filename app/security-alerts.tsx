@@ -3,9 +3,62 @@ import { Stack, useRouter } from "expo-router"
 import { View, Text, StyleSheet, ScrollView, Switch } from "react-native"
 import { Bell, Shield, CreditCard, User, Lock } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function SecurityAlertsScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	description: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginBottom: 24,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	alertItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	alertIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	alertContent: {
+  		flex: 1,
+  	},
+  	alertTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	alertDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	note: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  	},
+  })
 	const router = useRouter()
 
 	const [alerts, setAlerts] = useState({
@@ -32,7 +85,7 @@ export default function SecurityAlertsScreen() {
 				<View style={styles.section}>
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<Shield size={20} color={Colors.dark.text} />
+							<Shield size={20} color={C.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Suspicious Login Attempts</Text>
@@ -44,16 +97,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.loginAttempts}
 							onValueChange={() => toggleAlert("loginAttempts")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<Bell size={20} color={Colors.dark.text} />
+							<Bell size={20} color={C.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>New Device Login</Text>
@@ -65,16 +118,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.newDevices}
 							onValueChange={() => toggleAlert("newDevices")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<Lock size={20} color={Colors.dark.text} />
+							<Lock size={20} color={C.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Password Changes</Text>
@@ -86,16 +139,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.passwordChanges}
 							onValueChange={() => toggleAlert("passwordChanges")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<Shield size={20} color={Colors.dark.text} />
+							<Shield size={20} color={C.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Suspicious Activity</Text>
@@ -107,16 +160,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.suspiciousActivity}
 							onValueChange={() => toggleAlert("suspiciousActivity")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<CreditCard size={20} color={Colors.dark.text} />
+							<CreditCard size={20} color={C.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Payment Method Changes</Text>
@@ -128,16 +181,16 @@ export default function SecurityAlertsScreen() {
 							value={alerts.paymentMethods}
 							onValueChange={() => toggleAlert("paymentMethods")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.alertItem}>
 						<View style={styles.alertIcon}>
-							<User size={20} color={Colors.dark.text} />
+							<User size={20} color={C.text} />
 						</View>
 						<View style={styles.alertContent}>
 							<Text style={styles.alertTitle}>Profile Changes</Text>
@@ -149,10 +202,10 @@ export default function SecurityAlertsScreen() {
 							value={alerts.profileChanges}
 							onValueChange={() => toggleAlert("profileChanges")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 				</View>
@@ -166,55 +219,3 @@ export default function SecurityAlertsScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	description: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginBottom: 24,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	alertItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	alertIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	alertContent: {
-		flex: 1,
-	},
-	alertTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	alertDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	note: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-	},
-})

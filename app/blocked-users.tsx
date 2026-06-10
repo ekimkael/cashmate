@@ -10,9 +10,112 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, User, Search, X } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function BlockedUsersScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	searchContainer: {
+  		padding: 16,
+  		borderBottomWidth: 1,
+  		borderBottomColor: C.border,
+  	},
+  	searchBar: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 12,
+  	},
+  	searchInput: {
+  		flex: 1,
+  		color: C.text,
+  		fontSize: 16,
+  		marginLeft: 12,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	description: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginBottom: 24,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	userItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	userAvatar: {
+  		width: 48,
+  		height: 48,
+  		borderRadius: 24,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 16,
+  	},
+  	userInfo: {
+  		flex: 1,
+  	},
+  	userName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	userUsername: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	unblockButton: {
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 8,
+  		paddingHorizontal: 12,
+  		paddingVertical: 8,
+  	},
+  	unblockButtonText: {
+  		color: C.primary,
+  		fontSize: 14,
+  		fontWeight: "600",
+  	},
+  	emptyState: {
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 32,
+  	},
+  	emptyStateText: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		textAlign: "center",
+  	},
+  	infoBox: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	infoTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "600",
+  		marginBottom: 12,
+  	},
+  	infoText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		lineHeight: 22,
+  	},
+  })
 	const router = useRouter()
 
 	const [blockedUsers, setBlockedUsers] = useState([
@@ -31,12 +134,12 @@ export default function BlockedUsersScreen() {
 
 			<View style={styles.searchContainer}>
 				<View style={styles.searchBar}>
-					<Search size={20} color={Colors.dark.secondaryText} />
+					<Search size={20} color={C.secondaryText} />
 					<TextInput
 						style={styles.searchInput}
 						placeholder="Search blocked users"
-						placeholderTextColor={Colors.dark.secondaryText}
-						selectionColor={Colors.dark.primary}
+						placeholderTextColor={C.secondaryText}
+						selectionColor={C.primary}
 					/>
 				</View>
 			</View>
@@ -52,7 +155,7 @@ export default function BlockedUsersScreen() {
 						blockedUsers.map((user) => (
 							<View key={user.id} style={styles.userItem}>
 								<View style={styles.userAvatar}>
-									<User size={24} color={Colors.dark.text} />
+									<User size={24} color={C.text} />
 								</View>
 								<View style={styles.userInfo}>
 									<Text style={styles.userName}>{user.name}</Text>
@@ -88,105 +191,3 @@ export default function BlockedUsersScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	searchContainer: {
-		padding: 16,
-		borderBottomWidth: 1,
-		borderBottomColor: Colors.dark.border,
-	},
-	searchBar: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 12,
-	},
-	searchInput: {
-		flex: 1,
-		color: Colors.dark.text,
-		fontSize: 16,
-		marginLeft: 12,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	description: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginBottom: 24,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	userItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	userAvatar: {
-		width: 48,
-		height: 48,
-		borderRadius: 24,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 16,
-	},
-	userInfo: {
-		flex: 1,
-	},
-	userName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	userUsername: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	unblockButton: {
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 8,
-		paddingHorizontal: 12,
-		paddingVertical: 8,
-	},
-	unblockButtonText: {
-		color: Colors.dark.primary,
-		fontSize: 14,
-		fontWeight: "600",
-	},
-	emptyState: {
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 32,
-	},
-	emptyStateText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		textAlign: "center",
-	},
-	infoBox: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-	},
-	infoTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "600",
-		marginBottom: 12,
-	},
-	infoText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		lineHeight: 22,
-	},
-})

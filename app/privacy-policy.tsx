@@ -2,9 +2,46 @@ import React from "react"
 import { Stack } from "expo-router"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function PrivacyPolicyScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	lastUpdated: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 24,
+  	},
+  	section: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 12,
+  	},
+  	paragraph: {
+  		color: C.text,
+  		fontSize: 14,
+  		lineHeight: 22,
+  		marginBottom: 12,
+  	},
+  	bulletPoint: {
+  		color: C.text,
+  		fontSize: 14,
+  		lineHeight: 22,
+  		marginBottom: 8,
+  		paddingLeft: 16,
+  	},
+  })
 	return (
 		<View style={styles.container}>
 			<Stack.Screen options={{
@@ -188,39 +225,3 @@ export default function PrivacyPolicyScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	lastUpdated: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 24,
-	},
-	section: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 12,
-	},
-	paragraph: {
-		color: Colors.dark.text,
-		fontSize: 14,
-		lineHeight: 22,
-		marginBottom: 12,
-	},
-	bulletPoint: {
-		color: Colors.dark.text,
-		fontSize: 14,
-		lineHeight: 22,
-		marginBottom: 8,
-		paddingLeft: 16,
-	},
-})

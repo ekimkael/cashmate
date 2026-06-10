@@ -19,9 +19,101 @@ import {
 	Shield,
 } from "lucide-react-native"
 import { useUserStore } from "@/store/userStore"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function SettingsScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	scrollContent: {
+  		padding: 20,
+  	},
+  	section: {
+  		marginBottom: 32,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginBottom: 16,
+  	},
+  	menuItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	menuItemIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	menuItemContent: {
+  		flex: 1,
+  	},
+  	menuItemTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	menuItemDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	settingItem: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  		marginBottom: 12,
+  	},
+  	settingIcon: {
+  		width: 40,
+  		height: 40,
+  		borderRadius: 20,
+  		backgroundColor: C.inputBackground,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		marginRight: 12,
+  	},
+  	settingContent: {
+  		flex: 1,
+  	},
+  	settingLabel: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	settingDescription: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	versionContainer: {
+  		alignItems: "center",
+  		marginTop: 16,
+  	},
+  	versionText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	errorText: {
+  		color: C.text,
+  		fontSize: 16,
+  		textAlign: "center",
+  	},
+  })
 	const router = useRouter()
 	const { user } = useUserStore()
 
@@ -65,7 +157,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/profile-settings")}>
 						<View style={styles.menuItemIcon}>
-							<User size={20} color={Colors.dark.text} />
+							<User size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Profile Information</Text>
@@ -75,7 +167,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -84,7 +176,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/payment-methods")}>
 						<View style={styles.menuItemIcon}>
-							<DollarSign size={20} color={Colors.dark.text} />
+							<DollarSign size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Payment Methods</Text>
@@ -94,7 +186,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -103,7 +195,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/notifications")}>
 						<View style={styles.menuItemIcon}>
-							<Bell size={20} color={Colors.dark.text} />
+							<Bell size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Notifications</Text>
@@ -113,7 +205,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -122,7 +214,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/privacy")}>
 						<View style={styles.menuItemIcon}>
-							<Shield size={20} color={Colors.dark.text} />
+							<Shield size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Privacy & Security</Text>
@@ -132,7 +224,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -143,7 +235,7 @@ export default function SettingsScreen() {
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Moon size={20} color={Colors.dark.text} />
+							<Moon size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Dark Mode</Text>
@@ -153,16 +245,16 @@ export default function SettingsScreen() {
 							value={settings.darkMode}
 							onValueChange={() => toggleSetting("darkMode")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Bell size={20} color={Colors.dark.text} />
+							<Bell size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Sound Effects</Text>
@@ -174,16 +266,16 @@ export default function SettingsScreen() {
 							value={settings.soundEffects}
 							onValueChange={() => toggleSetting("soundEffects")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
 					<View style={styles.settingItem}>
 						<View style={styles.settingIcon}>
-							<Smartphone size={20} color={Colors.dark.text} />
+							<Smartphone size={20} color={C.text} />
 						</View>
 						<View style={styles.settingContent}>
 							<Text style={styles.settingLabel}>Haptic Feedback</Text>
@@ -195,10 +287,10 @@ export default function SettingsScreen() {
 							value={settings.hapticFeedback}
 							onValueChange={() => toggleSetting("hapticFeedback")}
 							trackColor={{
-								false: Colors.dark.border,
-								true: Colors.dark.primary,
+								false: C.border,
+								true: C.primary,
 							}}
-							thumbColor={Colors.dark.text}
+							thumbColor={C.text}
 						/>
 					</View>
 
@@ -206,7 +298,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/currency")}>
 						<View style={styles.menuItemIcon}>
-							<DollarSign size={20} color={Colors.dark.text} />
+							<DollarSign size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Currency</Text>
@@ -216,7 +308,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -225,7 +317,7 @@ export default function SettingsScreen() {
 						style={styles.menuItem}
 						onPress={() => router.push("/language")}>
 						<View style={styles.menuItemIcon}>
-							<Globe size={20} color={Colors.dark.text} />
+							<Globe size={20} color={C.text} />
 						</View>
 						<View style={styles.menuItemContent}>
 							<Text style={styles.menuItemTitle}>Language</Text>
@@ -233,7 +325,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -250,7 +342,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -263,7 +355,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -276,7 +368,7 @@ export default function SettingsScreen() {
 						</View>
 						<ArrowLeft
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={{ transform: [{ rotate: "180deg" }] }}
 						/>
 					</Pressable>
@@ -290,94 +382,3 @@ export default function SettingsScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	scrollContent: {
-		padding: 20,
-	},
-	section: {
-		marginBottom: 32,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 16,
-	},
-	menuItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	menuItemIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	menuItemContent: {
-		flex: 1,
-	},
-	menuItemTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	menuItemDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	settingItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 12,
-	},
-	settingIcon: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-		backgroundColor: Colors.dark.inputBackground,
-		alignItems: "center",
-		justifyContent: "center",
-		marginRight: 12,
-	},
-	settingContent: {
-		flex: 1,
-	},
-	settingLabel: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	settingDescription: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	versionContainer: {
-		alignItems: "center",
-		marginTop: 16,
-	},
-	versionText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	errorText: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		textAlign: "center",
-	},
-})

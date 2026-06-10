@@ -3,9 +3,91 @@ import { View, Text, StyleSheet, TextInput, Pressable } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, Eye, EyeOff, Lock } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function ChangePasswordScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		padding: 20,
+  	},
+  	title: {
+  		color: C.text,
+  		fontSize: 24,
+  		fontWeight: "700",
+  		marginBottom: 8,
+  	},
+  	subtitle: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		marginBottom: 24,
+  	},
+  	errorContainer: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		borderRadius: 8,
+  		padding: 12,
+  		marginBottom: 20,
+  	},
+  	errorText: {
+  		color: C.error,
+  		fontSize: 14,
+  	},
+  	successContainer: {
+  		backgroundColor: "rgba(0, 214, 50, 0.1)",
+  		borderRadius: 8,
+  		padding: 12,
+  		marginBottom: 20,
+  	},
+  	successText: {
+  		color: C.success,
+  		fontSize: 14,
+  	},
+  	form: {
+  		marginBottom: 32,
+  	},
+  	inputContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		marginBottom: 16,
+  		paddingHorizontal: 16,
+  	},
+  	inputIcon: {
+  		marginRight: 12,
+  	},
+  	input: {
+  		flex: 1,
+  		height: 56,
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  	passwordToggle: {
+  		padding: 8,
+  	},
+  	passwordTips: {
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	tipsTitle: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "600",
+  		marginBottom: 12,
+  	},
+  	tipItem: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginBottom: 8,
+  	},
+  })
 	const router = useRouter()
 
 	const [currentPassword, setCurrentPassword] = useState("")
@@ -69,13 +151,13 @@ export default function ChangePasswordScreen() {
 					<View style={styles.inputContainer}>
 						<Lock
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={styles.inputIcon}
 						/>
 						<TextInput
 							style={styles.input}
 							placeholder="Current Password"
-							placeholderTextColor={Colors.dark.secondaryText}
+							placeholderTextColor={C.secondaryText}
 							value={currentPassword}
 							onChangeText={setCurrentPassword}
 							secureTextEntry={!showPasswords}
@@ -85,9 +167,9 @@ export default function ChangePasswordScreen() {
 							onPress={() => setShowPasswords(!showPasswords)}
 							style={styles.passwordToggle}>
 							{showPasswords ? (
-								<EyeOff size={20} color={Colors.dark.secondaryText} />
+								<EyeOff size={20} color={C.secondaryText} />
 							) : (
-								<Eye size={20} color={Colors.dark.secondaryText} />
+								<Eye size={20} color={C.secondaryText} />
 							)}
 						</Pressable>
 					</View>
@@ -95,13 +177,13 @@ export default function ChangePasswordScreen() {
 					<View style={styles.inputContainer}>
 						<Lock
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={styles.inputIcon}
 						/>
 						<TextInput
 							style={styles.input}
 							placeholder="New Password"
-							placeholderTextColor={Colors.dark.secondaryText}
+							placeholderTextColor={C.secondaryText}
 							value={newPassword}
 							onChangeText={setNewPassword}
 							secureTextEntry={!showPasswords}
@@ -112,13 +194,13 @@ export default function ChangePasswordScreen() {
 					<View style={styles.inputContainer}>
 						<Lock
 							size={20}
-							color={Colors.dark.secondaryText}
+							color={C.secondaryText}
 							style={styles.inputIcon}
 						/>
 						<TextInput
 							style={styles.input}
 							placeholder="Confirm New Password"
-							placeholderTextColor={Colors.dark.secondaryText}
+							placeholderTextColor={C.secondaryText}
 							value={confirmPassword}
 							onChangeText={setConfirmPassword}
 							secureTextEntry={!showPasswords}
@@ -126,9 +208,7 @@ export default function ChangePasswordScreen() {
 						/>
 					</View>
 
-					<Pressable style={styles.changeButton} onPress={handleChangePassword}>
-						<Text style={styles.changeButtonText}>Change Password</Text>
-					</Pressable>
+					<Button label="Change Password" onPress={handleChangePassword} style={{ marginTop: 8 }} />
 				</View>
 
 				<View style={styles.passwordTips}>
@@ -149,96 +229,3 @@ export default function ChangePasswordScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		padding: 20,
-	},
-	title: {
-		color: Colors.dark.text,
-		fontSize: 24,
-		fontWeight: "700",
-		marginBottom: 8,
-	},
-	subtitle: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		marginBottom: 24,
-	},
-	errorContainer: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		borderRadius: 8,
-		padding: 12,
-		marginBottom: 20,
-	},
-	errorText: {
-		color: Colors.dark.error,
-		fontSize: 14,
-	},
-	successContainer: {
-		backgroundColor: "rgba(0, 214, 50, 0.1)",
-		borderRadius: 8,
-		padding: 12,
-		marginBottom: 20,
-	},
-	successText: {
-		color: Colors.dark.success,
-		fontSize: 14,
-	},
-	form: {
-		marginBottom: 32,
-	},
-	inputContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		marginBottom: 16,
-		paddingHorizontal: 16,
-	},
-	inputIcon: {
-		marginRight: 12,
-	},
-	input: {
-		flex: 1,
-		height: 56,
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	passwordToggle: {
-		padding: 8,
-	},
-	changeButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		height: 56,
-		alignItems: "center",
-		justifyContent: "center",
-		marginTop: 8,
-	},
-	changeButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	passwordTips: {
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-	},
-	tipsTitle: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "600",
-		marginBottom: 12,
-	},
-	tipItem: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginBottom: 8,
-	},
-})
