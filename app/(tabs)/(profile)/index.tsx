@@ -219,7 +219,7 @@ export default function ProfileScreen() {
         </Pressable>
 
         <Text style={{ fontSize: 14, textAlign: "center", color: colors.secondaryText, paddingBottom: 8 }}>
-          Version 0.1.0-beta.1
+          Version 0.2.0
         </Text>
       </ScrollView>
     </>

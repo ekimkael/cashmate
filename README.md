@@ -12,7 +12,7 @@
 [![React](https://img.shields.io/badge/React-19.2.3-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-v0.1.0--beta.1-orange)](https://github.com/ekimkael/cashmate/releases/tag/v0.1.0-beta.1)
+[![Version](https://img.shields.io/badge/version-v0.2.0-orange)](https://github.com/ekimkael/cashmate/releases/tag/v0.2.0)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
 A fully-featured **mobile UI prototype** for a digital wallet and P2P payment experience — built with Expo SDK 56, React 19, and TypeScript.
