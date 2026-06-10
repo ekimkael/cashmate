@@ -11,7 +11,6 @@
 [![React Native](https://img.shields.io/badge/React_Native-0.85.3-61DAFB?logo=react&logoColor=white)](https://reactnative.dev)
 [![React](https://img.shields.io/badge/React-19.2.3-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![NativeWind](https://img.shields.io/badge/NativeWind-4.x-38BDF8?logo=tailwindcss&logoColor=white)](https://nativewind.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Version](https://img.shields.io/badge/version-v0.1.0--beta.1-orange)](https://github.com/ekimkael/cashmate/releases/tag/v0.1.0-beta.1)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
@@ -56,7 +55,7 @@ A fully-featured **mobile UI prototype** for a digital wallet and P2P payment ex
 | Framework | [Expo](https://expo.dev) 56 + [React Native](https://reactnative.dev) 0.85 |
 | Language | [TypeScript](https://www.typescriptlang.org) 6.0 |
 | Navigation | [Expo Router](https://expo.github.io/router) 56 (file-based) |
-| Styling | [NativeWind](https://nativewind.dev) 4 (Tailwind CSS for RN) |
+| Styling | StyleSheet + inline styles (React Native) |
 | State | [Zustand](https://zustand-demo.pmnd.rs) 5 + AsyncStorage |
 | Icons | [Lucide React Native](https://lucide.dev) + Expo Symbols |
 | UI Effects | Expo Blur, Expo Linear Gradient, Expo Haptics |
