@@ -14,9 +14,95 @@ import { Stack, useRouter } from "expo-router"
 import { Eye, EyeOff, Lock, Mail } from "lucide-react-native"
 import { useUserStore } from "@/store/userStore"
 import { currentUser } from "@/mocks/data"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function LoginScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	keyboardAvoidingView: {
+  		flex: 1,
+  	},
+  	scrollContent: {
+  		flexGrow: 1,
+  		padding: 20,
+  		justifyContent: "center",
+  	},
+  	header: {
+  		marginBottom: 40,
+  	},
+  	title: {
+  		color: C.text,
+  		fontSize: 32,
+  		fontWeight: "700",
+  		marginBottom: 8,
+  	},
+  	subtitle: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  	},
+  	errorContainer: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		borderRadius: 8,
+  		padding: 12,
+  		marginBottom: 20,
+  	},
+  	errorText: {
+  		color: C.error,
+  		fontSize: 14,
+  	},
+  	form: {
+  		marginBottom: 40,
+  	},
+  	inputContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		marginBottom: 16,
+  		paddingHorizontal: 16,
+  	},
+  	inputIcon: {
+  		marginRight: 12,
+  	},
+  	input: {
+  		flex: 1,
+  		height: 56,
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  	passwordToggle: {
+  		padding: 8,
+  	},
+  	forgotPassword: {
+  		alignSelf: "flex-end",
+  		marginBottom: 24,
+  	},
+  	forgotPasswordText: {
+  		color: C.primary,
+  		fontSize: 14,
+  		fontWeight: "500",
+  	},
+  	footer: {
+  		flexDirection: "row",
+  		justifyContent: "center",
+  		alignItems: "center",
+  	},
+  	footerText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		marginRight: 4,
+  	},
+  	signUpText: {
+  		color: C.primary,
+  		fontSize: 14,
+  		fontWeight: "600",
+  	},
+  })
 	const router = useRouter()
 	const { setUser } = useUserStore()
 
@@ -71,13 +157,13 @@ export default function LoginScreen() {
 						<View style={styles.inputContainer}>
 							<Mail
 								size={20}
-								color={Colors.dark.secondaryText}
+								color={C.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Email"
-								placeholderTextColor={Colors.dark.secondaryText}
+								placeholderTextColor={C.secondaryText}
 								value={email}
 								onChangeText={setEmail}
 								autoCapitalize="none"
@@ -88,13 +174,13 @@ export default function LoginScreen() {
 						<View style={styles.inputContainer}>
 							<Lock
 								size={20}
-								color={Colors.dark.secondaryText}
+								color={C.secondaryText}
 								style={styles.inputIcon}
 							/>
 							<TextInput
 								style={styles.input}
 								placeholder="Password"
-								placeholderTextColor={Colors.dark.secondaryText}
+								placeholderTextColor={C.secondaryText}
 								value={password}
 								onChangeText={setPassword}
 								secureTextEntry={!showPassword}
@@ -104,9 +190,9 @@ export default function LoginScreen() {
 								onPress={() => setShowPassword(!showPassword)}
 								style={styles.passwordToggle}>
 								{showPassword ? (
-									<EyeOff size={20} color={Colors.dark.secondaryText} />
+									<EyeOff size={20} color={C.secondaryText} />
 								) : (
-									<Eye size={20} color={Colors.dark.secondaryText} />
+									<Eye size={20} color={C.secondaryText} />
 								)}
 							</Pressable>
 						</View>
@@ -117,9 +203,7 @@ export default function LoginScreen() {
 							<Text style={styles.forgotPasswordText}>Forgot Password?</Text>
 						</Pressable>
 
-						<Pressable style={styles.loginButton} onPress={handleLogin}>
-							<Text style={styles.loginButtonText}>Sign In</Text>
-						</Pressable>
+						<Button label="Sign In" onPress={handleLogin} />
 					</View>
 
 					<View style={styles.footer}>
@@ -134,99 +218,3 @@ export default function LoginScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	keyboardAvoidingView: {
-		flex: 1,
-	},
-	scrollContent: {
-		flexGrow: 1,
-		padding: 20,
-		justifyContent: "center",
-	},
-	header: {
-		marginBottom: 40,
-	},
-	title: {
-		color: Colors.dark.text,
-		fontSize: 32,
-		fontWeight: "700",
-		marginBottom: 8,
-	},
-	subtitle: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-	},
-	errorContainer: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		borderRadius: 8,
-		padding: 12,
-		marginBottom: 20,
-	},
-	errorText: {
-		color: Colors.dark.error,
-		fontSize: 14,
-	},
-	form: {
-		marginBottom: 40,
-	},
-	inputContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		marginBottom: 16,
-		paddingHorizontal: 16,
-	},
-	inputIcon: {
-		marginRight: 12,
-	},
-	input: {
-		flex: 1,
-		height: 56,
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	passwordToggle: {
-		padding: 8,
-	},
-	forgotPassword: {
-		alignSelf: "flex-end",
-		marginBottom: 24,
-	},
-	forgotPasswordText: {
-		color: Colors.dark.primary,
-		fontSize: 14,
-		fontWeight: "500",
-	},
-	loginButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		height: 56,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	loginButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	footer: {
-		flexDirection: "row",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	footerText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		marginRight: 4,
-	},
-	signUpText: {
-		color: Colors.dark.primary,
-		fontSize: 14,
-		fontWeight: "600",
-	},
-})

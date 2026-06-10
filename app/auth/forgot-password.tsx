@@ -11,9 +11,89 @@ import React, { useState } from "react"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, Mail, CheckCircle } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function ForgotPasswordScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	keyboardAvoidingView: {
+  		flex: 1,
+  	},
+  	content: {
+  		flex: 1,
+  		padding: 20,
+  		justifyContent: "center",
+  	},
+  	header: {
+  		marginBottom: 32,
+  	},
+  	title: {
+  		color: C.text,
+  		fontSize: 32,
+  		fontWeight: "700",
+  		marginBottom: 8,
+  	},
+  	subtitle: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		lineHeight: 22,
+  	},
+  	errorContainer: {
+  		backgroundColor: "rgba(255, 67, 42, 0.1)",
+  		borderRadius: 8,
+  		padding: 12,
+  		marginBottom: 20,
+  	},
+  	errorText: {
+  		color: C.error,
+  		fontSize: 14,
+  	},
+  	form: {
+  		marginBottom: 32,
+  	},
+  	inputContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		marginBottom: 16,
+  		paddingHorizontal: 16,
+  	},
+  	inputIcon: {
+  		marginRight: 12,
+  	},
+  	input: {
+  		flex: 1,
+  		height: 56,
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  	successContent: {
+  		flex: 1,
+  		padding: 20,
+  		justifyContent: "center",
+  		alignItems: "center",
+  	},
+  	successTitle: {
+  		color: C.text,
+  		fontSize: 24,
+  		fontWeight: "700",
+  		marginTop: 24,
+  		marginBottom: 12,
+  	},
+  	successMessage: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		textAlign: "center",
+  		marginBottom: 32,
+  		paddingHorizontal: 20,
+  	},
+  })
 	const router = useRouter()
 	const [email, setEmail] = useState("")
 	const [submitted, setSubmitted] = useState(false)
@@ -37,13 +117,13 @@ export default function ForgotPasswordScreen() {
 					title: "Forgot Password",
 					headerLeft: () => (
 						<Pressable onPress={() => router.back()}>
-							<ArrowLeft size={24} color={Colors.dark.text} />
+							<ArrowLeft size={24} color={C.text} />
 						</Pressable>
 					),
 					headerStyle: {
-						backgroundColor: Colors.dark.background,
+						backgroundColor: C.background,
 					},
-					headerTintColor: Colors.dark.text,
+					headerTintColor: C.text,
 				}}
 			/>
 
@@ -70,13 +150,13 @@ export default function ForgotPasswordScreen() {
 							<View style={styles.inputContainer}>
 								<Mail
 									size={20}
-									color={Colors.dark.secondaryText}
+									color={C.secondaryText}
 									style={styles.inputIcon}
 								/>
 								<TextInput
 									style={styles.input}
 									placeholder="Email"
-									placeholderTextColor={Colors.dark.secondaryText}
+									placeholderTextColor={C.secondaryText}
 									value={email}
 									onChangeText={setEmail}
 									autoCapitalize="none"
@@ -84,23 +164,17 @@ export default function ForgotPasswordScreen() {
 								/>
 							</View>
 
-							<Pressable style={styles.submitButton} onPress={handleSubmit}>
-								<Text style={styles.submitButtonText}>Send Reset Link</Text>
-							</Pressable>
+							<Button label="Send Reset Link" onPress={handleSubmit} />
 						</View>
 					</View>
 				) : (
 					<View style={styles.successContent}>
-						<CheckCircle size={80} color={Colors.dark.primary} />
+						<CheckCircle size={80} color={C.primary} />
 						<Text style={styles.successTitle}>Check Your Email</Text>
 						<Text style={styles.successMessage}>
 							We've sent password reset instructions to {email}
 						</Text>
-						<Pressable
-							style={styles.backButton}
-							onPress={() => router.push("/auth/login")}>
-							<Text style={styles.backButtonText}>Back to Login</Text>
-						</Pressable>
+						<Button label="Back to Login" onPress={() => router.push("/auth/login")} />
 					</View>
 				)}
 			</KeyboardAvoidingView>
@@ -108,106 +182,3 @@ export default function ForgotPasswordScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	keyboardAvoidingView: {
-		flex: 1,
-	},
-	content: {
-		flex: 1,
-		padding: 20,
-		justifyContent: "center",
-	},
-	header: {
-		marginBottom: 32,
-	},
-	title: {
-		color: Colors.dark.text,
-		fontSize: 32,
-		fontWeight: "700",
-		marginBottom: 8,
-	},
-	subtitle: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		lineHeight: 22,
-	},
-	errorContainer: {
-		backgroundColor: "rgba(255, 67, 42, 0.1)",
-		borderRadius: 8,
-		padding: 12,
-		marginBottom: 20,
-	},
-	errorText: {
-		color: Colors.dark.error,
-		fontSize: 14,
-	},
-	form: {
-		marginBottom: 32,
-	},
-	inputContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		marginBottom: 16,
-		paddingHorizontal: 16,
-	},
-	inputIcon: {
-		marginRight: 12,
-	},
-	input: {
-		flex: 1,
-		height: 56,
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	submitButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		height: 56,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	submitButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-	successContent: {
-		flex: 1,
-		padding: 20,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	successTitle: {
-		color: Colors.dark.text,
-		fontSize: 24,
-		fontWeight: "700",
-		marginTop: 24,
-		marginBottom: 12,
-	},
-	successMessage: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		textAlign: "center",
-		marginBottom: 32,
-		paddingHorizontal: 20,
-	},
-	backButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		height: 56,
-		alignItems: "center",
-		justifyContent: "center",
-		width: "100%",
-	},
-	backButtonText: {
-		color: Colors.dark.background,
-		fontSize: 16,
-		fontWeight: "600",
-	},
-})
