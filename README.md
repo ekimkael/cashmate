@@ -15,7 +15,7 @@
 [![Version](https://img.shields.io/badge/version-v0.1.0--beta.1-orange)](https://github.com/ekimkael/cashmate/releases/tag/v0.1.0-beta.1)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
-A fully-featured **mobile UI prototype** for a digital wallet and P2P payment experience — built with Expo SDK 56, React 19, and NativeWind.
+A fully-featured **mobile UI prototype** for a digital wallet and P2P payment experience — built with Expo SDK 56, React 19, and TypeScript.
 
 </div>
 
@@ -31,7 +31,7 @@ A fully-featured **mobile UI prototype** for a digital wallet and P2P payment ex
 - **🔍 QR Code Payments** — scan to pay or display personal QR code
 - **🔒 Security & Privacy** — card lock, PIN, security alerts, login history, blocked users
 - **⚙️ Account Management** — profile editing, notifications, language, currency, statements, data export
-- **🌙 Dark Theme** — polished dark UI with signature green accent (`#00D632`)
+- **🌙 Dark / Light Theme** — polished theme system with signature green accent (`#00D632`)
 - **📱 Cross-Platform** — runs on iOS, Android, and Web
 
 ---
@@ -54,9 +54,9 @@ A fully-featured **mobile UI prototype** for a digital wallet and P2P payment ex
 |----------|-----------|
 | Framework | [Expo](https://expo.dev) 56 + [React Native](https://reactnative.dev) 0.85 |
 | Language | [TypeScript](https://www.typescriptlang.org) 6.0 |
-| Navigation | [Expo Router](https://expo.github.io/router) 56 (file-based) |
-| Styling | StyleSheet + inline styles (React Native) |
-| State | [Zustand](https://zustand-demo.pmnd.rs) 5 + AsyncStorage |
+| Navigation | [Expo Router](https://expo.github.io/router) v4 (file-based, typed routes) |
+| Styling | React Native StyleSheet + dynamic theme via `useThemeColors` |
+| State | [Zustand](https://zustand-demo.pmnd.rs) 5 + AsyncStorage persistence |
 | Icons | [Lucide React Native](https://lucide.dev) + Expo Symbols |
 | UI Effects | Expo Blur, Expo Linear Gradient, Expo Haptics |
 | Images | Expo Image, Expo Image Picker |
@@ -81,11 +81,13 @@ git clone https://github.com/ekimkael/cashmate.git
 cd cashmate
 
 # Install dependencies
-npm install
+npm install --legacy-peer-deps
 
 # Start the development server
 npm start
 ```
+
+> **Note:** `--legacy-peer-deps` is required because `lucide-react-native` declares a peer dependency on React 16–18, while this project uses React 19.
 
 ### Running on a specific platform
 
@@ -105,32 +107,40 @@ npm run web       # Web browser
 cashmate/
 ├── app/                        # Expo Router — file-based routing
 │   ├── (tabs)/                 # Bottom tab navigation
-│   │   ├── index.tsx           # Home / Dashboard
-│   │   ├── activity.tsx        # Transaction history
-│   │   ├── banking.tsx         # Card & account management
-│   │   └── profile.tsx         # Settings & profile
+│   │   ├── (home)/index.tsx    # Home / Dashboard
+│   │   ├── (activity)/index.tsx  # Transaction history
+│   │   ├── (banking)/index.tsx   # Card & account management
+│   │   └── (profile)/index.tsx   # Settings & profile
 │   ├── auth/                   # Authentication screens
 │   │   ├── login.tsx
 │   │   ├── register.tsx
 │   │   └── forgot-password.tsx
 │   ├── send/                   # P2P send money flow
 │   ├── request/                # Request money flow
-│   ├── deposit/                # Deposit flow
-│   ├── cashout/                # Cash out flow
-│   ├── card*.tsx               # Card management screens (×10)
+│   ├── deposit.tsx             # Deposit flow
+│   ├── cashout.tsx             # Cash out flow
+│   ├── card.tsx                # Card management
 │   └── [utility screens]       # Settings, help, privacy, etc.
 │
 ├── components/                 # Reusable UI components
-│   ├── BalanceCard.tsx
-│   ├── ActionButton.tsx
-│   ├── NumPad.tsx
-│   ├── ContactItem.tsx
-│   ├── TransactionItem.tsx
-│   └── hstack.tsx
+│   └── ui/
+│       ├── balance-card.tsx
+│       ├── action-button.tsx
+│       ├── num-pad.tsx
+│       ├── contact-item.tsx
+│       ├── transaction-item.tsx
+│       └── hstack.tsx
+│
+├── hooks/                      # Custom React hooks
+│   ├── use-amount-input.ts     # Numeric keypad state (send, request, deposit, cashout)
+│   ├── use-haptic-navigation.ts  # Haptic feedback + router.push
+│   └── use-require-user.ts     # Auth guard with auto-redirect
 │
 ├── store/                      # Zustand global state
-│   ├── userStore.ts            # User session & balance
-│   └── transactionStore.ts     # Transaction history
+│   ├── user-store.ts           # User session & balance
+│   ├── transaction-store.ts    # Transaction history
+│   ├── app-store.ts            # App readiness & persisted preferences
+│   └── theme-store.ts          # Dark / light theme toggle
 │
 ├── types/                      # TypeScript type definitions
 ├── mocks/                      # Seed / demo data
@@ -146,24 +156,43 @@ cashmate/
 
 ### State Management
 
-Two Zustand stores, both persisted to `AsyncStorage`:
+Four Zustand stores, all persisted to `AsyncStorage`:
 
 ```
-userStore
+user-store
   ├── user: User | null
   ├── setUser(user)
   ├── updateBalance(amount)
   └── logout()
 
-transactionStore
+transaction-store
   ├── transactions: Transaction[]
-  ├── addTransaction(tx)       # also calls updateBalance
-  └── getTransactions()
+  └── addTransaction(tx)        # also calls updateBalance
+
+app-store
+  ├── isAppReady: boolean
+  ├── notifications: boolean
+  ├── soundEffects: boolean
+  ├── hapticFeedback: boolean
+  ├── setAppReady()
+  └── togglePreference(key)
+
+theme-store
+  ├── isDark: boolean
+  └── toggle()
 ```
+
+### Custom Hooks
+
+| Hook | Purpose |
+|------|---------|
+| `useAmountInput` | Numeric keypad state shared across send, request, deposit, cashout |
+| `useHapticNavigation` | Haptic feedback + `router.push` — used across all tab screens |
+| `useRequireUser` | User guard with auto-redirect to `/auth/login` if not authenticated |
 
 ### Routing Pattern
 
-Expo Router uses a file-based convention. Every file in `app/` maps to a route. Tabs are grouped under `app/(tabs)/`. Authentication screens live in `app/auth/`. Dynamic routes (e.g. transaction details) use `[id].tsx`.
+Expo Router uses a file-based convention. Every file in `app/` maps to a route. Tabs are grouped under `app/(tabs)/`. Authentication screens live in `app/auth/`. Typed routes are enabled — all `router.push` calls use the `Href` type from `expo-router`.
 
 ### Data Flow
 
@@ -171,7 +200,7 @@ Expo Router uses a file-based convention. Every file in `app/` maps to a route. 
 Mock Data (mocks/data.ts)
        │
        ▼
-  Zustand Store  ◄──────── User interactions
+  Zustand Stores  ◄──────── User interactions
        │
        ▼
   Screen Components  ──►  Expo Router navigation
@@ -188,7 +217,6 @@ This is a UI prototype. Planned features for future versions:
 - [ ] **Live Payments** — integrate Stripe or a payment processor
 - [ ] **Push Notifications** — transaction alerts, security events
 - [ ] **Biometric Security** — Face ID / fingerprint for card actions
-- [ ] **Dark / Light Theme** — user-toggleable theme
 - [ ] **Internationalisation** — multi-language support (i18n)
 - [ ] **E2E Tests** — Detox test suite
 
@@ -217,10 +245,13 @@ git clone https://github.com/<your-handle>/cashmate.git
 git checkout develop
 git checkout -b feature/my-feature
 
-# 3. Commit using Conventional Commits
+# 3. Install dependencies
+npm install --legacy-peer-deps
+
+# 4. Commit using Conventional Commits
 git commit -m "feat(send): add amount validation"
 
-# 4. Push and open a PR targeting develop
+# 5. Push and open a PR targeting develop
 git push origin feature/my-feature
 ```
 
