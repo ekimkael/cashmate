@@ -4,9 +4,8 @@ import {
   ArrowDownLeft, ArrowUpRight, CreditCard, Wallet, DollarSign,
 } from "lucide-react-native"
 import { Transaction } from "@/types"
-import Colors from "@/constants/colors"
-import { semantic } from "@/constants/colors"
-import { type as t } from "@/constants/typography"
+import { useThemeColors } from "@/constants/colors"
+import { useTypography } from "@/constants/typography"
 
 interface TransactionItemProps {
   transaction: Transaction
@@ -14,6 +13,8 @@ interface TransactionItemProps {
 }
 
 export default function TransactionItem({ transaction, onPress }: TransactionItemProps) {
+  const C = useThemeColors()
+  const t = useTypography()
   const { type, amount, date, user, note, status } = transaction
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
@@ -22,16 +23,16 @@ export default function TransactionItem({ transaction, onPress }: TransactionIte
   })
 
   const isDebit = type === "send" || type === "payment" || type === "withdrawal"
-  const amountColor = isDebit ? Colors.dark.error : Colors.dark.success
+  const amountColor = isDebit ? C.error : C.success
   const prefix = isDebit ? "-" : "+"
 
   const iconEl = () => {
     switch (type) {
-      case "send":       return <ArrowUpRight  size={20} color={Colors.dark.error} />
-      case "receive":    return <ArrowDownLeft size={20} color={Colors.dark.success} />
-      case "payment":    return <CreditCard    size={20} color={semantic.secondaryLabel as any} />
-      case "deposit":    return <Wallet        size={20} color={Colors.dark.success} />
-      case "withdrawal": return <DollarSign    size={20} color={Colors.dark.error} />
+      case "send":       return <ArrowUpRight  size={20} color={C.error} />
+      case "receive":    return <ArrowDownLeft size={20} color={C.success} />
+      case "payment":    return <CreditCard    size={20} color={C.secondaryText} />
+      case "deposit":    return <Wallet        size={20} color={C.success} />
+      case "withdrawal": return <DollarSign    size={20} color={C.error} />
       default:           return null
     }
   }
@@ -44,8 +45,8 @@ export default function TransactionItem({ transaction, onPress }: TransactionIte
         paddingVertical: 16,
         paddingHorizontal: 20,
         borderBottomWidth: 1,
-        borderBottomColor: semantic.separator as any,
-        backgroundColor: pressed ? Colors.dark.card : "transparent",
+        borderBottomColor: C.border,
+        backgroundColor: pressed ? C.card : "transparent",
       })}
       onPress={() => onPress?.(transaction)}
     >
@@ -57,7 +58,7 @@ export default function TransactionItem({ transaction, onPress }: TransactionIte
           <View
             style={{
               width: 48, height: 48, borderRadius: 24,
-              backgroundColor: Colors.dark.card,
+              backgroundColor: C.inputBackground,
               alignItems: "center", justifyContent: "center",
             }}
           >
