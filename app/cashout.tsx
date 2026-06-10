@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, Building } from "lucide-react-native"
-import { useTransactionStore } from "@/store/transactionStore"
+import { useTransactionStore } from '@/store/transaction-store'
 import NumPad from "@/components/ui/num-pad"
 import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"

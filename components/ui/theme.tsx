@@ -1,7 +1,7 @@
 import { type ReactNode, useEffect } from "react"
 import { ThemeProvider, DarkTheme, DefaultTheme } from "expo-router"
 import { Appearance } from "react-native"
-import { useThemeStore } from "@/store/themeStore"
+import { useThemeStore } from '@/store/theme-store'
 
 const AppDarkTheme = {
   ...DarkTheme,

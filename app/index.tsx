@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { Redirect, Stack } from "expo-router"
 
-import { useUserStore } from "@/store/userStore"
-import { useAppStore } from "@/store/appStore"
+import { useUserStore } from '@/store/user-store'
+import { useAppStore } from '@/store/app-store'
 
 export default function IndexScreen() {
 	const { user } = useUserStore()

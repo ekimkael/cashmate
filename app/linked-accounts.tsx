@@ -247,7 +247,7 @@ export default function LinkedAccountsScreen() {
 
 				<Pressable
 					style={styles.addButton}
-					onPress={() => router.push("/linkaccount")}>
+					onPress={() => router.push("/link-account")}>
 					<Plus size={20} color={C.primary} />
 					<Text style={styles.addButtonText}>Link a New Account</Text>
 				</Pressable>

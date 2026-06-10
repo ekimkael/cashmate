@@ -5,7 +5,7 @@ import { Stack, useRouter, useLocalSearchParams } from "expo-router"
 import { View, Text, StyleSheet, Pressable, Image } from "react-native"
 
 import { contacts } from "@/mocks/data"
-import { useTransactionStore } from "@/store/transactionStore"
+import { useTransactionStore } from '@/store/transaction-store'
 
 import NumPad from "@/components/ui/num-pad"
 import Colors, { useThemeColors } from "@/constants/colors"

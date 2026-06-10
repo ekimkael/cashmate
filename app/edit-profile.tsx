@@ -13,7 +13,7 @@ import { Camera, User, Mail, AtSign } from "lucide-react-native"
 
 import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
-import { useUserStore } from "@/store/userStore"
+import { useUserStore } from '@/store/user-store'
 
 export default function EditProfileScreen() {
   const C = useThemeColors()

@@ -11,7 +11,7 @@ import Animated, {
 } from "react-native-reanimated"
 import { SvgXml } from "react-native-svg"
 
-import { useAppStore } from "@/store/appStore"
+import { useAppStore } from '@/store/app-store'
 
 const BRAND_GREEN = "#00D632"
 const MIN_DURATION = 2500

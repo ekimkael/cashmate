@@ -4,7 +4,7 @@ import { useRouter, Stack } from "expo-router"
 import * as Haptics from "expo-haptics"
 
 import Colors, { useThemeColors } from "@/constants/colors"
-import { useUserStore } from "@/store/userStore"
+import { useUserStore } from '@/store/user-store'
 import BalanceCard from "@/components/ui/balance-card"
 import ActionButton from "@/components/ui/action-button"
 import { ArrowUpRight, ArrowDownLeft, Scan, QrCode } from "lucide-react-native"
@@ -68,7 +68,7 @@ export default function HomeScreen() {
             <ActionButton
               icon={QrCode}
               label="QR Code"
-              onPress={() => handleAction("/qrcode")}
+              onPress={() => handleAction("/qr-code")}
               style={{ flex: 1 }}
               variant="secondary"
             />

@@ -4,7 +4,7 @@ import { Share2, Download } from "lucide-react-native"
 import { View, Text, StyleSheet, Pressable, Image } from "react-native"
 
 import Colors, { useThemeColors } from "@/constants/colors"
-import { useUserStore } from "@/store/userStore"
+import { useUserStore } from '@/store/user-store'
 
 export default function QRCodeScreen() {
   const C = useThemeColors()

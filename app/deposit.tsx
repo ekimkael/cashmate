@@ -8,7 +8,7 @@ import NumPad from "@/components/ui/num-pad"
 
 import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"
-import { useTransactionStore } from "@/store/transactionStore"
+import { useTransactionStore } from '@/store/transaction-store'
 
 export default function DepositScreen() {
   const C = useThemeColors()

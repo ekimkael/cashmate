@@ -10,7 +10,7 @@ import { Stack, useLocalSearchParams } from "expo-router"
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native"
 
 import Colors, { useThemeColors } from "@/constants/colors"
-import { useTransactionStore } from "@/store/transactionStore"
+import { useTransactionStore } from '@/store/transaction-store'
 
 export default function TransactionDetailScreen() {
   const C = useThemeColors()

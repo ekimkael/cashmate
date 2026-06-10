@@ -18,7 +18,7 @@ import {
 	User,
 	Shield,
 } from "lucide-react-native"
-import { useUserStore } from "@/store/userStore"
+import { useUserStore } from '@/store/user-store'
 import Colors, { useThemeColors } from "@/constants/colors"
 
 export default function SettingsScreen() {

@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter } from "expo-router"
 import { Eye, EyeOff, Lock, Mail } from "lucide-react-native"
-import { useUserStore } from "@/store/userStore"
+import { useUserStore } from '@/store/user-store'
 import { currentUser } from "@/mocks/data"
 import Colors, { useThemeColors } from "@/constants/colors"
 import Button from "@/components/ui/button"

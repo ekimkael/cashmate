@@ -4,7 +4,7 @@ import { useRouter, Stack } from "expo-router"
 import * as Haptics from "expo-haptics"
 
 import Colors, { useThemeColors } from "@/constants/colors"
-import { useTransactionStore } from "@/store/transactionStore"
+import { useTransactionStore } from '@/store/transaction-store'
 import TransactionItem from "@/components/ui/transaction-item"
 
 const FILTER_OPTIONS = [

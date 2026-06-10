@@ -8,8 +8,8 @@ import {
 } from "lucide-react-native"
 
 import { useThemeColors } from "@/constants/colors"
-import { useThemeStore } from "@/store/themeStore"
-import { useUserStore } from "@/store/userStore"
+import { useThemeStore } from '@/store/theme-store'
+import { useUserStore } from '@/store/user-store'
 import HStack from "@/components/ui/hstack"
 
 export default function ProfileScreen() {
@@ -66,7 +66,7 @@ export default function ProfileScreen() {
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
           icon="qrcode"
-          onPress={() => handlePress("/qrcode")}
+          onPress={() => handlePress("/qr-code")}
         />
       </Stack.Toolbar>
 
@@ -98,7 +98,7 @@ export default function ProfileScreen() {
             </View>
           </HStack>
           <Pressable
-            onPress={() => handlePress("/qrcode")}
+            onPress={() => handlePress("/qr-code")}
             style={{ width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: C.inputBackground }}
           >
             <QrCode size={20} color={C.text} />

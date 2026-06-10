@@ -191,7 +191,7 @@ export default function ScanScreen() {
 			<View style={styles.footer}>
 				<Pressable
 					style={styles.footerButton}
-					onPress={() => router.push("/qrcode")}>
+					onPress={() => router.push("/qr-code")}>
 					<QrCode size={24} color={C.text} />
 					<Text style={styles.footerButtonText}>Your QR Code</Text>
 				</Pressable>

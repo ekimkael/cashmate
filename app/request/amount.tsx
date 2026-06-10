@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter, useLocalSearchParams } from "expo-router"
 import { ArrowLeft, User } from "lucide-react-native"
 import { contacts } from "@/mocks/data"
-import { useTransactionStore } from "@/store/transactionStore"
+import { useTransactionStore } from '@/store/transaction-store'
 import NumPad from "@/components/ui/num-pad"
 import Colors, { useThemeColors } from "@/constants/colors"
 

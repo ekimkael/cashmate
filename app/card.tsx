@@ -10,8 +10,8 @@ import {
 	Shield,
 	Smartphone,
 } from "lucide-react-native"
-import { useUserStore } from "@/store/userStore"
-import { useTransactionStore } from "@/store/transactionStore"
+import { useUserStore } from '@/store/user-store'
+import { useTransactionStore } from '@/store/transaction-store'
 import TransactionItem from "@/components/ui/transaction-item"
 import Colors, { useThemeColors } from "@/constants/colors"
 

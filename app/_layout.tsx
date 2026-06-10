@@ -6,7 +6,7 @@ import * as SplashScreen from "expo-splash-screen"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
 
 import { useThemeColors } from "@/constants/colors"
-import { useThemeStore } from "@/store/themeStore"
+import { useThemeStore } from '@/store/theme-store'
 import { Theme } from "@/components/ui/theme"
 import { SplashOverlay } from "@/components/ui/splash-overlay"
 import { ErrorBoundary } from "./error-boundary"
@@ -74,7 +74,7 @@ function RootLayoutNav() {
 				<Stack.Screen name="card-details" />
 				<Stack.Screen name="card" />
 				<Stack.Screen name="scan" />
-				<Stack.Screen name="qrcode" options={{ presentation: "modal" }} />
+				<Stack.Screen name="qr-code" options={{ presentation: "modal" }} />
 				<Stack.Screen name="notifications" />
 				<Stack.Screen name="privacy" />
 				<Stack.Screen name="help" />
@@ -87,7 +87,7 @@ function RootLayoutNav() {
 					}}
 				/>
 				<Stack.Screen name="auth" options={{ headerShown: false }} />
-				<Stack.Screen name="editprofile" />
+				<Stack.Screen name="edit-profile" />
 				<Stack.Screen name="change-password" />
 				<Stack.Screen name="terms" />
 				<Stack.Screen name="privacy-policy" />

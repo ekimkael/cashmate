@@ -118,7 +118,7 @@ export default function DirectDepositScreen() {
 
 	const handleDownloadForm = () => {
 		// In a real app, this would download a direct deposit form
-		router.push("/directdeposit/form")
+		router.push("/direct-deposit/form")
 	}
 
 	return (

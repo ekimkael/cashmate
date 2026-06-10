@@ -8,7 +8,7 @@ import {
 } from "lucide-react-native"
 
 import Colors, { useThemeColors } from "@/constants/colors"
-import { useUserStore } from "@/store/userStore"
+import { useUserStore } from '@/store/user-store'
 
 export default function BankingScreen() {
   const C = useThemeColors()
@@ -33,7 +33,7 @@ export default function BankingScreen() {
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
           icon="plus.circle"
-          onPress={() => handlePress("/linkaccount")}
+          onPress={() => handlePress("/link-account")}
         />
       </Stack.Toolbar>
 
@@ -90,7 +90,7 @@ export default function BankingScreen() {
             {[
               { icon: ArrowDownToLine, label: "Add Cash", path: "/deposit" },
               { icon: ArrowUpFromLine, label: "Cash Out", path: "/cashout" },
-              { icon: Building, label: "Direct Deposit", path: "/directdeposit" },
+              { icon: Building, label: "Direct Deposit", path: "/direct-deposit" },
               { icon: DollarSign, label: "Statements", path: "/statements" },
             ].map(({ icon: Icon, label, path }) => (
               <Pressable
@@ -129,7 +129,7 @@ export default function BankingScreen() {
             Linked Accounts
           </Text>
           <Pressable
-            onPress={() => handlePress("/linkedaccounts")}
+            onPress={() => handlePress("/linked-accounts")}
             style={{
               flexDirection: "row",
               alignItems: "center",

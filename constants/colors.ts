@@ -1,5 +1,5 @@
 import { PlatformColor } from "react-native"
-import { useThemeStore } from "@/store/themeStore"
+import { useThemeStore } from '@/store/theme-store'
 
 const palette = {
   dark: {

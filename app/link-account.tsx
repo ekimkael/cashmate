@@ -158,11 +158,11 @@ export default function LinkAccountScreen() {
 
 	const handleSelectBank = (bank) => {
 		// In a real app, this would navigate to the bank's login page
-		router.push("/linkaccount/connect")
+		router.push("/link-account/connect")
 	}
 
 	const handleManualEntry = () => {
-		router.push("/linkaccount/manual")
+		router.push("/link-account/manual")
 	}
 
 	return (
@@ -299,7 +299,7 @@ export default function LinkAccountScreen() {
 						</View>
 					</View>
 
-					<Button label="Add Card" onPress={() => router.push("/linkedaccounts")} style={{ marginBottom: 24 }} />
+					<Button label="Add Card" onPress={() => router.push("/linked-accounts")} style={{ marginBottom: 24 }} />
 
 					<View style={styles.securityNote}>
 						<Lock size={16} color={C.secondaryText} />
