@@ -4,11 +4,57 @@ import { Stack, useRouter } from "expo-router"
 import { View, Text, StyleSheet, FlatList, TextInput } from "react-native"
 
 import { contacts } from "@/mocks/data"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 
-import ContactItem from "@/components/ContactItem"
+import ContactItem from "@/components/ui/contact-item"
 
 export default function SendScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	searchContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.inputBackground,
+  		borderRadius: 12,
+  		margin: 16,
+  		paddingHorizontal: 12,
+  	},
+  	searchIcon: {
+  		marginRight: 8,
+  	},
+  	searchInput: {
+  		flex: 1,
+  		height: 48,
+  		color: C.text,
+  		fontSize: 16,
+  	},
+  	recentSection: {
+  		marginBottom: 24,
+  	},
+  	sectionTitle: {
+  		color: C.text,
+  		fontSize: 18,
+  		fontWeight: "600",
+  		marginHorizontal: 16,
+  		marginBottom: 12,
+  		marginTop: 8,
+  	},
+  	recentList: {
+  		paddingHorizontal: 16,
+  	},
+  	emptyContainer: {
+  		padding: 20,
+  		alignItems: "center",
+  	},
+  	emptyText: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  	},
+  })
 	const router = useRouter()
 	const [searchQuery, setSearchQuery] = useState("")
 
@@ -34,13 +80,13 @@ export default function SendScreen() {
 			<View style={styles.searchContainer}>
 				<Search
 					size={20}
-					color={Colors.dark.secondaryText}
+					color={C.secondaryText}
 					style={styles.searchIcon}
 				/>
 				<TextInput
 					style={styles.searchInput}
 					placeholder="Search name or $cashtag"
-					placeholderTextColor={Colors.dark.secondaryText}
+					placeholderTextColor={C.secondaryText}
 					value={searchQuery}
 					onChangeText={setSearchQuery}
 					autoCapitalize="none"
@@ -84,48 +130,3 @@ export default function SendScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	searchContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.inputBackground,
-		borderRadius: 12,
-		margin: 16,
-		paddingHorizontal: 12,
-	},
-	searchIcon: {
-		marginRight: 8,
-	},
-	searchInput: {
-		flex: 1,
-		height: 48,
-		color: Colors.dark.text,
-		fontSize: 16,
-	},
-	recentSection: {
-		marginBottom: 24,
-	},
-	sectionTitle: {
-		color: Colors.dark.text,
-		fontSize: 18,
-		fontWeight: "600",
-		marginHorizontal: 16,
-		marginBottom: 12,
-		marginTop: 8,
-	},
-	recentList: {
-		paddingHorizontal: 16,
-	},
-	emptyContainer: {
-		padding: 20,
-		alignItems: "center",
-	},
-	emptyText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-	},
-})

@@ -4,10 +4,79 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter } from "expo-router"
 import { ArrowLeft, Building } from "lucide-react-native"
 import { useTransactionStore } from "@/store/transactionStore"
-import NumPad from "@/components/NumPad"
-import Colors from "@/constants/colors"
+import NumPad from "@/components/ui/num-pad"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function CashoutScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 20,
+  	},
+  	destinationContainer: {
+  		width: "100%",
+  		marginBottom: 32,
+  	},
+  	destinationCard: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	destinationDetails: {
+  		marginLeft: 16,
+  	},
+  	destinationName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	destinationNumber: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	amountContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		marginBottom: 16,
+  	},
+  	currencySymbol: {
+  		color: C.text,
+  		fontSize: 36,
+  		fontWeight: "600",
+  		marginRight: 4,
+  	},
+  	amount: {
+  		color: C.text,
+  		fontSize: 48,
+  		fontWeight: "600",
+  	},
+  	feeText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  		marginBottom: 8,
+  	},
+  	instantText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  		marginBottom: 32,
+  	},
+  	numPadContainer: {
+  		width: "100%",
+  	},
+  })
 	const router = useRouter()
 	const { addTransaction } = useTransactionStore()
 	const [amount, setAmount] = useState("0")
@@ -58,7 +127,7 @@ export default function CashoutScreen() {
 			<View style={styles.content}>
 				<View style={styles.destinationContainer}>
 					<View style={styles.destinationCard}>
-						<Building size={24} color={Colors.dark.text} />
+						<Building size={24} color={C.text} />
 						<View style={styles.destinationDetails}>
 							<Text style={styles.destinationName}>Bank Account</Text>
 							<Text style={styles.destinationNumber}>•••• 5678</Text>
@@ -85,100 +154,14 @@ export default function CashoutScreen() {
 					onDeletePress={handleDeletePress}
 				/>
 
-				<Pressable
-					style={[
-						styles.cashOutButton,
-						parseFloat(amount) <= 0 && styles.cashOutButtonDisabled,
-					]}
+				<Button
+					label="Cash Out"
 					onPress={handleCashOutPress}
-					disabled={parseFloat(amount) <= 0}>
-					<Text style={styles.cashOutButtonText}>Cash Out</Text>
-				</Pressable>
+					disabled={parseFloat(amount) <= 0}
+					style={{ margin: 16 }}
+				/>
 			</View>
 		</SafeAreaView>
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 20,
-	},
-	destinationContainer: {
-		width: "100%",
-		marginBottom: 32,
-	},
-	destinationCard: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-	},
-	destinationDetails: {
-		marginLeft: 16,
-	},
-	destinationName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	destinationNumber: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	amountContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 16,
-	},
-	currencySymbol: {
-		color: Colors.dark.text,
-		fontSize: 36,
-		fontWeight: "600",
-		marginRight: 4,
-	},
-	amount: {
-		color: Colors.dark.text,
-		fontSize: 48,
-		fontWeight: "600",
-	},
-	feeText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-		marginBottom: 8,
-	},
-	instantText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-		marginBottom: 32,
-	},
-	numPadContainer: {
-		width: "100%",
-	},
-	cashOutButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-		margin: 16,
-	},
-	cashOutButtonDisabled: {
-		opacity: 0.5,
-	},
-	cashOutButtonText: {
-		color: Colors.dark.background,
-		fontSize: 18,
-		fontWeight: "600",
-	},
-})

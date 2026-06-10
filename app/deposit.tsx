@@ -4,12 +4,75 @@ import { CreditCard } from "lucide-react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { View, Text, StyleSheet, Pressable } from "react-native"
 
-import NumPad from "@/components/NumPad"
+import NumPad from "@/components/ui/num-pad"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 import { useTransactionStore } from "@/store/transactionStore"
 
 export default function DepositScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 20,
+  	},
+  	sourceContainer: {
+  		width: "100%",
+  		marginBottom: 32,
+  	},
+  	sourceCard: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		backgroundColor: C.card,
+  		borderRadius: 12,
+  		padding: 16,
+  	},
+  	sourceDetails: {
+  		marginLeft: 16,
+  	},
+  	sourceName: {
+  		color: C.text,
+  		fontSize: 16,
+  		fontWeight: "500",
+  		marginBottom: 4,
+  	},
+  	sourceNumber: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  	},
+  	amountContainer: {
+  		flexDirection: "row",
+  		alignItems: "center",
+  		marginBottom: 16,
+  	},
+  	currencySymbol: {
+  		color: C.text,
+  		fontSize: 36,
+  		fontWeight: "600",
+  		marginRight: 4,
+  	},
+  	amount: {
+  		color: C.text,
+  		fontSize: 48,
+  		fontWeight: "600",
+  	},
+  	feeText: {
+  		color: C.secondaryText,
+  		fontSize: 14,
+  		textAlign: "center",
+  		marginBottom: 32,
+  	},
+  	numPadContainer: {
+  		width: "100%",
+  	},
+  })
 	const { addTransaction } = useTransactionStore()
 	const [amount, setAmount] = useState("0")
 	const router = useRouter()
@@ -60,7 +123,7 @@ export default function DepositScreen() {
 			<View style={styles.content}>
 				<View style={styles.sourceContainer}>
 					<View style={styles.sourceCard}>
-						<CreditCard size={24} color={Colors.dark.text} />
+						<CreditCard size={24} color={C.text} />
 						<View style={styles.sourceDetails}>
 							<Text style={styles.sourceName}>Bank Account</Text>
 							<Text style={styles.sourceNumber}>•••• 5678</Text>
@@ -84,94 +147,14 @@ export default function DepositScreen() {
 					onDeletePress={handleDeletePress}
 				/>
 
-				<Pressable
-					style={[
-						styles.addButton,
-						parseFloat(amount) <= 0 && styles.addButtonDisabled,
-					]}
+				<Button
+					label="Add Cash"
 					onPress={handleAddCashPress}
-					disabled={parseFloat(amount) <= 0}>
-					<Text style={styles.addButtonText}>Add Cash</Text>
-				</Pressable>
+					disabled={parseFloat(amount) <= 0}
+					style={{ margin: 16 }}
+				/>
 			</View>
 		</SafeAreaView>
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 20,
-	},
-	sourceContainer: {
-		width: "100%",
-		marginBottom: 32,
-	},
-	sourceCard: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: Colors.dark.card,
-		borderRadius: 12,
-		padding: 16,
-	},
-	sourceDetails: {
-		marginLeft: 16,
-	},
-	sourceName: {
-		color: Colors.dark.text,
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	sourceNumber: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-	},
-	amountContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 16,
-	},
-	currencySymbol: {
-		color: Colors.dark.text,
-		fontSize: 36,
-		fontWeight: "600",
-		marginRight: 4,
-	},
-	amount: {
-		color: Colors.dark.text,
-		fontSize: 48,
-		fontWeight: "600",
-	},
-	feeText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 14,
-		textAlign: "center",
-		marginBottom: 32,
-	},
-	numPadContainer: {
-		width: "100%",
-	},
-	addButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-		margin: 16,
-	},
-	addButtonDisabled: {
-		opacity: 0.5,
-	},
-	addButtonText: {
-		color: Colors.dark.background,
-		fontSize: 18,
-		fontWeight: "600",
-	},
-})

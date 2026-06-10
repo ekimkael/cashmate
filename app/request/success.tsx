@@ -3,9 +3,51 @@ import { View, Text, StyleSheet, Pressable } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Stack, useRouter, useLocalSearchParams } from "expo-router"
 import { CheckCircle } from "lucide-react-native"
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
+import Button from "@/components/ui/button"
 
 export default function RequestSuccessScreen() {
+  const C = useThemeColors()
+  const styles = StyleSheet.create({
+  	container: {
+  		flex: 1,
+  		backgroundColor: C.background,
+  	},
+  	content: {
+  		flex: 1,
+  		alignItems: "center",
+  		justifyContent: "center",
+  		padding: 20,
+  	},
+  	iconContainer: {
+  		marginBottom: 24,
+  	},
+  	title: {
+  		color: C.text,
+  		fontSize: 28,
+  		fontWeight: "700",
+  		marginBottom: 24,
+  	},
+  	detailsContainer: {
+  		alignItems: "center",
+  		marginBottom: 24,
+  	},
+  	amountText: {
+  		color: C.text,
+  		fontSize: 48,
+  		fontWeight: "600",
+  		marginBottom: 8,
+  	},
+  	recipientText: {
+  		color: C.secondaryText,
+  		fontSize: 18,
+  	},
+  	message: {
+  		color: C.secondaryText,
+  		fontSize: 16,
+  		textAlign: "center",
+  	},
+  })
 	const router = useRouter()
 	const { amount, name } = useLocalSearchParams()
 
@@ -27,7 +69,7 @@ export default function RequestSuccessScreen() {
 
 			<View style={styles.content}>
 				<View style={styles.iconContainer}>
-					<CheckCircle size={80} color={Colors.dark.success} />
+					<CheckCircle size={80} color={C.success} />
 				</View>
 
 				<Text style={styles.title}>Request Sent!</Text>
@@ -43,63 +85,8 @@ export default function RequestSuccessScreen() {
 				</Text>
 			</View>
 
-			<Pressable style={styles.doneButton} onPress={() => router.replace("/")}>
-				<Text style={styles.doneButtonText}>Done</Text>
-			</Pressable>
+			<Button label="Done" onPress={() => router.replace("/")} style={{ margin: 16 }} />
 		</SafeAreaView>
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.dark.background,
-	},
-	content: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 20,
-	},
-	iconContainer: {
-		marginBottom: 24,
-	},
-	title: {
-		color: Colors.dark.text,
-		fontSize: 28,
-		fontWeight: "700",
-		marginBottom: 24,
-	},
-	detailsContainer: {
-		alignItems: "center",
-		marginBottom: 24,
-	},
-	amountText: {
-		color: Colors.dark.text,
-		fontSize: 48,
-		fontWeight: "600",
-		marginBottom: 8,
-	},
-	recipientText: {
-		color: Colors.dark.secondaryText,
-		fontSize: 18,
-	},
-	message: {
-		color: Colors.dark.secondaryText,
-		fontSize: 16,
-		textAlign: "center",
-	},
-	doneButton: {
-		backgroundColor: Colors.dark.primary,
-		borderRadius: 12,
-		padding: 16,
-		alignItems: "center",
-		justifyContent: "center",
-		margin: 16,
-	},
-	doneButtonText: {
-		color: Colors.dark.background,
-		fontSize: 18,
-		fontWeight: "600",
-	},
-})
