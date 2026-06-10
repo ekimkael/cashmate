@@ -7,16 +7,18 @@ import {
   Smartphone, DollarSign, ArrowRight, UserRound,
 } from "lucide-react-native"
 
-import Colors from "@/constants/colors"
+import { useThemeColors } from "@/constants/colors"
+import { useThemeStore } from "@/store/themeStore"
 import { useUserStore } from "@/store/userStore"
-import HStack from "@/components/hstack"
+import HStack from "@/components/ui/hstack"
 
 export default function ProfileScreen() {
   const router = useRouter()
   const { user, logout } = useUserStore()
+  const C = useThemeColors()
+  const { isDark, toggle: toggleTheme } = useThemeStore()
 
   const [settings, setSettings] = React.useState({
-    darkMode: true,
     notifications: true,
     soundEffects: true,
     hapticFeedback: true,
@@ -29,8 +31,8 @@ export default function ProfileScreen() {
 
   if (!user) {
     return (
-      <View style={{ flex: 1, backgroundColor: Colors.dark.background, alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ color: Colors.dark.text, fontSize: 16 }}>User not found</Text>
+      <View style={{ flex: 1, backgroundColor: C.background, alignItems: "center", justifyContent: "center" }}>
+        <Text style={{ color: C.text, fontSize: 16 }}>User not found</Text>
       </View>
     )
   }
@@ -43,7 +45,7 @@ export default function ProfileScreen() {
   const menuItemStyle = {
     flexDirection: "row" as const,
     alignItems: "center" as const,
-    backgroundColor: Colors.dark.card,
+    backgroundColor: C.card,
     borderRadius: 12,
     borderCurve: "continuous" as any,
     padding: 16,
@@ -53,7 +55,7 @@ export default function ProfileScreen() {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: Colors.dark.inputBackground,
+    backgroundColor: C.inputBackground,
     alignItems: "center" as const,
     justifyContent: "center" as const,
     marginRight: 12,
@@ -78,7 +80,7 @@ export default function ProfileScreen() {
             padding: 16,
             borderRadius: 16,
             borderCurve: "continuous",
-            backgroundColor: Colors.dark.card,
+            backgroundColor: C.card,
           }}
           justify="space-between"
         >
@@ -86,26 +88,26 @@ export default function ProfileScreen() {
             {user.avatar ? (
               <Image source={{ uri: user.avatar }} style={{ width: 60, height: 60, borderRadius: 30 }} />
             ) : (
-              <View style={{ width: 60, height: 60, borderRadius: 30, alignItems: "center", justifyContent: "center", backgroundColor: Colors.dark.inputBackground }}>
-                <UserRound size={32} color={Colors.dark.text} />
+              <View style={{ width: 60, height: 60, borderRadius: 30, alignItems: "center", justifyContent: "center", backgroundColor: C.inputBackground }}>
+                <UserRound size={32} color={C.text} />
               </View>
             )}
             <View>
-              <Text style={{ fontSize: 18, fontWeight: "600", color: Colors.dark.text }}>{user.name}</Text>
-              <Text style={{ fontSize: 14, color: Colors.dark.secondaryText }}>@{user.username}</Text>
+              <Text style={{ fontSize: 18, fontWeight: "600", color: C.text }}>{user.name}</Text>
+              <Text style={{ fontSize: 14, color: C.secondaryText }}>@{user.username}</Text>
             </View>
           </HStack>
           <Pressable
             onPress={() => handlePress("/qrcode")}
-            style={{ width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: Colors.dark.inputBackground }}
+            style={{ width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: C.inputBackground }}
           >
-            <QrCode size={20} color={Colors.dark.text} />
+            <QrCode size={20} color={C.text} />
           </Pressable>
         </HStack>
 
         {/* Account section */}
         <View style={{ gap: 12 }}>
-          <Text style={{ fontSize: 18, fontWeight: "600", color: Colors.dark.text }}>Account</Text>
+          <Text style={{ fontSize: 18, fontWeight: "600", color: C.text }}>Account</Text>
           <View style={{ gap: 8 }}>
             {[
               { icon: UserRound, title: "Profile Information", desc: "Update your personal details", path: "/profile-settings" },
@@ -114,12 +116,12 @@ export default function ProfileScreen() {
               { icon: Shield, title: "Privacy & Security", desc: "Manage security settings", path: "/privacy" },
             ].map(({ icon: Icon, title, desc, path }) => (
               <Pressable key={path} style={menuItemStyle} onPress={() => handlePress(path)}>
-                <View style={iconWrapStyle}><Icon size={20} color={Colors.dark.text} /></View>
+                <View style={iconWrapStyle}><Icon size={20} color={C.text} /></View>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 16, fontWeight: "500", color: Colors.dark.text, marginBottom: 2 }}>{title}</Text>
-                  <Text style={{ fontSize: 14, color: Colors.dark.secondaryText }}>{desc}</Text>
+                  <Text style={{ fontSize: 16, fontWeight: "500", color: C.text, marginBottom: 2 }}>{title}</Text>
+                  <Text style={{ fontSize: 14, color: C.secondaryText }}>{desc}</Text>
                 </View>
-                <ArrowRight size={20} color={Colors.dark.secondaryText} />
+                <ArrowRight size={20} color={C.secondaryText} />
               </Pressable>
             ))}
           </View>
@@ -127,24 +129,41 @@ export default function ProfileScreen() {
 
         {/* Preferences section */}
         <View style={{ gap: 12 }}>
-          <Text style={{ fontSize: 18, fontWeight: "600", color: Colors.dark.text }}>Preferences</Text>
+          <Text style={{ fontSize: 18, fontWeight: "600", color: C.text }}>Preferences</Text>
           <View style={{ gap: 8 }}>
+            {/* Dark Mode toggle — connected to theme store */}
+            <View style={menuItemStyle}>
+              <View style={iconWrapStyle}><Moon size={20} color={C.text} /></View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 16, fontWeight: "500", color: C.text, marginBottom: 2 }}>Dark Mode</Text>
+                <Text style={{ fontSize: 14, color: C.secondaryText }}>Use dark theme</Text>
+              </View>
+              <Switch
+                value={isDark}
+                onValueChange={() => {
+                  if (process.env.EXPO_OS === "ios") Haptics.selectionAsync()
+                  toggleTheme()
+                }}
+                trackColor={{ false: C.border, true: C.primary }}
+                thumbColor={C.text}
+              />
+            </View>
+
             {[
-              { icon: Moon, key: "darkMode" as const, title: "Dark Mode", desc: "Use dark theme" },
               { icon: Bell, key: "soundEffects" as const, title: "Sound Effects", desc: "Play sounds for actions" },
               { icon: Smartphone, key: "hapticFeedback" as const, title: "Haptic Feedback", desc: "Enable vibration feedback" },
             ].map(({ icon: Icon, key, title, desc }) => (
               <View key={key} style={menuItemStyle}>
-                <View style={iconWrapStyle}><Icon size={20} color={Colors.dark.text} /></View>
+                <View style={iconWrapStyle}><Icon size={20} color={C.text} /></View>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 16, fontWeight: "500", color: Colors.dark.text, marginBottom: 2 }}>{title}</Text>
-                  <Text style={{ fontSize: 14, color: Colors.dark.secondaryText }}>{desc}</Text>
+                  <Text style={{ fontSize: 16, fontWeight: "500", color: C.text, marginBottom: 2 }}>{title}</Text>
+                  <Text style={{ fontSize: 14, color: C.secondaryText }}>{desc}</Text>
                 </View>
                 <Switch
                   value={settings[key]}
                   onValueChange={() => toggleSetting(key)}
-                  trackColor={{ false: Colors.dark.border, true: Colors.dark.primary }}
-                  thumbColor={Colors.dark.text}
+                  trackColor={{ false: C.border, true: C.primary }}
+                  thumbColor={C.text}
                 />
               </View>
             ))}
@@ -153,12 +172,12 @@ export default function ProfileScreen() {
               { icon: Globe, title: "Language", desc: "English (US)", path: "/language" },
             ].map(({ icon: Icon, title, desc, path }) => (
               <Pressable key={path} style={menuItemStyle} onPress={() => handlePress(path)}>
-                <View style={iconWrapStyle}><Icon size={20} color={Colors.dark.text} /></View>
+                <View style={iconWrapStyle}><Icon size={20} color={C.text} /></View>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 16, fontWeight: "500", color: Colors.dark.text, marginBottom: 2 }}>{title}</Text>
-                  <Text style={{ fontSize: 14, color: Colors.dark.secondaryText }}>{desc}</Text>
+                  <Text style={{ fontSize: 16, fontWeight: "500", color: C.text, marginBottom: 2 }}>{title}</Text>
+                  <Text style={{ fontSize: 14, color: C.secondaryText }}>{desc}</Text>
                 </View>
-                <ArrowRight size={20} color={Colors.dark.secondaryText} />
+                <ArrowRight size={20} color={C.secondaryText} />
               </Pressable>
             ))}
           </View>
@@ -166,7 +185,7 @@ export default function ProfileScreen() {
 
         {/* About section */}
         <View style={{ gap: 12 }}>
-          <Text style={{ fontSize: 18, fontWeight: "600", color: Colors.dark.text }}>About</Text>
+          <Text style={{ fontSize: 18, fontWeight: "600", color: C.text }}>About</Text>
           <View style={{ gap: 8 }}>
             {[
               { title: "Help & Support", path: "/help" },
@@ -175,9 +194,9 @@ export default function ProfileScreen() {
             ].map(({ title, path }) => (
               <Pressable key={path} style={menuItemStyle} onPress={() => handlePress(path)}>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 16, fontWeight: "500", color: Colors.dark.text }}>{title}</Text>
+                  <Text style={{ fontSize: 16, fontWeight: "500", color: C.text }}>{title}</Text>
                 </View>
-                <ArrowRight size={20} color={Colors.dark.secondaryText} />
+                <ArrowRight size={20} color={C.secondaryText} />
               </Pressable>
             ))}
           </View>
@@ -201,11 +220,11 @@ export default function ProfileScreen() {
             backgroundColor: "rgba(255, 67, 42, 0.1)",
           }}
         >
-          <LogOut size={20} color={Colors.dark.error} />
-          <Text style={{ fontSize: 16, fontWeight: "600", color: Colors.dark.error }}>Log Out</Text>
+          <LogOut size={20} color={C.error} />
+          <Text style={{ fontSize: 16, fontWeight: "600", color: C.error }}>Log Out</Text>
         </Pressable>
 
-        <Text style={{ fontSize: 14, textAlign: "center", color: Colors.dark.secondaryText, paddingBottom: 8 }}>
+        <Text style={{ fontSize: 14, textAlign: "center", color: C.secondaryText, paddingBottom: 8 }}>
           Version 0.1.0-beta.1
         </Text>
       </ScrollView>

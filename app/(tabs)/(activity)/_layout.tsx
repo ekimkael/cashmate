@@ -1,7 +1,8 @@
 import { Stack } from "expo-router/stack"
-import { PlatformColor } from "react-native"
+import { useThemeColors } from "@/constants/colors"
 
 export default function ActivityStack() {
+  const C = useThemeColors()
   return (
     <Stack
       screenOptions={{
@@ -9,7 +10,9 @@ export default function ActivityStack() {
         headerShadowVisible: false,
         headerLargeTitleShadowVisible: false,
         headerLargeStyle: { backgroundColor: "transparent" },
-        headerTitleStyle: { color: PlatformColor("label") },
+        headerTitleStyle: { color: C.text },
+        headerLargeTitleStyle: { color: C.text },
+        headerTintColor: C.primary,
         headerLargeTitle: true,
         headerBlurEffect: "systemChromeMaterial",
         headerBackButtonDisplayMode: "minimal",

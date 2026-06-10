@@ -3,9 +3,9 @@ import { SectionList, View, Text, FlatList, Pressable } from "react-native"
 import { useRouter, Stack } from "expo-router"
 import * as Haptics from "expo-haptics"
 
-import Colors from "@/constants/colors"
+import Colors, { useThemeColors } from "@/constants/colors"
 import { useTransactionStore } from "@/store/transactionStore"
-import TransactionItem from "@/components/TransactionItem"
+import TransactionItem from "@/components/ui/transaction-item"
 
 const FILTER_OPTIONS = [
   { label: "All", value: "all" },
@@ -17,6 +17,7 @@ const FILTER_OPTIONS = [
 ]
 
 export default function ActivityScreen() {
+  const C = useThemeColors()
   const router = useRouter()
   const { transactions } = useTransactionStore()
   const [filterType, setFilterType] = useState("all")
@@ -79,14 +80,14 @@ export default function ActivityScreen() {
                     paddingHorizontal: 16,
                     paddingVertical: 8,
                     borderRadius: 20,
-                    backgroundColor: filterType === item.value ? Colors.dark.primary : Colors.dark.card,
+                    backgroundColor: filterType === item.value ? C.primary : C.card,
                   }}
                 >
                   <Text
                     style={{
                       fontSize: 14,
                       fontWeight: filterType === item.value ? "600" : "400",
-                      color: filterType === item.value ? Colors.dark.background : Colors.dark.text,
+                      color: filterType === item.value ? C.background : C.text,
                     }}
                   >
                     {item.label}
@@ -105,18 +106,18 @@ export default function ActivityScreen() {
               paddingHorizontal: 20,
               paddingVertical: 8,
               borderBottomWidth: 1,
-              borderBottomColor: Colors.dark.border,
-              backgroundColor: Colors.dark.background,
+              borderBottomColor: C.border,
+              backgroundColor: C.background,
             }}
           >
-            <Text style={{ fontSize: 14, fontWeight: "600", color: Colors.dark.secondaryText }}>
+            <Text style={{ fontSize: 14, fontWeight: "600", color: C.secondaryText }}>
               {title}
             </Text>
           </View>
         )}
         ListEmptyComponent={
           <View style={{ height: 300, alignItems: "center", justifyContent: "center" }}>
-            <Text style={{ fontSize: 16, color: Colors.dark.secondaryText }}>No transactions found</Text>
+            <Text style={{ fontSize: 16, color: C.secondaryText }}>No transactions found</Text>
           </View>
         }
       />
