@@ -1,17 +1,14 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
-import { StyleSheet, View } from "react-native"
+import React, { useEffect, useRef, useState } from "react"
+import { StyleSheet, Text, View } from "react-native"
 import Animated, {
-	Easing,
-	runOnJS,
-	useAnimatedStyle,
-	useSharedValue,
-	withDelay,
-	withSpring,
-	withTiming,
+	FadeIn,
+	FadeOut,
+	FadeOutUp,
+	ZoomIn,
 } from "react-native-reanimated"
 import { SvgXml } from "react-native-svg"
 
-import { useAppStore } from '@/store/app-store'
+import { useAppStore } from "@/store/app-store"
 
 const BRAND_GREEN = "#00D632"
 const MIN_DURATION = 2500
@@ -24,83 +21,59 @@ const markSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
 export function SplashOverlay() {
 	const isAppReady = useAppStore((s) => s.isAppReady)
 	const [visible, setVisible] = useState(true)
+	const [showContent, setShowContent] = useState(true)
+	const [showText, setShowText] = useState(false)
 	const startTimeRef = useRef(Date.now())
 
-	// Entry values
-	const markScale = useSharedValue(0.6)
-	const markOpacity = useSharedValue(0)
-	const textScaleX = useSharedValue(0)
-	const textOpacity = useSharedValue(0)
-
-	// Exit values
-	const bgOpacity = useSharedValue(1)
-	const logoY = useSharedValue(0)
-	const logoOpacity = useSharedValue(1)
-
-	// Entry animation on mount
 	useEffect(() => {
-		markOpacity.value = withTiming(1, { duration: 350 })
-		markScale.value = withSpring(1, { damping: 14, stiffness: 90 })
-
-		textOpacity.value = withDelay(320, withTiming(1, { duration: 280 }))
-		textScaleX.value = withDelay(320, withSpring(1, { damping: 18, stiffness: 120 }))
+		const t = setTimeout(() => setShowText(true), 320)
+		return () => clearTimeout(t)
 	}, [])
-
-	const playExit = useCallback(() => {
-		bgOpacity.value = withTiming(0, {
-			duration: 650,
-			easing: Easing.out(Easing.cubic),
-		})
-		logoY.value = withTiming(-48, {
-			duration: 550,
-			easing: Easing.out(Easing.cubic),
-		})
-		logoOpacity.value = withTiming(
-			0,
-			{ duration: 450, easing: Easing.out(Easing.cubic) },
-			(finished) => {
-				if (finished) runOnJS(setVisible)(false)
-			},
-		)
-	}, [bgOpacity, logoOpacity, logoY])
 
 	useEffect(() => {
 		if (!isAppReady) return
 		const elapsed = Date.now() - startTimeRef.current
 		const remaining = Math.max(0, MIN_DURATION - elapsed)
-		const t = setTimeout(playExit, remaining)
-		return () => clearTimeout(t)
-	}, [isAppReady, playExit])
 
-	const bgStyle = useAnimatedStyle(() => ({ opacity: bgOpacity.value }))
-	const logoGroupStyle = useAnimatedStyle(() => ({
-		opacity: logoOpacity.value,
-		transform: [{ translateY: logoY.value }],
-	}))
-	const markStyle = useAnimatedStyle(() => ({
-		opacity: markOpacity.value,
-		transform: [{ scale: markScale.value }],
-	}))
-	const textStyle = useAnimatedStyle(() => ({
-		opacity: textOpacity.value,
-		transform: [{ scaleX: textScaleX.value }],
-	}))
+		const exitTimer = setTimeout(() => {
+			setShowContent(false)
+			setTimeout(() => setVisible(false), 750)
+		}, remaining)
+
+		return () => clearTimeout(exitTimer)
+	}, [isAppReady])
 
 	if (!visible) return null
 
 	return (
 		<View style={StyleSheet.absoluteFill} pointerEvents="none">
-			<Animated.View style={[StyleSheet.absoluteFill, styles.bg, bgStyle]} />
-			<Animated.View style={[styles.centered, logoGroupStyle]}>
-				<View style={styles.logoRow}>
-					<Animated.View style={markStyle}>
-						<SvgXml xml={markSvg} width={56} height={56} />
-					</Animated.View>
-					<Animated.View style={[styles.textWrap, textStyle]}>
-						<Animated.Text style={styles.logoText}>cashmate</Animated.Text>
-					</Animated.View>
-				</View>
-			</Animated.View>
+			{showContent && (
+				<Animated.View
+					style={[StyleSheet.absoluteFill, styles.bg]}
+					exiting={FadeOut.duration(650)}
+				/>
+			)}
+			{showContent && (
+				<Animated.View
+					style={styles.centered}
+					entering={FadeIn.duration(150)}
+					exiting={FadeOutUp.duration(500)}
+				>
+					<View style={styles.logoRow}>
+						<Animated.View
+							entering={ZoomIn.springify()
+								.damping(14)
+								.stiffness(90)
+								.duration(500)}
+						>
+							<SvgXml xml={markSvg} width={56} height={56} />
+						</Animated.View>
+						{showText && (
+							<Text style={styles.logoText}>cashmate</Text>
+						)}
+					</View>
+				</Animated.View>
+			)}
 		</View>
 	)
 }
@@ -119,14 +92,10 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		gap: 12,
 	},
-	textWrap: {
-		overflow: "hidden",
-	},
 	logoText: {
 		color: "#FFFFFF",
 		fontSize: 30,
 		fontWeight: "400",
 		letterSpacing: -0.5,
-		fontFamily: "System",
 	},
 })
