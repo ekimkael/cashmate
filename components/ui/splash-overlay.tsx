@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Modal, StyleSheet, Text, useWindowDimensions, View } from "react-native"
+import { Modal, StyleSheet, Text, View } from "react-native"
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
-	withSpring,
 	withTiming,
 	ZoomIn,
 } from "react-native-reanimated"
@@ -20,14 +19,13 @@ const markSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
 </svg>`
 
 export function SplashOverlay() {
-	const { height } = useWindowDimensions()
 	const isAppReady = useAppStore((s) => s.isAppReady)
 	const [visible, setVisible] = useState(true)
 	const [showText, setShowText] = useState(false)
 	const startTimeRef = useRef(Date.now())
 
 	const bgOpacity = useSharedValue(1)
-	const logoTranslateY = useSharedValue(0)
+	const logoScale = useSharedValue(1)
 	const logoOpacity = useSharedValue(1)
 
 	useEffect(() => {
@@ -41,10 +39,10 @@ export function SplashOverlay() {
 		const remaining = Math.max(0, MIN_DURATION - elapsed)
 
 		const exitTimer = setTimeout(() => {
-			bgOpacity.value = withTiming(0, { duration: 650 })
-			logoTranslateY.value = withSpring(-height * 0.6, { damping: 18, stiffness: 120 })
+			bgOpacity.value = withTiming(0, { duration: 400 })
+			logoScale.value = withTiming(1.8, { duration: 400 })
 			logoOpacity.value = withTiming(0, { duration: 400 })
-			setTimeout(() => setVisible(false), 700)
+			setTimeout(() => setVisible(false), 450)
 		}, remaining)
 
 		return () => clearTimeout(exitTimer)
@@ -52,7 +50,7 @@ export function SplashOverlay() {
 
 	const bgStyle = useAnimatedStyle(() => ({ opacity: bgOpacity.value }))
 	const logoStyle = useAnimatedStyle(() => ({
-		transform: [{ translateY: logoTranslateY.value }],
+		transform: [{ scale: logoScale.value }],
 		opacity: logoOpacity.value,
 	}))
 

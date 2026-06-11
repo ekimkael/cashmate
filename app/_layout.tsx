@@ -4,11 +4,15 @@ import { Stack } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import * as SplashScreen from "expo-splash-screen"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
+import { LogBox } from "react-native"
+
+LogBox.ignoreAllLogs()
 
 import { useThemeColors } from "@/constants/colors"
 import { useThemeStore } from '@/store/theme-store'
 import { Theme } from "@/components/ui/theme"
 import { SplashOverlay } from "@/components/ui/splash-overlay"
+import { useAppStore } from "@/store/app-store"
 import { ErrorBoundary } from "./error-boundary"
 
 export const unstable_settings = { initialRouteName: "(tabs)" }
@@ -19,6 +23,7 @@ export default function RootLayout() {
 	const [loaded, error] = useFonts({
 		...FontAwesome.font,
 	})
+	const setAppReady = useAppStore((s) => s.setAppReady)
 
 	useEffect(() => {
 		if (error) {
@@ -28,10 +33,11 @@ export default function RootLayout() {
 	}, [error])
 
 	useEffect(() => {
-		if (loaded) {
-			SplashScreen.hideAsync()
-		}
-	}, [loaded])
+		if (!loaded) return
+		SplashScreen.hideAsync()
+		const timer = setTimeout(() => setAppReady(), 1000)
+		return () => clearTimeout(timer)
+	}, [loaded, setAppReady])
 
 	if (!loaded) {
 		return null
@@ -83,7 +89,8 @@ function RootLayoutNav() {
 					name="transaction/[id]"
 					options={{
 						presentation: process.env.EXPO_OS === "ios" ? "formSheet" : "modal",
-						sheetAllowedDetents: process.env.EXPO_OS === "ios" ? [0.64, 1] : undefined,
+						sheetAllowedDetents: process.env.EXPO_OS === "ios" ? [0.75, 1] : undefined,
+						sheetGrabberVisible: process.env.EXPO_OS === "ios",
 					}}
 				/>
 				<Stack.Screen name="auth" options={{ headerShown: false }} />
