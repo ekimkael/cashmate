@@ -38,9 +38,9 @@ A fully-featured **mobile UI prototype** for a digital wallet and P2P payment ex
 
 ## Screenshots
 
-| Home | Activity | Banking | Profile |
-|------|----------|---------|---------|
-| <img src="assets/screenshots/home.png" width="180"/> | <img src="assets/screenshots/activity.png" width="180"/> | <img src="assets/screenshots/banking.png" width="180"/> | <img src="assets/screenshots/profile.png" width="180"/> |
+| Splash | Home | Activity | Banking | Profile |
+|--------|------|----------|---------|---------|
+| <img src="assets/screenshots/splash.png" width="180"/> | <img src="assets/screenshots/home.png" width="180"/> | <img src="assets/screenshots/activity.png" width="180"/> | <img src="assets/screenshots/banking.png" width="180"/> | <img src="assets/screenshots/profile.png" width="180"/> |
 
 | Send Flow | Card Management | QR Code |
 |-----------|----------------|---------|
