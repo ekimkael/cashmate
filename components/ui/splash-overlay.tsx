@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { Modal, StyleSheet, Text, useWindowDimensions, View } from "react-native"
 import Animated, {
-	FadeIn,
-	FadeOut,
-	FadeOutUp,
+	useAnimatedStyle,
+	useSharedValue,
+	withSpring,
+	withTiming,
 	ZoomIn,
 } from "react-native-reanimated"
 import { SvgXml } from "react-native-svg"
@@ -19,11 +20,15 @@ const markSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
 </svg>`
 
 export function SplashOverlay() {
+	const { height } = useWindowDimensions()
 	const isAppReady = useAppStore((s) => s.isAppReady)
 	const [visible, setVisible] = useState(true)
-	const [showContent, setShowContent] = useState(true)
 	const [showText, setShowText] = useState(false)
 	const startTimeRef = useRef(Date.now())
+
+	const bgOpacity = useSharedValue(1)
+	const logoTranslateY = useSharedValue(0)
+	const logoOpacity = useSharedValue(1)
 
 	useEffect(() => {
 		const t = setTimeout(() => setShowText(true), 320)
@@ -36,30 +41,27 @@ export function SplashOverlay() {
 		const remaining = Math.max(0, MIN_DURATION - elapsed)
 
 		const exitTimer = setTimeout(() => {
-			setShowContent(false)
-			setTimeout(() => setVisible(false), 750)
+			bgOpacity.value = withTiming(0, { duration: 650 })
+			logoTranslateY.value = withSpring(-height * 0.6, { damping: 18, stiffness: 120 })
+			logoOpacity.value = withTiming(0, { duration: 400 })
+			setTimeout(() => setVisible(false), 700)
 		}, remaining)
 
 		return () => clearTimeout(exitTimer)
 	}, [isAppReady])
 
-	if (!visible) return null
+	const bgStyle = useAnimatedStyle(() => ({ opacity: bgOpacity.value }))
+	const logoStyle = useAnimatedStyle(() => ({
+		transform: [{ translateY: logoTranslateY.value }],
+		opacity: logoOpacity.value,
+	}))
 
 	return (
-		<View style={StyleSheet.absoluteFill} pointerEvents="none">
-			{showContent && (
-				<Animated.View
-					style={[StyleSheet.absoluteFill, styles.bg]}
-					exiting={FadeOut.duration(650)}
-				/>
-			)}
-			{showContent && (
-				<Animated.View
-					style={styles.centered}
-					entering={FadeIn.duration(150)}
-					exiting={FadeOutUp.duration(500)}
-				>
-					<View style={styles.logoRow}>
+		<Modal visible={visible} transparent statusBarTranslucent animationType="none">
+			<View style={styles.container} pointerEvents="none">
+				<Animated.View style={[StyleSheet.absoluteFill, styles.bg, bgStyle]} />
+				<View style={styles.centered}>
+					<Animated.View style={[styles.logoRow, logoStyle]}>
 						<Animated.View
 							entering={ZoomIn.springify()
 								.damping(14)
@@ -71,19 +73,22 @@ export function SplashOverlay() {
 						{showText && (
 							<Text style={styles.logoText}>cashmate</Text>
 						)}
+						</Animated.View>
 					</View>
-				</Animated.View>
-			)}
-		</View>
+				</View>
+			</Modal>
 	)
 }
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
 	bg: {
 		backgroundColor: BRAND_GREEN,
 	},
 	centered: {
-		...StyleSheet.absoluteFillObject,
+		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
 	},

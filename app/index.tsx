@@ -22,7 +22,7 @@ export default function IndexScreen() {
 	}
 
 	if (user) {
-		return <Redirect href="/(tabs)" />
+		return <Redirect href="/(tabs)/(home)" />
 	}
 	return <Redirect href="/auth/login" />
 }
