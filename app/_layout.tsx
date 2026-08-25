@@ -1,46 +1,43 @@
-import { useEffect } from "react"
-import { useFonts } from "expo-font"
-import { Stack } from "expo-router"
-import { StatusBar } from "expo-status-bar"
-import * as SplashScreen from "expo-splash-screen"
-import FontAwesome from "@expo/vector-icons/FontAwesome"
-import { LogBox } from "react-native"
+import { useEffect } from "react";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import * as SplashScreen from "expo-splash-screen";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
-LogBox.ignoreAllLogs()
+import { useThemeColors } from "@/constants/colors";
+import { useThemeStore } from "@/store/theme-store";
+import { Theme } from "@/components/ui/theme";
+import { SplashOverlay } from "@/components/ui/splash-overlay";
+import { useAppStore } from "@/store/app-store";
+import { ErrorBoundary } from "./error-boundary";
 
-import { useThemeColors } from "@/constants/colors"
-import { useThemeStore } from '@/store/theme-store'
-import { Theme } from "@/components/ui/theme"
-import { SplashOverlay } from "@/components/ui/splash-overlay"
-import { useAppStore } from "@/store/app-store"
-import { ErrorBoundary } from "./error-boundary"
+export const unstable_settings = { initialRouteName: "(tabs)" };
 
-export const unstable_settings = { initialRouteName: "(tabs)" }
-
-SplashScreen.preventAutoHideAsync()
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 	const [loaded, error] = useFonts({
 		...FontAwesome.font,
-	})
-	const setAppReady = useAppStore((s) => s.setAppReady)
+	});
+	const setAppReady = useAppStore((s) => s.setAppReady);
 
 	useEffect(() => {
 		if (error) {
-			console.error(error)
-			throw error
+			console.error(error);
+			throw error;
 		}
-	}, [error])
+	}, [error]);
 
 	useEffect(() => {
-		if (!loaded) return
-		SplashScreen.hideAsync()
-		const timer = setTimeout(() => setAppReady(), 1000)
-		return () => clearTimeout(timer)
-	}, [loaded, setAppReady])
+		if (!loaded) return;
+		SplashScreen.hideAsync();
+		const timer = setTimeout(() => setAppReady(), 1000);
+		return () => clearTimeout(timer);
+	}, [loaded, setAppReady]);
 
 	if (!loaded) {
-		return null
+		return null;
 	}
 
 	return (
@@ -50,12 +47,12 @@ export default function RootLayout() {
 				<SplashOverlay />
 			</Theme>
 		</ErrorBoundary>
-	)
+	);
 }
 
 function RootLayoutNav() {
-	const colors = useThemeColors()
-	const isDark = useThemeStore((s) => s.isDark)
+	const colors = useThemeColors();
+	const isDark = useThemeStore((s) => s.isDark);
 
 	return (
 		<>
@@ -67,7 +64,8 @@ function RootLayoutNav() {
 					headerBackButtonDisplayMode: "minimal",
 					headerStyle: { backgroundColor: colors.background },
 					contentStyle: { backgroundColor: colors.background },
-				}}>
+				}}
+			>
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 				<Stack.Screen name="send" />
 				<Stack.Screen name="send/amount" options={{ headerShown: false }} />
@@ -100,5 +98,5 @@ function RootLayoutNav() {
 				<Stack.Screen name="privacy-policy" />
 			</Stack>
 		</>
-	)
+	);
 }
